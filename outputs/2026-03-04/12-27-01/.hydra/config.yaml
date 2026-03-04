@@ -1,0 +1,17 @@
+backbone:
+  type: hgt
+  hidden_channels: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  residual: true
+temporal:
+  enabled: true
+  type: fourier
+  causal_mask: false
+  data_source_aware: true
+objectives:
+  transitivity_loss_weight: 0.1
+  contrastive_loss_weight: 0.1
+  temperature: 0.5
+experiment_tag: B_noncausal_raw

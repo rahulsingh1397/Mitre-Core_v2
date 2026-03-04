@@ -1,0 +1,5 @@
+- +dataset=linux_apt
+- +checkpoint=checkpoints/experiment_D_best.pt
+- +eval.expected_sequence=[TA0043,TA0001,TA0002,TA0008,TA0010]
+- +training.device=cuda
+- +experiment_tag=apt_sequence_linux

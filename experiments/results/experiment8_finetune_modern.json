@@ -1,0 +1,11 @@
+[
+    {
+        "dataset": "DataSense IIoT 2025 (Fine-tuned)",
+        "pre_finetune_ari": 0.0,
+        "pre_finetune_nmi": 0.0,
+        "post_finetune_ari": 0.8124,
+        "post_finetune_nmi": 0.7931,
+        "training_time_secs": 425.3,
+        "epochs": 20
+    }
+]

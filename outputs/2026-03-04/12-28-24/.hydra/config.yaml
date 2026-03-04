@@ -1,0 +1,36 @@
+backbone:
+  type: hgt
+  hidden_channels: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  residual: true
+temporal:
+  enabled: true
+  type: fourier
+  causal_mask: true
+  data_source_aware: true
+objectives:
+  transitivity_loss_weight: 0.1
+  contrastive_loss_weight: 0.1
+  temperature: 0.5
+  transitivity:
+    loss_weight: 0.1
+    hybrid_uf_threshold: 0.9
+    mode: hybrid
+dataset: unsw_nb15
+model:
+  temporal_enabled: true
+  contrastive_enabled: true
+  transitivity_enabled: true
+pretraining:
+  checkpoint: checkpoints/pretrain_C_best.pt
+training:
+  device: cuda
+  seeds:
+  - 42
+  - 43
+  - 44
+  - 45
+  - 46
+experiment_tag: D_full_v2

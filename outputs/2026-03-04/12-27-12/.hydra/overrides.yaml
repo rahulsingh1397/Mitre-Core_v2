@@ -1,0 +1,2 @@
+- temporal.type=learnable_mlp
+- +experiment_tag=B_mlp_encoder

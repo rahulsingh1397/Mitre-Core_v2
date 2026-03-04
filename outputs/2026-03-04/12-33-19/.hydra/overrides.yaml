@@ -1,0 +1,4 @@
+- +dataset=cicapt_iiot
+- +checkpoint=checkpoints/experiment_D_best.pt
+- +calibration.method=temperature_scaling
+- +training.device=cuda

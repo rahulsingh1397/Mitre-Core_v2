@@ -1,0 +1,27 @@
+[
+  {
+    "threshold": 0.1,
+    "ARI": 0.0,
+    "num_clusters": 6
+  },
+  {
+    "threshold": 0.3,
+    "ARI": 0.0,
+    "num_clusters": 6
+  },
+  {
+    "threshold": 0.5,
+    "ARI": 0.4361,
+    "num_clusters": 9
+  },
+  {
+    "threshold": 0.7,
+    "ARI": 0.9708,
+    "num_clusters": 17
+  },
+  {
+    "threshold": 0.9,
+    "ARI": 0.9708,
+    "num_clusters": 17
+  }
+]

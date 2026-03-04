@@ -1,0 +1,23 @@
+backbone:
+  type: hgt
+  hidden_channels: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  residual: true
+temporal:
+  enabled: true
+  type: fourier
+  causal_mask: true
+  data_source_aware: true
+objectives:
+  transitivity_loss_weight: 0.1
+  contrastive_loss_weight: 0.1
+  temperature: 0.5
+source_checkpoint: checkpoints/experiment_D_best.pt
+datasense_window: 5sec
+eval:
+  validate_sensor_sync: true
+training:
+  device: cuda
+experiment_tag: datasense_5sec_temporal

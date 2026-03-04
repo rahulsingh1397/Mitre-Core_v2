@@ -1,0 +1,3 @@
+- +dataset=unsw_nb15
+- +objectives.transitivity.mode=hybrid
+- +experiment_tag=D_hybrid

@@ -1,0 +1,3 @@
+- +dataset=unsw_nb15
+- +objectives.transitivity.mode=soft_only
+- +experiment_tag=D_soft_only

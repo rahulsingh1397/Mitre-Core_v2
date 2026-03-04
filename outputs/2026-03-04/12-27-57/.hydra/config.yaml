@@ -1,0 +1,27 @@
+backbone:
+  type: hgt
+  hidden_channels: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  residual: true
+temporal:
+  enabled: true
+  type: fourier
+  causal_mask: true
+  data_source_aware: true
+objectives:
+  transitivity_loss_weight: 0.1
+  contrastive_loss_weight: 0.1
+  temperature: 0.5
+pretrained_checkpoint: checkpoints/pretrain_C_infonce.pt
+dataset: unsw_nb15
+training:
+  device: cuda
+  seeds:
+  - 42
+  - 43
+  - 44
+  - 45
+  - 46
+experiment_tag: C_finetuned

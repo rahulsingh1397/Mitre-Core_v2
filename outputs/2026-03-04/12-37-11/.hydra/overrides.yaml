@@ -1,0 +1,9 @@
+- +pretrain_datasets=[unsw_nb15,cicids2017]
+- +eval_dataset=ton_iot
+- +foundation_objectives=[masked_node,masked_relation,temporal_next_event]
+- +masked_node.mask_rate=0.15
+- +masked_relation.mask_rate=0.15
+- +pretraining.epochs=30
+- +device=cuda
+- +checkpoint_out=checkpoints/foundation_preliminary.pt
+- +experiment_tag=foundation_preliminary

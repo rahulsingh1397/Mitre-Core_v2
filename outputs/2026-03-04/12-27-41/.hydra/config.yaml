@@ -1,0 +1,37 @@
+backbone:
+  type: hgt
+  hidden_channels: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  residual: true
+temporal:
+  enabled: true
+  type: fourier
+  causal_mask: true
+  data_source_aware: true
+objectives:
+  transitivity_loss_weight: 0.1
+  contrastive_loss_weight: 0.1
+  temperature: 0.5
+dataset: unsw_nb15
+model:
+  temporal_enabled: true
+pretraining:
+  objective: infonce
+  temperature: 0.5
+  edge_dropout_rate: 0.058
+  feature_mask_rate: 0.058
+  noise_sigma: 0.00054
+  temporal_jitter_max_sec: 5.0
+  hard_negative_mining: true
+  epochs: 50
+  device: cuda
+  checkpoint_out: checkpoints/pretrain_C_infonce.pt
+training:
+  seeds:
+  - 42
+  - 43
+  - 44
+  - 45
+  - 46

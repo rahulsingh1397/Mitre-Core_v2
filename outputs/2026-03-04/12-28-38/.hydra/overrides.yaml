@@ -1,0 +1,9 @@
+- +dataset=unsw_nb15
+- +model.temporal_enabled=true
+- +model.contrastive_enabled=true
+- +model.transitivity_enabled=false
+- +objectives.transitivity.mode=hybrid
+- +pretraining.checkpoint=checkpoints/pretrain_C_best.pt
+- +training.device=cuda
+- +training.seeds=[42,43,44,45,46]
+- +experiment_tag=D_no_trans

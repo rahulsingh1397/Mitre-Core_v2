@@ -1,0 +1,5 @@
+- +source_checkpoint=checkpoints/experiment_D_best.pt
+- +datasense_window=1sec
+- +eval.validate_sensor_sync=true
+- +training.device=cuda
+- +experiment_tag=datasense_1sec_temporal

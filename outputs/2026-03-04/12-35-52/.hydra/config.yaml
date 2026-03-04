@@ -1,0 +1,38 @@
+backbone:
+  type: hgt
+  hidden_channels: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  residual: true
+temporal:
+  enabled: true
+  type: fourier
+  causal_mask: true
+  data_source_aware: true
+objectives:
+  transitivity_loss_weight: 0.1
+  contrastive_loss_weight: 0.1
+  temperature: 0.5
+graph_sizes:
+- 100
+- 500
+- 1000
+- 5000
+- 10000
+- 50000
+- 100000
+model: hgt_full_v2
+methods:
+- hgt_backbone
+- ann_indexer
+- hybrid_uf
+- full_pipeline
+measure:
+- latency_ms
+- peak_gpu_memory_mb
+- peak_cpu_memory_mb
+- gpu_utilization_pct
+num_runs: 3
+device: cuda
+output: results/scaling_raw.csv

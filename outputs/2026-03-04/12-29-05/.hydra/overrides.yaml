@@ -1,0 +1,4 @@
+- +dataset=unsw_nb15
+- +objectives.transitivity.mode=uf_only
+- +objectives.transitivity.uf_threshold=0.7
+- +experiment_tag=D_uf_only

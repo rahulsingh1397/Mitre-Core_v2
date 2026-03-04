@@ -1,0 +1,13 @@
+- +dataset=unsw_nb15
+- +model.temporal_enabled=true
+- +pretraining.objective=infonce
+- +pretraining.temperature=0.5
+- +pretraining.edge_dropout_rate=0.058
+- +pretraining.feature_mask_rate=0.058
+- +pretraining.noise_sigma=0.00054
+- +pretraining.temporal_jitter_max_sec=5.0
+- +pretraining.hard_negative_mining=true
+- +pretraining.epochs=50
+- +pretraining.device=cuda
+- +pretraining.checkpoint_out=checkpoints/pretrain_C_infonce.pt
+- +training.seeds=[42,43,44,45,46]

@@ -1,0 +1,6 @@
+- +dataset=unsw_nb15
+- +checkpoint=checkpoints/experiment_D_best.pt
+- +attacks=[edge_noise,temporal_injection,feature_perturbation,entity_aliasing]
+- +corruption_levels=[0.05,0.10,0.20]
+- +device=cuda
+- +output=results/security_robustness.csv

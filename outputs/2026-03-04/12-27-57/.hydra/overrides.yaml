@@ -1,0 +1,5 @@
+- +pretrained_checkpoint=checkpoints/pretrain_C_infonce.pt
+- +dataset=unsw_nb15
+- +training.device=cuda
+- +training.seeds=[42,43,44,45,46]
+- +experiment_tag=C_finetuned

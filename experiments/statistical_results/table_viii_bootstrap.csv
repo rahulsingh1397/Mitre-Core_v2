@@ -1,0 +1,6 @@
+Comparison,Mean ΔARI,CI_lower,CI_upper,p_value,Interpretation
+UF vs. K-Means,-0.3284,-0.3284,-0.3284,0.0625,Not Significant
+UF vs. Hierarchical,-0.3289,-0.3289,-0.3289,0.0625,Not Significant
+UF vs. DBSCAN,-0.3367,-0.3367,-0.3367,0.0625,Not Significant
+UF vs. Rule-Based,-0.349,-0.349,-0.349,0.0625,Not Significant
+UF vs. Temporal,-0.0849,-0.0849,-0.0849,0.0625,Not Significant

@@ -1,0 +1,6 @@
+- +source_dataset=unsw_nb15
+- +target_dataset=ton_iot
+- +checkpoint=checkpoints/experiment_D_best.pt
+- +training.device=cuda
+- +training.seeds=[42,43,44,45,46]
+- +experiment_tag=zero_shot_to_ton_iot

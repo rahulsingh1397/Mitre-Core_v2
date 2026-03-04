@@ -1,0 +1,34 @@
+backbone:
+  type: hgt
+  hidden_channels: 128
+  num_layers: 2
+  num_heads: 8
+  dropout: 0.1
+  residual: true
+temporal:
+  enabled: false
+  type: fourier
+  causal_mask: true
+  data_source_aware: true
+objectives:
+  transitivity_loss_weight: 0.1
+  contrastive_loss_weight: 0.1
+  temperature: 0.5
+dataset: unsw_nb15
+model:
+  layer_norm: true
+  relation_embed_dim: 32
+  contrastive_enabled: false
+  transitivity_enabled: false
+training:
+  device: cuda
+  lr: 0.0005
+  epochs: 100
+  early_stopping_patience: 15
+  seeds:
+  - 42
+  - 43
+  - 44
+  - 45
+  - 46
+experiment_tag: A_2layer

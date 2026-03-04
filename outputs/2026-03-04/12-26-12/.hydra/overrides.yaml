@@ -1,0 +1,17 @@
+- +dataset=unsw_nb15
+- backbone.type=hgt
+- backbone.num_layers=2
+- backbone.num_heads=8
+- backbone.hidden_channels=128
+- backbone.residual=true
+- +model.layer_norm=true
+- +model.relation_embed_dim=32
+- temporal.enabled=false
+- +model.contrastive_enabled=false
+- +model.transitivity_enabled=false
+- +training.device=cuda
+- +training.lr=0.0005
+- +training.epochs=100
+- +training.early_stopping_patience=15
+- +training.seeds=[42,43,44,45,46]
+- +experiment_tag=A_2layer

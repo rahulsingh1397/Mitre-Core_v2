@@ -1,0 +1,61 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Packaging and build
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE/editor
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Project data and outputs (do NOT commit sensitive or large files)
+Data/
+datasets/
+evaluation_results/
+Plots/
+Testing/
+output.json
+output_test.json
+siem_config.json
+static/uploads/
+
+# macOS artifacts
+__MACOSX/
+
+# Secrets and credentials
+.env
+.env.*
+*.env
+*.pem
+*.key
+
+# SQLite databases (user/auth data)
+*.db
+*.sqlite3
+*.db-wal
+*.db-shm
+
+# OS/editor swap files
+*.swp
+*.swo

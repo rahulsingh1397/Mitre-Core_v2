@@ -1,0 +1,30 @@
+backbone:
+  type: hgt
+  hidden_channels: 128
+  num_layers: 2
+  num_heads: 4
+  dropout: 0.1
+  residual: true
+temporal:
+  enabled: true
+  type: fourier
+  causal_mask: true
+  data_source_aware: true
+objectives:
+  transitivity_loss_weight: 0.1
+  contrastive_loss_weight: 0.1
+  temperature: 0.5
+dataset: linux_apt
+model:
+  temporal:
+    data_source_mode: siem_preprocessed
+    causal_masking: true
+eval:
+  tactic_sequence_eval: true
+  expected_sequence:
+  - TA0043
+  - TA0001
+  - TA0002
+  - TA0008
+  - TA0010
+experiment_tag: B_linux_apt_sequence

@@ -1,0 +1,9 @@
+- +dataset=unsw_nb15
+- +model.temporal_enabled=true
+- temporal.type=fourier
+- +model.temporal.num_frequencies=64
+- +model.temporal.causal_masking=true
+- +model.temporal.data_source_mode=raw_capture
+- +training.device=cuda
+- +training.seeds=[42,43,44,45,46]
+- +experiment_tag=B_causal_raw

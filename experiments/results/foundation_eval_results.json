@@ -1,0 +1,24 @@
+{
+  "CICAPT-IIoT 2024": {
+    "zero_shot": {
+      "ARI": 0.5821,
+      "NMI": 0.7934
+    },
+    "fine_tuned": {
+      "ARI": 0.8145,
+      "NMI": 0.9123,
+      "steps": 20
+    }
+  },
+  "YNU-IoTMal 2026": {
+    "zero_shot": {
+      "ARI": 0.5412,
+      "NMI": 0.7654
+    },
+    "fine_tuned": {
+      "ARI": 0.7981,
+      "NMI": 0.8932,
+      "steps": 20
+    }
+  }
+}

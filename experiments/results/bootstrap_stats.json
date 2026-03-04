@@ -1,0 +1,27 @@
+{
+    "HGNN": {
+        "mean": 0.7765,
+        "ci_lower": 0.7521,
+        "ci_upper": 0.8012
+    },
+    "Union-Find": {
+        "mean": 0.2981,
+        "ci_lower": 0.2745,
+        "ci_upper": 0.3218
+    },
+    "K-Means": {
+        "mean": 0.3512,
+        "ci_lower": 0.3255,
+        "ci_upper": 0.3781
+    },
+    "Hierarchical": {
+        "mean": 0.3411,
+        "ci_lower": 0.315,
+        "ci_upper": 0.3682
+    },
+    "Rule-Based": {
+        "mean": 0.3475,
+        "ci_lower": 0.3201,
+        "ci_upper": 0.3754
+    }
+}

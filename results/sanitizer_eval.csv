@@ -1,0 +1,5 @@
+malformed_type,catch_rate
+null_fields,0.98
+out_of_range_values,0.85
+invalid_timestamps,0.98
+schema_violations,0.98

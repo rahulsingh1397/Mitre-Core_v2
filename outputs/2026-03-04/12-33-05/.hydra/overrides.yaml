@@ -1,0 +1,5 @@
+- +dataset=unsw_nb15
+- +checkpoint=checkpoints/experiment_D_best.pt
+- +calibration.method=temperature_scaling
+- +calibration.eval_bins=15
+- +training.device=cuda

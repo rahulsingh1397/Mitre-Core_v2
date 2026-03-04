@@ -1,0 +1,2 @@
+seed,dataset,task,ARI,Macro_F1,Accuracy
+42,ynu_mips_pcap,malware_family_clustering,0.852,0.882,0.902

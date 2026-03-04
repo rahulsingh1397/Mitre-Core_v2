@@ -1,0 +1,5 @@
+- +source_dataset=linux_apt
+- +target_dataset=cicapt_iiot
+- +checkpoint=checkpoints/experiment_D_linux_apt.pt
+- +training.device=cuda
+- +experiment_tag=cross_apt_enterprise_to_industrial

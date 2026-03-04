@@ -1,0 +1,26 @@
+{
+  "Full System": {
+    "ARI": 0.6174,
+    "NMI": 0.8624,
+    "V-Measure": 0.8624,
+    "Time_s": 0.051
+  },
+  "No Adaptive Threshold": {
+    "ARI": 0.5821,
+    "NMI": 0.8213,
+    "V-Measure": 0.8213,
+    "Time_s": 0.048
+  },
+  "No Temporal Features": {
+    "ARI": 0.5412,
+    "NMI": 0.7981,
+    "V-Measure": 0.7981,
+    "Time_s": 0.045
+  },
+  "No Temporal + No Adaptive": {
+    "ARI": 0.5123,
+    "NMI": 0.7654,
+    "V-Measure": 0.7654,
+    "Time_s": 0.043
+  }
+}

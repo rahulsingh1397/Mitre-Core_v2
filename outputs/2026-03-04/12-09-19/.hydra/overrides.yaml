@@ -1,0 +1,6 @@
+- +dataset=unsw_nb15
+- +dataset.max_alerts=100
+- +model=hgt_v2_full
+- +training.device=cuda
+- +training.seeds=[42]
+- +training.epochs=5

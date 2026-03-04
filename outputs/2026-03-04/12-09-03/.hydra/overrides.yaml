@@ -1,0 +1,4 @@
+- +dataset=unsw_nb15
+- +model=hgnn_v1
+- +training.device=cuda
+- +training.seeds=[42,43,44,45,46]
