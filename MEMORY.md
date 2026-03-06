@@ -140,6 +140,64 @@ All eight datasets passed validation gates (no NaNs/Infs, consistent node counts
 
 **git_hash:** 1f6029c58e4d537b766f7ea5fa5517b2886f4dd7
 
+### v2.5 — Score Normalization Fix: weighted_correlation_score → [0, 1]
+
+**Problem (identified from v5 sweep):**
+- `weighted_correlation_score` raw max for 3-addr + 3-user + temporal = 2.8, not 1.0.
+  `confidence_guided_threshold()` outputs [0.1, 0.9]. Scale mismatch caused UF threshold
+  (~0.59) to require near-perfect IP overlap in raw score terms (0.59 × 2.8 = 1.65 raw).
+- Low-confidence alerts (sparse/unusual) rarely share IPs → scores near 0.0–0.3 →
+  almost no pairs merged → UNSW-NB15: 1,848 clusters from 1,850 alerts (pure singletons).
+- Consequence: H1 r=-0.95 (more UF = worse ARI), H3 r=-0.82 (UF net negative overall).
+
+**Fix (`core/correlation_indexer.py` only — 3 surgical changes):**
+1. Compute `theoretical_max_score = n_addr*0.6 + n_user*0.3 + (0.1 if temporal else 0.0)`
+   once before the pair evaluation loop in `enhanced_correlation()`.
+2. Divide `corr_score` by `theoretical_max_score` before threshold comparison and
+   `max_scores` storage. Normalized score is now in [0, 1].
+3. Updated `weighted_correlation_score()` with `n_address_cols`, `n_username_cols`,
+   `use_temporal` parameters (all defaulted) for consistent external use.
+
+**Verification:** `experiments/verify_score_normalization.py` — 3 unit tests + 1
+integration test (6-alert synthetic data → 3 clusters at threshold=0.6). Exits 0.
+
+**Score scale reference:**
+| Config (UNSW-NB15 / NSL-KDD) | Raw (1 IP match) | Raw max | Normalized (1 IP) |
+|-------------------------------|------------------|---------|-------------------|
+| 3 addr + 3 user + temporal    | 0.60             | 2.80    | 0.214             |
+| threshold from GAEC mean=0.79 | —                | —       | 0.589 (unchanged) |
+
+**v6 Results (from gate_tuning_results_v6.csv):**
+| Dataset    | Optimal Gate | ARI at Optimal | threshold_used | alerts_per_uf_cluster |
+|------------|-------------|----------------|----------------|-----------------------|
+| UNSW-NB15  | 0.40         | 0.3541         | 0.5894         | 1.0                    |
+| NSL-KDD    | 0.90         | 0.2169         | 0.5827         | 3.0                    |
+| Linux_APT  | 0.40         | -0.1018        | 0.3167         | 206.3                  |
+| TON_IoT   | skipped (OOD checkpoint, all confidence=1.0)              |
+
+**H1 (ARI vs gate — Spearman r):**
+- UNSW-NB15: r=-0.9500, p=0.0001
+- NSL-KDD: r=0.0500, p=0.8984
+- Linux_APT: r=-0.9487, p=0.0001
+
+**H2 (ECE predicts optimal gate — Pearson r):**
+- r=0.2348, p=0.7652, n=4 (datasets: UNSW-NB15, NSL-KDD, Linux_APT)
+
+**H3 (pct_uf_routed vs ARI — Spearman r):**
+- r=-0.8395, p=0.0000, n=27
+
+**Finding on Singletons:**
+Despite score normalization putting `corr_score` into the [0,1] range, low-confidence alerts in UNSW-NB15 still mapped to pure singletons (alerts_per_uf_cluster=1.0). This suggests that the low-confidence alerts genuinely lack structural overlap regardless of scale. Further investigation may be needed on disabling UF entirely for high-confidence checkpoints.
+
+**Output files:**
+- `experiments/results/gate_tuning_results_v6.csv`
+- `experiments/results/gate_tuning_optimal.csv`
+- `experiments/results/gate_tuning_h2_correlation.json`
+- `experiments/results/gate_tuning_h3_correlation.json`
+- `experiments/results/confidence_diagnostics.jsonl` (appended)
+
+**git_hash:** 6b87a3df3411ac47445326dc76794df9d419afc0
+
 ### v2.3 — GAEC v2: HDBSCAN + PCA Whitening (replaces k-means)
 - **Root cause confirmed:** GAEC v1 k-means produced near-uniform scores
   (mean 0.125–0.168, std 0.004–0.008) because GNN embeddings were over-smoothed

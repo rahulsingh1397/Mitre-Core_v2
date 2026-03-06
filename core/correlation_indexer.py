@@ -13,17 +13,55 @@ def adaptive_correlation_threshold(cluster_size: int, data_variance: float) -> f
     return 0.3
 
 
-def weighted_correlation_score(addresses_common: set, usernames_common: set, 
-                             temporal_proximity: float = 0) -> float:
-    """Enhanced scoring with configurable weights"""
+def weighted_correlation_score(
+    addresses_common: set,
+    usernames_common: set,
+    temporal_proximity: float = 0,
+    n_address_cols: int = 1,
+    n_username_cols: int = 1,
+    use_temporal: bool = False,
+) -> float:
+    """
+    Compute normalized alert correlation score in [0, 1].
+
+    The raw score (addresses * 0.6 + usernames * 0.3 + temporal * 0.1) is divided
+    by the theoretical maximum for the given column configuration so the result is
+    always in [0, 1], making it directly comparable to confidence_guided_threshold()
+    outputs which are also in [0.1, 0.9].
+
+    Args
+    ----
+    addresses_common : set
+        Distinct address values shared between the two alerts.
+    usernames_common : set
+        Distinct username values shared between the two alerts.
+    temporal_proximity : float
+        Temporal closeness score in [0, 1] (1.0 = within same second).
+    n_address_cols : int
+        Total number of address columns in this dataset configuration.
+        Used to compute the theoretical maximum score for normalization.
+    n_username_cols : int
+        Total number of username columns in this dataset configuration.
+    use_temporal : bool
+        Whether temporal scoring is active for this run.
+    """
     address_weight = 0.6
     username_weight = 0.3
     temporal_weight = 0.1
-    
-    score = (len(addresses_common) * address_weight + 
-             len(usernames_common) * username_weight +
-             temporal_proximity * temporal_weight)
-    return score
+
+    raw_score = (
+        len(addresses_common) * address_weight +
+        len(usernames_common) * username_weight +
+        temporal_proximity * (temporal_weight if use_temporal else 0.0)
+    )
+    theoretical_max = (
+        n_address_cols * address_weight +
+        n_username_cols * username_weight +
+        (temporal_weight if use_temporal else 0.0)
+    )
+    if theoretical_max <= 0.0:
+        return 0.0
+    return min(1.0, raw_score / theoretical_max)
 
 
 def calculate_temporal_proximity(timestamp1: str, timestamp2: str) -> float:
@@ -45,7 +83,8 @@ def calculate_temporal_proximity(timestamp1: str, timestamp2: str) -> float:
 def enhanced_correlation(data: pd.DataFrame, usernames: List[str], addresses: List[str], 
                         use_temporal: bool = False, use_adaptive_threshold: bool = True,
                         threshold_override: Optional[float] = None,
-                        use_subnet_blocking: bool = False) -> pd.DataFrame:
+                        use_subnet_blocking: bool = False,
+                        cluster_confidence: Optional[np.ndarray] = None) -> pd.DataFrame:
     """
     Enhanced correlation function using Union-Find algorithm for proper clustering.
     Optimized O(n^2) bottleneck using vectorized operations.
@@ -72,11 +111,17 @@ def enhanced_correlation(data: pd.DataFrame, usernames: List[str], addresses: Li
     
     # Calculate adaptive threshold with theoretical justification
     if threshold_override is not None:
-        threshold = threshold_override
+        threshold = float(threshold_override)
+        threshold_source = 'override'
+    elif cluster_confidence is not None:
+        threshold = confidence_guided_threshold(cluster_confidence)
+        threshold_source = 'confidence_guided'
     elif use_adaptive_threshold:
         threshold = calculate_adaptive_threshold(data, addresses, usernames)
+        threshold_source = 'adaptive_stats'
     else:
         threshold = 0.3  # Default threshold from literature (Valeur et al., 2004)
+        threshold_source = 'baseline'
     
     # Initialize Union-Find structure for proper clustering
     parent = list(range(n_events))
@@ -107,8 +152,8 @@ def enhanced_correlation(data: pd.DataFrame, usernames: List[str], addresses: Li
     user_data = data[usernames].values
     
     # Handle NaN values explicitly
-    addr_mask = ~pd.isna(data[addresses]).values
-    user_mask = ~pd.isna(data[usernames]).values
+    addr_mask = ~pd.isna(data[addresses]).values if addresses else np.zeros((n_events, 0), dtype=bool)
+    user_mask = ~pd.isna(data[usernames]).values if usernames else np.zeros((n_events, 0), dtype=bool)
     
     # Pre-process timestamps if needed
     if use_temporal and 'EndDate' in data.columns:
@@ -154,6 +199,18 @@ def enhanced_correlation(data: pd.DataFrame, usernames: List[str], addresses: Li
     username_weight = 0.3
     temporal_weight = 0.1
     max_time_window = 3600.0  # 1 hour
+    
+    # v2.5 ADDITION: theoretical maximum score for this run's column configuration.
+    # Normalizes corr_score into [0, 1] so confidence_guided_threshold() outputs
+    # are on the same scale as the score being compared against them.
+    _temporal_contrib = temporal_weight if use_temporal else 0.0
+    theoretical_max_score = (
+        len(addresses) * address_weight +
+        len(usernames) * username_weight +
+        _temporal_contrib
+    )
+    if theoretical_max_score <= 0.0:
+        theoretical_max_score = 1.0  # guard against empty column config
     
     # Fast candidate generation using Annoy Approximate Nearest Neighbors
     try:
@@ -218,6 +275,8 @@ def enhanced_correlation(data: pd.DataFrame, usernames: List[str], addresses: Li
         # Fallback to O(n^2) if Annoy or scikit-learn is not available
         candidates = ((i, j) for i in range(n_events) for j in range(i + 1, n_events))
 
+    max_scores = np.zeros(n_events)
+
     # Evaluate exact correlation only on shortlisted pairs
     for i, j in candidates:
         if use_subnet_blocking and row_valid_subnets[i] and row_valid_subnets[j]:
@@ -263,12 +322,19 @@ def enhanced_correlation(data: pd.DataFrame, usernames: List[str], addresses: Li
             if time_diff < max_time_window:
                 temporal_score = 1.0 - (time_diff / max_time_window)
                 
-        # Final score calculation
-        corr_score = (common_addr * address_weight + 
-                      common_user * username_weight + 
-                      temporal_score * temporal_weight)
-                      
-        # Union events if correlation exceeds threshold
+        # Raw score — may exceed 1.0 for multi-column configs (max = theoretical_max_score)
+        corr_score_raw = (common_addr * address_weight +
+                          common_user * username_weight +
+                          temporal_score * temporal_weight)
+
+        # Normalized score in [0, 1]: fraction of maximum possible overlap (v2.5)
+        corr_score = corr_score_raw / theoretical_max_score
+
+        # Update max correlation scores (store normalized for interpretability)
+        max_scores[i] = max(max_scores[i], corr_score)
+        max_scores[j] = max(max_scores[j], corr_score)
+
+        # Union events if normalized correlation exceeds threshold
         if corr_score >= threshold:
             union(i, j)
 
@@ -284,12 +350,27 @@ def enhanced_correlation(data: pd.DataFrame, usernames: List[str], addresses: Li
     result_data = data.copy()
     result_data['pred_cluster'] = final_clusters
     result_data['correlation_threshold_used'] = threshold
+    result_data['threshold_source'] = threshold_source
     
     # Vectorized max computation
     # correlation_matrix was removed for memory optimization
-    result_data['max_correlation_score'] = 1.0 
+    result_data['max_correlation_score'] = max_scores
     return result_data
 
+
+def confidence_guided_threshold(confidence_scores: Optional[np.ndarray], base_threshold: float = 0.3) -> float:
+    """
+    Adjust the threshold based on HGNN confidence scores.
+    High confidence -> raise threshold (more strict correlation)
+    Low confidence -> lower threshold (more lenient correlation)
+    """
+    if confidence_scores is None or len(confidence_scores) == 0:
+        return base_threshold
+    
+    mean_conf = float(np.mean(confidence_scores))
+    adjustment = mean_conf - 0.5
+    new_threshold = base_threshold + adjustment
+    return max(0.1, min(0.9, new_threshold))
 
 def calculate_adaptive_threshold(data: pd.DataFrame, addresses: List[str], 
                                usernames: List[str]) -> float:
