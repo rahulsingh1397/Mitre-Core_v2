@@ -1,3 +1,17 @@
+"""
+MITRE-CORE Correlation Indexer Module
+=====================================
+
+Union-Find based correlation for security alert clustering.
+
+Changelog (v2.6): No changes to core logic. use_uf_refinement flag added in
+hgnn_correlation.py; this module is unaffected.
+
+Changelog (v2.5): Score normalization fix. weighted_correlation_score now
+produces normalized scores in [0, 1] by dividing by theoretical_max_score.
+This aligns the UF threshold comparison with confidence_guided_threshold() outputs.
+"""
+
 from collections import defaultdict
 import random
 import time

@@ -426,7 +426,7 @@ def migrate_to_hgnn(
             model_output_path='./hgnn_models/production_model.pt'
         )
     """
-    from hgnn_training import train_hgnn_model, create_synthetic_training_data
+    from .hgnn_training import train_hgnn_model
     
     logger.info("Starting MITRE-CORE → HGNN migration...")
     
@@ -454,11 +454,13 @@ def migrate_to_hgnn(
     else:
         # No labels available, generate synthetic data
         logger.info("No cluster labels found. Generating synthetic training data...")
-        train_dfs, train_labels = create_synthetic_training_data(
-            num_campaigns=100,
-            min_alerts_per_campaign=5,
-            max_alerts_per_campaign=20
-        )
+        raise NotImplementedError("create_synthetic_training_data() is not implemented yet. "
+                                  "Provide labeled data for training or use a pre-trained model.")
+        # train_dfs, train_labels = create_synthetic_training_data(
+        #     num_campaigns=100,
+        #     min_alerts_per_campaign=5,
+        #     max_alerts_per_campaign=20
+        # )
     
     # Default training config
     default_config = {

@@ -3,7 +3,7 @@ from omegaconf import DictConfig, OmegaConf
 import logging
 import os
 import pandas as pd
-from mitre_core.utils.seed_control import set_seed
+from utils.seed_control import set_seed
 
 logger = logging.getLogger(__name__)
 

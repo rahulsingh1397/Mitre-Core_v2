@@ -71,9 +71,10 @@ def label_with_nulls_included(dataframe):
 def label_impute_usernames(df):
     df = label_with_nulls_included(df)
     df = df.replace('NIL', np.nan)
-    imputer = KNNImputer(n_neighbors=2)
-    df = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
-    df = df.rename(columns={0:'SourceUserName', 1: 'SourceHostName',2: 'DeviceHostName',3:'DestinationHostName', 4:'SourceUserID',5:'DestinationUserID',6:'Destination User Name'})
+    numeric_cols = df.select_dtypes(include="number").columns.tolist()
+    if numeric_cols:
+        imputer = KNNImputer(n_neighbors=2)
+        df[numeric_cols] = imputer.fit_transform(df[numeric_cols])
     return df
 
 

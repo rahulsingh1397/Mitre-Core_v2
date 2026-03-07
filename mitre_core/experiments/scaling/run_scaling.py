@@ -3,7 +3,7 @@ from omegaconf import DictConfig, OmegaConf
 import logging
 import time
 import torch
-from mitre_core.utils.seed_control import set_seed
+from utils.seed_control import set_seed
 # from mitre_core.models.backbone.hetero_graph_transformer import ConstraintAwareHGT
 
 logger = logging.getLogger(__name__)

@@ -545,7 +545,7 @@ def experiment2_hgnn_unsw_nb15():
 
     # Check for trained checkpoint
     checkpoint_paths = [
-        PROJECT_ROOT / "hgnn_checkpoints_enhanced" / "unsw_nb15_optuna_best.pt",
+        PROJECT_ROOT / "hgnn_checkpoints" / "unsw_nb15_optuna_best.pt",
         PROJECT_ROOT / "hgnn_checkpoints" / "unsw_nb15_best.pt",
     ]
 

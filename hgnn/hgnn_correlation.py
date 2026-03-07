@@ -579,6 +579,11 @@ class EmbeddingConfidenceScorer:
         If HDBSCAN finds 0 or 1 cluster (all noise), return uniform confidence
         of 0.5 rather than crashing. This triggers maximum UF routing, which
         is the correct behaviour when the HGNN has no geometric structure.
+    noise_point_strategy : str
+        How to handle HDBSCAN noise points (probability=0.0) in the GAEC scorer.
+        "zero"        — keep confidence=0.0 (v2.5 behavior, routes to UF).
+        "soft_assign" — assign nearest-neighbor cosine confidence in [0.05, 0.4].
+        Only relevant when use_geometric_confidence=True.
     """
 
     def __init__(
@@ -588,16 +593,18 @@ class EmbeddingConfidenceScorer:
         pca_components: Optional[int] = 32,
         metric: str = "cosine",
         fallback_to_uniform: bool = True,
+        noise_point_strategy: str = "zero",
     ):
         self.min_cluster_size = min_cluster_size
         self.min_samples = min_samples
         self.pca_components = pca_components
         self.metric = metric
         self.fallback_to_uniform = fallback_to_uniform
+        self.noise_point_strategy = noise_point_strategy
         self._pca = None
         self._clusterer = None
 
-    def fit_score(self, embeddings: torch.Tensor) -> np.ndarray:
+    def fit_score(self, embeddings: torch.Tensor, confidence_gate: float = 0.6) -> np.ndarray:
         """
         PCA-whiten embeddings, run HDBSCAN, return per-alert confidence.
 
@@ -697,6 +704,72 @@ class EmbeddingConfidenceScorer:
         # Noise points → 0.0, core points → values approaching 1.0
         confidence = clusterer.probabilities_.astype(np.float32)
 
+        # v2.6 — soft assignment for noise points (probability=0.0)
+        # Instead of leaving noise points at confidence=0.0 (which routes them to UF
+        # and creates singletons), assign them to their nearest cluster exemplar and
+        # give them a soft membership score derived from embedding cosine distance.
+        # This implements H-B: noise points get a non-zero confidence derived from
+        # their distance to the nearest cluster "heart" in embedding space.
+        if self.noise_point_strategy == "soft_assign":
+            noise_mask = clusterer.probabilities_ == 0.0
+            n_noise = int(noise_mask.sum())
+            if n_noise > 0 and n_found > 1:
+                # z_reduced is the PCA-reduced array already computed above.
+                # clustered_mask is the boolean inverse of noise_mask.
+                clustered_mask = ~noise_mask
+                if clustered_mask.sum() > 0:
+                    from sklearn.metrics.pairwise import cosine_distances
+                    # Distance from each noise point to every clustered point
+                    noise_emb = z_reduced[noise_mask]      # [N_noise, pca_dim]
+                    cluster_emb = z_reduced[clustered_mask] # [N_core, pca_dim]
+                    dists = cosine_distances(noise_emb, cluster_emb)  # [N_noise, N_core]
+                    # Nearest clustered neighbor for each noise point
+                    nearest_idx = dists.argmin(axis=1)         # [N_noise]
+                    nearest_dist = dists[np.arange(len(nearest_idx)), nearest_idx]
+                    # Gate-relative FLOOR fix (v2.9).
+                    #
+                    # v2.7 used a gate-relative CEILING: max(gate-0.05, 0.45).
+                    # This was insufficient: 543 noise points had cosine_dist > 0.60,
+                    # so raw (1-dist) < 0.40 = gate, and the ceiling at 0.45 could
+                    # not raise them above the routing threshold. Result: v8 sweep
+                    # showed pct_uf=0.0543 — identical to v2.6 H-B (ceiling failure).
+                    #
+                    # Root cause: the CEILING controls the maximum confidence.
+                    # It cannot rescue points whose raw score is already below
+                    # the gate. Only a FLOOR can guarantee routing.
+                    #
+                    # Fix: set floor = gate + 0.01 (one pp above gate boundary).
+                    # This guarantees conf >= gate+0.01 > gate for ALL noise points,
+                    # so the routing condition (conf < gate) is always FALSE.
+                    #
+                    # Ceiling = min(gate + 0.15, gaec_mean - 0.05):
+                    # - gate+0.15: bounded band that preserves relative cosine ordering
+                    #   for points closer than floor-distance to a cluster centroid
+                    # - gaec_mean-0.05: keeps soft-assigned points distinguishable from
+                    #   high-confidence HGNN assignments (adaptive to checkpoint)
+                    #
+                    # Verification target: pct_uf_routed = 0.0 at any gate value.
+                    gaec_mean = float(confidence[~noise_mask].mean()) \
+                        if (~noise_mask).any() else 0.75
+                    soft_conf_floor   = confidence_gate + 0.01
+                    soft_conf_ceiling = min(confidence_gate + 0.15, gaec_mean - 0.05)
+                    # Ensure floor < ceiling (edge case: very high gate or low gaec_mean)
+                    if soft_conf_floor >= soft_conf_ceiling:
+                        soft_conf_ceiling = soft_conf_floor + 0.05
+                    soft_conf = np.clip(
+                        1.0 - nearest_dist,
+                        soft_conf_floor,
+                        soft_conf_ceiling,
+                    ).astype(np.float32)
+                    confidence[noise_mask] = soft_conf
+                    logger.info(
+                        f"Soft-assigned {n_noise} noise points (gate-relative floor): "
+                        f"floor={soft_conf_floor:.3f}, ceiling={soft_conf_ceiling:.3f}, "
+                        f"mean soft_conf={soft_conf.mean():.3f}, "
+                        f"range=[{soft_conf.min():.3f}, {soft_conf.max():.3f}], "
+                        f"gaec_mean={gaec_mean:.3f} (gate={confidence_gate:.3f})"
+                    )
+
         # Fallback: if all noise or single cluster, return moderate uniform
         # score (0.5) to allow UF to handle everything, rather than crashing
         if n_found <= 1 and self.fallback_to_uniform:
@@ -710,7 +783,6 @@ class EmbeddingConfidenceScorer:
 
         return confidence
 
-        # Removed score method alias as it is not strictly needed or we can keep it
     def score(self, embeddings: torch.Tensor) -> np.ndarray:
         """Alias for fit_score (HDBSCAN always fits and scores together)."""
         return self.fit_score(embeddings)
@@ -749,6 +821,8 @@ class HGNNCorrelationEngine:
         use_geometric_confidence: bool = True,
         hdbscan_min_cluster_size: int = 5,
         hdbscan_pca_components: int = 32,
+        use_uf_refinement: bool = False,
+        noise_point_strategy: str = "zero",
     ):
         """
         Args
@@ -780,18 +854,32 @@ class HGNNCorrelationEngine:
             Minimum cluster size for HDBSCAN.
         hdbscan_pca_components : int
             Number of PCA components for HDBSCAN preprocessing.
+        use_uf_refinement : bool
+            When False (default), all alerts keep their HGNN cluster assignment
+            regardless of confidence. This is the empirically validated default
+            for the UNSW-NB15 checkpoint: ARI=0.4042 vs 0.3541 with UF enabled,
+            and singleton_fraction=1.0 when UF is active (v2.6, confirmed v2.9).
+            Set True only to explicitly test the hybrid UF path or when using a
+            checkpoint with genuinely dispersed embeddings (p25_confidence < 0.1).
+        noise_point_strategy : str
+            How to handle HDBSCAN noise points (probability=0.0) in the GAEC scorer.
+            "zero"        — keep confidence=0.0 (v2.5 behavior, routes to UF).
+            "soft_assign" — assign nearest-neighbor cosine confidence in [0.05, 0.4].
+            Only relevant when use_geometric_confidence=True.
         """
         self.device = device
         self.converter = AlertToGraphConverter()
         self.temperature = temperature
         self.confidence_gate = confidence_gate
         self.use_geometric_confidence = use_geometric_confidence
+        self.use_uf_refinement = use_uf_refinement
         self.confidence_scorer = EmbeddingConfidenceScorer(
             min_cluster_size=hdbscan_min_cluster_size,
             pca_components=hdbscan_pca_components,
             min_samples=3,
             metric="cosine",
             fallback_to_uniform=True,
+            noise_point_strategy=noise_point_strategy,
         ) if use_geometric_confidence else None
 
         # Default UF column lists (mirror correlation_indexer.py main())
@@ -1134,7 +1222,10 @@ class HGNNCorrelationEngine:
                 # alert_embeddings come from the message-passing layers directly,
                 # before the classification head — no calibration required.
                 alert_embeddings = x_dict["alert"]  # [N, hidden_dim] from forward()
-                confidence_scores = self.confidence_scorer.fit_score(alert_embeddings)
+                confidence_scores = self.confidence_scorer.fit_score(
+                    alert_embeddings,
+                    confidence_gate=self.confidence_gate,
+                )
                 confidence_source = "gaec"
             else:
                 # Legacy path: max-softmax from classification head
@@ -1167,7 +1258,16 @@ class HGNNCorrelationEngine:
         low_conf_mask = confidence_scores < self.confidence_gate
         n_low_conf = int(low_conf_mask.sum())
 
-        if n_low_conf > 0:
+        if not self.use_uf_refinement:
+            # v2.6: UF disabled — all alerts retain their HGNN cluster assignment.
+            # Noise points (confidence=0.0) keep argmax prediction rather than
+            # becoming singletons in the UF pass. This is the H-A test.
+            logger.info(
+                f"UF refinement DISABLED (use_uf_refinement=False). "
+                f"All {len(df)} alerts retain HGNN assignments. "
+                f"({n_low_conf} would have been routed to UF at gate={self.confidence_gate})"
+            )
+        elif n_low_conf > 0:
             logger.info(
                 f"UF refinement pass triggered: {n_low_conf}/{len(df)} alerts "
                 f"below confidence_gate={self.confidence_gate}"

@@ -46,7 +46,7 @@ class ComparisonResult:
 class HGNNvsUnionFindComparator:
     """Compare HGNN and Union-Find correlation methods."""
     
-    def __init__(self, checkpoint_path: str = "./hgnn_checkpoints_enhanced/nsl_kdd_optuna_best.pt"):
+    def __init__(self, checkpoint_path: str = "./hgnn_checkpoints/nsl_kdd_optuna_best.pt"):
         self.checkpoint_path = Path(checkpoint_path)
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
         

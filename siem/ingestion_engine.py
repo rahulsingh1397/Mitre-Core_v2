@@ -16,6 +16,15 @@ from typing import Any, Callable, Dict, List, Optional
 import numpy as np
 import pandas as pd
 
+# Ensure project root is on sys.path so that absolute package imports
+# (core.*, siem.*, security) work when this module is imported standalone
+# (e.g. from unit tests or scripts outside the app entry point).
+import sys as _sys
+import os as _os
+_PROJECT_ROOT = _os.path.dirname(_os.path.dirname(_os.path.abspath(__file__)))
+if _PROJECT_ROOT not in _sys.path:
+    _sys.path.insert(0, _PROJECT_ROOT)
+
 logger = logging.getLogger("mitre-core.ingestion")
 
 # Avoid circular import — lazy-load correlation at runtime
@@ -25,7 +34,7 @@ _enhanced_correlation = None
 def _get_correlation_fn():
     global _enhanced_correlation
     if _enhanced_correlation is None:
-        from correlation_indexer import enhanced_correlation
+        from core.correlation_indexer import enhanced_correlation  # fixed: was 'from correlation_indexer'
         _enhanced_correlation = enhanced_correlation
     return _enhanced_correlation
 
@@ -443,7 +452,7 @@ class IngestionEngine:
 
     def _redact_config(self, cfg: dict) -> dict:
         """Return a copy of *cfg* with sensitive values encrypted."""
-        from security import encrypt_value
+        from core.security_utils import encrypt_value  # fixed: was 'from security'
         out = {}
         for k, v in cfg.items():
             if k in self._SENSITIVE_KEYS and isinstance(v, str) and v:
@@ -454,7 +463,7 @@ class IngestionEngine:
 
     def _restore_config(self, cfg: dict) -> dict:
         """Return a copy of *cfg* with sensitive values decrypted."""
-        from security import decrypt_value
+        from core.security_utils import decrypt_value  # fixed: was 'from security'
         out = {}
         for k, v in cfg.items():
             if k in self._SENSITIVE_KEYS and isinstance(v, str) and v:

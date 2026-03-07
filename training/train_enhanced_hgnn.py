@@ -320,7 +320,7 @@ class EnhancedPublicDatasetGraphConverter:
 class EnhancedTrainer:
     """Enhanced trainer with InfoNCE, augmentation, and Optuna."""
     
-    def __init__(self, dataset_path: str = "./datasets", output_path: str = "./hgnn_checkpoints_enhanced"):
+    def __init__(self, dataset_path: str = "./datasets", output_path: str = "./hgnn_checkpoints"):
         self.dataset_path = Path(dataset_path)
         self.output_path = Path(output_path)
         self.output_path.mkdir(parents=True, exist_ok=True)

@@ -1,7 +1,7 @@
 import hydra
 from omegaconf import DictConfig, OmegaConf
 import logging
-from mitre_core.utils.seed_control import set_seed
+from utils.seed_control import set_seed
 
 logger = logging.getLogger(__name__)
 

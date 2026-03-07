@@ -41,7 +41,7 @@ def main():
     print('Starting ECE and t-SNE generation...')
     
     # Try enhanced checkpoint first, then fallback
-    model_path = Path('hgnn_checkpoints_enhanced/unsw_nb15_optuna_best.pt')
+    model_path = Path('hgnn_checkpoints/unsw_nb15_optuna_best.pt')
     if not model_path.exists():
         print('No model found.')
         return
