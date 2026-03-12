@@ -29,11 +29,11 @@ except ImportError:
 
 # Import HGNN modules
 try:
-    from hgnn_correlation import (
+    from hgnn.hgnn_correlation import (
         MITREHeteroGNN, AlertToGraphConverter, 
         HGNNCorrelationEngine, ContrastiveAlertLearner
     )
-    from hgnn_training import HGNNTrainer, AlertGraphDataset
+    from hgnn.hgnn_training import HGNNTrainer, AlertGraphDataset
     HGNN_AVAILABLE = True
 except ImportError as e:
     logger.error(f"HGNN modules not available: {e}")
@@ -394,7 +394,7 @@ class DatasetTrainer:
             logger.info(f"\nPhase 1: Contrastive Pre-training ({contrastive_epochs} epochs)")
             optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
             
-            from hgnn_correlation import ContrastiveAlertLearner, HomogeneousGNN
+            from hgnn.hgnn_correlation import ContrastiveAlertLearner, HomogeneousGNN
             contrastive_learner = ContrastiveAlertLearner(model)
             
             for epoch in range(contrastive_epochs):
@@ -501,7 +501,7 @@ class DatasetTrainer:
                 logger.info(f"Baseline Comparison: Training Homogeneous GNN on {dataset_name}")
                 logger.info(f"{'='*60}")
                 
-                from hgnn_correlation import HomogeneousGNN
+                from hgnn.hgnn_correlation import HomogeneousGNN
                 baseline_model = HomogeneousGNN(
                     input_dim=alert_feature_dim,
                     feature_dim=alert_feature_dim,

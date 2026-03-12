@@ -208,16 +208,3 @@ def main (path):
   postprocessing.main(file_path)
 
 
-## RUN FILE
- 
-
-# t = time.localtime()
-# current_time = time.strftime("%H:%M:%S", t)
-# print("Preproceesing started at : " + str(current_time))
-
-if __name__ == "__main__":
-    main("Data/Raw_data/test_dataset.csv")
-
-    t = time.localtime()
-    current_time = time.strftime("%H:%M:%S", t)
-    print("Preproceesing finished at : " + str(current_time))

@@ -6,7 +6,6 @@ import os
 import sys
 import logging
 import random
-import numpy as np
 from pathlib import Path
 from typing import Optional, List, Tuple, Dict
 from collections import defaultdict
@@ -14,6 +13,7 @@ from collections import defaultdict
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import numpy as np
 import pandas as pd
 from torch_geometric.data import HeteroData
 from sklearn.model_selection import train_test_split
@@ -34,112 +34,24 @@ logger = logging.getLogger("mitre-core.enhanced_training")
 
 # Import HGNN modules
 try:
-    from hgnn_correlation import MITREHeteroGNN
+    from hgnn.hgnn_correlation import MITREHeteroGNN
     HGNN_AVAILABLE = True
 except ImportError as e:
     logger.error(f"HGNN modules not available: {e}")
     sys.exit(1)
 
-
-class GraphAugmenter:
-    """Data augmentation for graph-based alert data."""
-    
-    @staticmethod
-    def feature_dropout(x: torch.Tensor, drop_prob: float = 0.1) -> torch.Tensor:
-        """Randomly drop feature dimensions."""
-        if drop_prob == 0:
-            return x
-        mask = torch.bernoulli(torch.ones(x.shape[1]) * (1 - drop_prob)).to(x.device)
-        return x * mask.unsqueeze(0)
-    
-    @staticmethod
-    def feature_noise(x: torch.Tensor, noise_std: float = 0.01) -> torch.Tensor:
-        """Add Gaussian noise to features."""
-        if noise_std == 0:
-            return x
-        noise = torch.randn_like(x) * noise_std
-        return x + noise
-    
-    @staticmethod
-    def edge_dropout(edge_index: torch.Tensor, drop_prob: float = 0.1) -> torch.Tensor:
-        """Randomly drop edges."""
-        if drop_prob == 0 or edge_index.numel() == 0:
-            return edge_index
-        num_edges = edge_index.shape[1]
-        keep_mask = torch.rand(num_edges) > drop_prob
-        return edge_index[:, keep_mask]
-    
-    @staticmethod
-    def augment_graph(graph: HeteroData, 
-                      feature_drop: float = 0.1, 
-                      noise_std: float = 0.01,
-                      edge_drop: float = 0.1) -> HeteroData:
-        """Apply augmentation to a graph."""
-        new_graph = HeteroData()
-        
-        # Copy and augment node features
-        for node_type in graph.node_types:
-            x = graph[node_type].x.clone()
-            x = GraphAugmenter.feature_dropout(x, feature_drop)
-            x = GraphAugmenter.feature_noise(x, noise_std)
-            new_graph[node_type].x = x
-        
-        # Copy and augment edges
-        for edge_type in graph.edge_types:
-            edge_index = graph[edge_type].edge_index.clone()
-            edge_index = GraphAugmenter.edge_dropout(edge_index, edge_drop)
-            if edge_index.numel() > 0:
-                new_graph[edge_type].edge_index = edge_index
-        
-        return new_graph
+# Import common training utilities
+from training.training_base import (
+    GraphAugmenter, InfoNCELoss, BaseGraphConverter,
+    set_seed, get_device, load_dataset_file, create_mini_campaigns
+)
 
 
-class InfoNCELoss(nn.Module):
-    """InfoNCE contrastive loss for learning representations."""
-    
-    def __init__(self, temperature: float = 0.5):
-        super().__init__()
-        self.temperature = temperature
-    
-    def forward(self, z_i: torch.Tensor, z_j: torch.Tensor) -> torch.Tensor:
-        """
-        Compute InfoNCE loss between two views.
-        
-        Args:
-            z_i: First view embeddings [batch_size, dim]
-            z_j: Second view embeddings [batch_size, dim]
-            
-        Returns:
-            InfoNCE loss
-        """
-        batch_size = z_i.shape[0]
-        
-        # Normalize embeddings
-        z_i = F.normalize(z_i, dim=1)
-        z_j = F.normalize(z_j, dim=1)
-        
-        # Compute similarity matrix
-        # Positive pairs: diagonal (same sample in both views)
-        # Negative pairs: off-diagonal
-        
-        # Similarities between z_i and z_j
-        sim_matrix = torch.mm(z_i, z_j.t()) / self.temperature
-        
-        # Labels: positive pairs are on the diagonal
-        labels = torch.arange(batch_size, device=z_i.device)
-        
-        # Loss: cross entropy with positives as targets
-        loss_i = F.cross_entropy(sim_matrix, labels)
-        loss_j = F.cross_entropy(sim_matrix.t(), labels)
-        
-        return (loss_i + loss_j) / 2
-
-
-class EnhancedPublicDatasetGraphConverter:
+class EnhancedPublicDatasetGraphConverter(BaseGraphConverter):
     """Enhanced converter with larger mini-campaigns and better features."""
     
     def __init__(self, temporal_window_hours: float = 1.0):
-        self.temporal_window = temporal_window_hours
+        super().__init__(temporal_window_hours)
         
     def convert_campaign(self, df: pd.DataFrame) -> Optional[HeteroData]:
         """Convert a campaign (group of related alerts) to a graph."""
@@ -249,12 +161,8 @@ class EnhancedPublicDatasetGraphConverter:
         
         return features.astype(np.float32)
     
-    def _build_enhanced_edges(self, df, alert_to_idx, user_to_idx, host_to_idx, ip_to_idx):
-        """Build enhanced edge connectivity."""
-        from collections import defaultdict
-        edges = defaultdict(lambda: ([], []))
-        
-        # 1. Alert-to-Alert edges based on shared IPs
+    def _build_ip_edges(self, df, alert_to_idx):
+        """Build alert-to-alert edges based on shared IPs."""
         ip_to_alerts = defaultdict(list)
         for idx, row in df.iterrows():
             alert_id = row['AlertId']
@@ -263,56 +171,96 @@ class EnhancedPublicDatasetGraphConverter:
             if 'dst_ip' in df.columns and pd.notna(row.get('dst_ip')):
                 ip_to_alerts[row['dst_ip']].append(alert_to_idx[alert_id])
         
+        src, dst = [], []
         for ip, alert_indices in ip_to_alerts.items():
             for i, alert_i in enumerate(alert_indices):
                 for alert_j in alert_indices[i+1:]:
-                    edges[('alert', 'shares_ip', 'alert')][0].append(alert_i)
-                    edges[('alert', 'shares_ip', 'alert')][1].append(alert_j)
-                    edges[('alert', 'shares_ip', 'alert')][0].append(alert_j)
-                    edges[('alert', 'shares_ip', 'alert')][1].append(alert_i)
+                    src.append(alert_i)
+                    dst.append(alert_j)
+                    src.append(alert_j)
+                    dst.append(alert_i)
         
-        # 2. Temporal edges (consecutive alerts in time)
+        return src, dst
+    
+    def _build_temporal_edges(self, df, alert_to_idx):
+        """Build temporal edges (consecutive alerts in time)."""
         if 'timestamp' in df.columns:
             df_sorted = df.sort_values('timestamp')
             prev_alert = None
+            src, dst = [], []
             for idx, row in df_sorted.iterrows():
                 curr_alert = alert_to_idx[row['AlertId']]
                 if prev_alert is not None:
-                    edges[('alert', 'temporal_next', 'alert')][0].append(prev_alert)
-                    edges[('alert', 'temporal_next', 'alert')][1].append(curr_alert)
+                    src.append(prev_alert)
+                    dst.append(curr_alert)
                 prev_alert = curr_alert
+        else:
+            src, dst = [], []
         
-        # 3. Same-tactic edges
+        return src, dst
+    
+    def _build_tactic_edges(self, df, alert_to_idx):
+        """Build same-tactic edges."""
         if 'tactic' in df.columns:
             tactic_to_alerts = defaultdict(list)
             for idx, row in df.iterrows():
                 tactic_to_alerts[row['tactic']].append(alert_to_idx[row['AlertId']])
             
+            src, dst = [], []
             for tactic, alert_indices in tactic_to_alerts.items():
                 for i, alert_i in enumerate(alert_indices):
                     for alert_j in alert_indices[i+1:]:
-                        edges[('alert', 'same_tactic', 'alert')][0].append(alert_i)
-                        edges[('alert', 'same_tactic', 'alert')][1].append(alert_j)
-                        edges[('alert', 'same_tactic', 'alert')][0].append(alert_j)
-                        edges[('alert', 'same_tactic', 'alert')][1].append(alert_i)
+                        src.append(alert_i)
+                        dst.append(alert_j)
+                        src.append(alert_j)
+                        dst.append(alert_i)
+        else:
+            src, dst = [], []
         
-        # 4. User-Alert edges
-        if 'username' in df.columns:
+        return src, dst
+    
+    def _build_entity_edges(self, df, alert_to_idx, entity_column, entity_type):
+        """Build entity-alert edges."""
+        if entity_column in df.columns:
+            entity_to_alerts = defaultdict(list)
             for idx, row in df.iterrows():
-                if pd.notna(row.get('username')) and row['username'] in user_to_idx:
-                    alert_idx = alert_to_idx[row['AlertId']]
-                    user_idx = user_to_idx[row['username']]
-                    edges[('user', 'owns', 'alert')][0].append(user_idx)
-                    edges[('user', 'owns', 'alert')][1].append(alert_idx)
+                if pd.notna(row.get(entity_column)) and row[entity_column] in alert_to_idx:
+                    entity_to_alerts[row[entity_column]].append(alert_to_idx[row['AlertId']])
+            
+            src, dst, _ = [], [], []
+            for entity, alert_indices in entity_to_alerts.items():
+                for alert_idx in alert_indices:
+                    src.append(entity_to_idx[entity])
+                    dst.append(alert_idx)
+        else:
+            src, dst, _ = [], [], []
         
-        # 5. Host-Alert edges
-        if 'hostname' in df.columns:
-            for idx, row in df.iterrows():
-                if pd.notna(row.get('hostname')) and row['hostname'] in host_to_idx:
-                    alert_idx = alert_to_idx[row['AlertId']]
-                    host_idx = host_to_idx[row['hostname']]
-                    edges[('host', 'generates', 'alert')][0].append(host_idx)
-                    edges[('host', 'generates', 'alert')][1].append(alert_idx)
+        return src, dst, _
+    
+    def _build_enhanced_edges(self, df, alert_to_idx, user_to_idx, host_to_idx, ip_to_idx):
+        """Build enhanced edge connectivity using shared base methods."""
+        from collections import defaultdict
+        edges = defaultdict(lambda: ([], []))
+        
+        # 1. Alert-to-Alert edges based on shared IPs (using base method)
+        ip_src, ip_dst = self._build_ip_edges(df, alert_to_idx)
+        edges[('alert', 'shares_ip', 'alert')] = (ip_src, ip_dst)
+        
+        # 2. Temporal edges (using base method)
+        temp_src, temp_dst = self._build_temporal_edges(df, alert_to_idx)
+        edges[('alert', 'temporal_next', 'alert')] = (temp_src, temp_dst)
+        
+        # 3. Same-tactic edges (using base method)
+        tactic_src, tactic_dst = self._build_tactic_edges(df, alert_to_idx)
+        edges[('alert', 'same_tactic', 'alert')] = (tactic_src, tactic_dst)
+        
+        # 4. User-Alert edges (using base method)
+        user_src, user_dst, _ = self._build_entity_edges(df, alert_to_idx, 'username', 'user')
+        edges[('user', 'owns', 'alert')] = (user_src, user_dst)
+        
+        # 5. Host-Alert edges (using base method)
+        host_src, host_dst, _ = self._build_entity_edges(df, alert_to_idx, 'hostname', 'host')
+        edges[('host', 'generates', 'alert')] = (host_src, host_dst)
         
         return edges
 

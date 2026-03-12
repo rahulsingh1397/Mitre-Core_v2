@@ -1,6 +1,6 @@
 # MITRE-CORE v2 — Fix Plan & Structural Reorganisation
 **Generated:** 2026-03-07
-**Status:** Pending implementation
+**Status:** COMPLETE — all items implemented 2026-03-07. See PENDING_CHANGES.md for next wave.
 **Scope:** Broken imports, wrong defaults, and full directory restructure
 
 ---

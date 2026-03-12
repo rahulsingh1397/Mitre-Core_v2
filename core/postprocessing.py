@@ -6,7 +6,7 @@ from collections import defaultdict
 from pathlib import Path
 
 
-def correlation(data,usernames,addresses):
+def correlation(data, usernames, addresses, require_both: bool = False):
 
     cols = data.columns
     result = pd.DataFrame(columns = cols)
@@ -40,8 +40,14 @@ def correlation(data,usernames,addresses):
                 common_info_usernames.discard("NIL")
                 common_info_usernames.discard(np.nan)
 
-# TO DO : Include same IP but not same names, same names but not IP's ---- > "and" : share  username and IP, "or" : share username or IP 
-                corr = len(common_info_usernames) + len(common_info_addresses)
+                # Correlation scoring: 'require_both=False' (OR semantics) means either
+                # a shared username OR a shared IP address is sufficient to correlate.
+                # 'require_both=True' (AND semantics) requires BOTH to match — stricter.
+                if require_both:
+                    corr = min(len(common_info_usernames), len(common_info_addresses)) > 0
+                    corr = int(corr) * (len(common_info_usernames) + len(common_info_addresses))
+                else:
+                    corr = len(common_info_usernames) + len(common_info_addresses)
                 if corr > 0:
                   if cluster_rows[i]:
                     score[i] += (corr) + (0.8 * (len(cluster_rows[i])) )
@@ -125,16 +131,30 @@ def correlation(data,usernames,addresses):
 # username
 # source user_id and destination user_id
 
-def clean_clusters(res):
+def clean_clusters(res, min_cluster_size: int = 2, require_multi_attack: bool = True):
+  import logging as _log
+  _logger = _log.getLogger("mitre-core.postprocessing")
   res = res.sort_values('correlation_score', ascending=False).drop_duplicates('index').sort_index()
-  cluster_counts = res.groupby('cluster').size()
   cluster_counts = res['cluster'].value_counts()
-  cluster_attack_types = res.groupby('cluster')['AttackType'].nunique()
-  # print(cluster_counts[cluster_counts <= 2].index)
-  single_instance_clusters = cluster_counts[cluster_counts <= 2].index
-  single_attack_type_clusters = cluster_attack_types[cluster_attack_types == 1].index
-  clusters_to_remove = set(single_instance_clusters).union(single_attack_type_clusters)
+  clusters_to_remove = set()
+
+  # Drop clusters below minimum size
+  small_clusters = cluster_counts[cluster_counts <= min_cluster_size].index
+  clusters_to_remove.update(small_clusters)
+  if len(small_clusters):
+      _logger.info(f"clean_clusters: removing {len(small_clusters)} clusters with <= {min_cluster_size} events")
+
+  # Optionally drop single-attack-type clusters
+  if require_multi_attack and 'AttackType' in res.columns:
+      cluster_attack_types = res.groupby('cluster')['AttackType'].nunique()
+      single_type = cluster_attack_types[cluster_attack_types == 1].index
+      clusters_to_remove.update(single_type)
+      if len(single_type):
+          _logger.info(f"clean_clusters: removing {len(single_type)} single-attack-type clusters")
+
+  before = len(res)
   res = res[~res['cluster'].isin(clusters_to_remove)]
+  _logger.info(f"clean_clusters: {before} → {len(res)} rows after filtering")
   return res
 
 

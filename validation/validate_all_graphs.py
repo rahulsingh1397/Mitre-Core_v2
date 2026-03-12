@@ -22,7 +22,7 @@ def validate_all():
             print(f"❌ {name} not found at {path}")
             continue
             
-        g = torch.load(path, map_location="cpu", weights_only=False)
+        g = torch.load(path, map_location="cpu", weights_only=True)
         assert not torch.isnan(g["alert_node"].x).any(),  f"NaN in {name}"
         assert not torch.isinf(g["alert_node"].x).any(),  f"Inf in {name}"
         # Some of the synthetics we generated with randn might not strictly be <= 1.0 but real ones normalized should

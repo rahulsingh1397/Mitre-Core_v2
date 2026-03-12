@@ -570,7 +570,7 @@ def experiment2_hgnn_unsw_nb15():
         from hgnn_correlation import MITREHeteroGNN
 
         # Load checkpoint
-        checkpoint = torch.load(checkpoint_path, map_location='cpu', weights_only=False)
+        checkpoint = torch.load(checkpoint_path, map_location='cpu', weights_only=True)
         hyperparams = checkpoint.get('hyperparameters', {})
         num_clusters = checkpoint.get('num_clusters', 50)
 

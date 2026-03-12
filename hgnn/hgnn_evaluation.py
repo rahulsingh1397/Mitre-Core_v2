@@ -45,14 +45,14 @@ from sklearn.metrics import (
 
 # MITRE-CORE imports
 try:
-    from correlation_indexer import enhanced_correlation as union_find_correlation
+    from core.correlation_indexer import enhanced_correlation as union_find_correlation
 except ImportError:
-    from postprocessing import correlation as union_find_correlation
+    from core.postprocessing import correlation as union_find_correlation
 
 # HGNN imports (optional - will skip if not available)
 try:
-    from hgnn_correlation import HGNNCorrelationEngine
-    from hgnn_integration import HybridCorrelationEngine
+    from hgnn.hgnn_correlation import HGNNCorrelationEngine
+    from hgnn.hgnn_integration import HybridCorrelationEngine
     HGNN_AVAILABLE = True
 except ImportError as e:
     logger.warning(f"HGNN not available: {e}")

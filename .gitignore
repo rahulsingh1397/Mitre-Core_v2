@@ -40,6 +40,11 @@ output_test.json
 siem_config.json
 static/uploads/
 
+# Transformer training artifacts
+transformer_checkpoints/
+logs/
+validation_results/
+
 # macOS artifacts
 __MACOSX/
 

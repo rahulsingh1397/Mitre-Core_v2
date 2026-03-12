@@ -422,7 +422,7 @@ class AlertToGraphConverter:
             dates = pd.to_datetime(df.get("timestamp", df.get("EndDate", df.get("StartTime"))), errors="coerce")
             hour = np.nan_to_num(dates.dt.hour.values, nan=0.0)
             dow = np.nan_to_num(dates.dt.dayofweek.values, nan=0.0)
-        except Exception:
+        except (ValueError, TypeError):
             hour = np.zeros(len(df))
             dow = np.zeros(len(df))
 
@@ -486,7 +486,7 @@ class AlertToGraphConverter:
                             add_edge(("alert", "temporal_near", "alert"), aidxs[j], ai)
                         else:
                             break
-            except Exception:
+            except (ValueError, TypeError, KeyError):
                 pass
 
         # Cross-type edges
@@ -698,86 +698,31 @@ class EmbeddingConfidenceScorer:
         )
 
         # -----------------------------------------------------------------
-        # Extract confidence from HDBSCAN probabilities_
-        # -----------------------------------------------------------------
-        # clusterer.probabilities_: per-point cluster membership probability
-        # Noise points → 0.0, core points → values approaching 1.0
-        confidence = clusterer.probabilities_.astype(np.float32)
+        # v3.0: Use all_points_membership_vectors() for full probability matrix.
+        # Returns [N, n_clusters] where every point (noise, border, core) gets
+        # a real probability distribution. No hard 0.0 values, no noise mask needed.
+        try:
+            import hdbscan as hdbscan_lib
+            membership_vectors = hdbscan_lib.all_points_membership_vectors(clusterer)
+            # membership_vectors shape: [N, n_clusters]
+            # confidence = max probability across all clusters for each point
+            confidence = membership_vectors.max(axis=1).astype(np.float32)
+            logger.info(
+                f"all_points_membership_vectors: shape={membership_vectors.shape}, "
+                f"conf mean={confidence.mean():.3f}, min={confidence.min():.3f}, "
+                f"max={confidence.max():.3f}"
+            )
+        except Exception as exc:
+            logger.warning(
+                f"all_points_membership_vectors() failed ({exc}). "
+                f"Falling back to clusterer.probabilities_."
+            )
+            confidence = clusterer.probabilities_.astype(np.float32)
 
-        # v2.6 — soft assignment for noise points (probability=0.0)
-        # Instead of leaving noise points at confidence=0.0 (which routes them to UF
-        # and creates singletons), assign them to their nearest cluster exemplar and
-        # give them a soft membership score derived from embedding cosine distance.
-        # This implements H-B: noise points get a non-zero confidence derived from
-        # their distance to the nearest cluster "heart" in embedding space.
-        if self.noise_point_strategy == "soft_assign":
-            noise_mask = clusterer.probabilities_ == 0.0
-            n_noise = int(noise_mask.sum())
-            if n_noise > 0 and n_found > 1:
-                # z_reduced is the PCA-reduced array already computed above.
-                # clustered_mask is the boolean inverse of noise_mask.
-                clustered_mask = ~noise_mask
-                if clustered_mask.sum() > 0:
-                    from sklearn.metrics.pairwise import cosine_distances
-                    # Distance from each noise point to every clustered point
-                    noise_emb = z_reduced[noise_mask]      # [N_noise, pca_dim]
-                    cluster_emb = z_reduced[clustered_mask] # [N_core, pca_dim]
-                    dists = cosine_distances(noise_emb, cluster_emb)  # [N_noise, N_core]
-                    # Nearest clustered neighbor for each noise point
-                    nearest_idx = dists.argmin(axis=1)         # [N_noise]
-                    nearest_dist = dists[np.arange(len(nearest_idx)), nearest_idx]
-                    # Gate-relative FLOOR fix (v2.9).
-                    #
-                    # v2.7 used a gate-relative CEILING: max(gate-0.05, 0.45).
-                    # This was insufficient: 543 noise points had cosine_dist > 0.60,
-                    # so raw (1-dist) < 0.40 = gate, and the ceiling at 0.45 could
-                    # not raise them above the routing threshold. Result: v8 sweep
-                    # showed pct_uf=0.0543 — identical to v2.6 H-B (ceiling failure).
-                    #
-                    # Root cause: the CEILING controls the maximum confidence.
-                    # It cannot rescue points whose raw score is already below
-                    # the gate. Only a FLOOR can guarantee routing.
-                    #
-                    # Fix: set floor = gate + 0.01 (one pp above gate boundary).
-                    # This guarantees conf >= gate+0.01 > gate for ALL noise points,
-                    # so the routing condition (conf < gate) is always FALSE.
-                    #
-                    # Ceiling = min(gate + 0.15, gaec_mean - 0.05):
-                    # - gate+0.15: bounded band that preserves relative cosine ordering
-                    #   for points closer than floor-distance to a cluster centroid
-                    # - gaec_mean-0.05: keeps soft-assigned points distinguishable from
-                    #   high-confidence HGNN assignments (adaptive to checkpoint)
-                    #
-                    # Verification target: pct_uf_routed = 0.0 at any gate value.
-                    gaec_mean = float(confidence[~noise_mask].mean()) \
-                        if (~noise_mask).any() else 0.75
-                    soft_conf_floor   = confidence_gate + 0.01
-                    soft_conf_ceiling = min(confidence_gate + 0.15, gaec_mean - 0.05)
-                    # Ensure floor < ceiling (edge case: very high gate or low gaec_mean)
-                    if soft_conf_floor >= soft_conf_ceiling:
-                        soft_conf_ceiling = soft_conf_floor + 0.05
-                    soft_conf = np.clip(
-                        1.0 - nearest_dist,
-                        soft_conf_floor,
-                        soft_conf_ceiling,
-                    ).astype(np.float32)
-                    confidence[noise_mask] = soft_conf
-                    logger.info(
-                        f"Soft-assigned {n_noise} noise points (gate-relative floor): "
-                        f"floor={soft_conf_floor:.3f}, ceiling={soft_conf_ceiling:.3f}, "
-                        f"mean soft_conf={soft_conf.mean():.3f}, "
-                        f"range=[{soft_conf.min():.3f}, {soft_conf.max():.3f}], "
-                        f"gaec_mean={gaec_mean:.3f} (gate={confidence_gate:.3f})"
-                    )
-
-        # Fallback: if all noise or single cluster, return moderate uniform
-        # score (0.5) to allow UF to handle everything, rather than crashing
+        # Fallback: if all noise or single cluster, return moderate uniform score
         if n_found <= 1 and self.fallback_to_uniform:
             logger.warning(
-                f"HDBSCAN found {n_found} cluster(s) — all alerts treated as "
-                f"noise or single cluster. "
-                f"Returning uniform confidence=0.5 → full UF routing. "
-                f"This is the correct fallback when HGNN has no geometric structure."
+                f"HDBSCAN found {n_found} cluster(s) — returning uniform confidence=0.5."
             )
             confidence = np.full(n, 0.5, dtype=np.float32)
 
@@ -897,7 +842,7 @@ class HGNNCorrelationEngine:
         if model_path:
             # Let the checkpoint dictate the number of clusters if it differs
             try:
-                state_dict = torch.load(model_path, map_location=device, weights_only=False)
+                state_dict = torch.load(model_path, map_location=device, weights_only=True)
                 if "model_state_dict" in state_dict:
                     state_dict = state_dict["model_state_dict"]
                 
@@ -924,7 +869,7 @@ class HGNNCorrelationEngine:
 
     def _load_checkpoint(self, model_path: str) -> None:
         try:
-            state_dict = torch.load(model_path, map_location=self.device, weights_only=False)
+            state_dict = torch.load(model_path, map_location=self.device, weights_only=True)
             
             if "model_state_dict" in state_dict:
                 state_dict = state_dict["model_state_dict"]
@@ -1404,7 +1349,12 @@ if __name__ == "__main__":
     print("=" * 50)
     print("Usage:")
     print("  from hgnn.hgnn_correlation import HGNNCorrelationEngine")
-    print("  engine = HGNNCorrelationEngine(confidence_gate=0.6)")
+    print("  # use_uf_refinement defaults to False (empirically validated, v2.6)")
+    print("  engine = HGNNCorrelationEngine(")
+    print("      model_path='hgnn_checkpoints/unsw_supervised.pt',")
+    print("      confidence_gate=0.6,")
+    print("      use_uf_refinement=False,  # default — do not change without re-running sweeps")
+    print("  )")
     print("  result_df = engine.correlate(alert_dataframe)")
     print()
     print("Columns added to result_df:")

@@ -46,7 +46,7 @@ def main():
         print('No model found.')
         return
         
-    checkpoint = torch.load(model_path, map_location='cpu', weights_only=False)
+    checkpoint = torch.load(model_path, map_location='cpu', weights_only=True)
     hyperparameters = checkpoint.get('hyperparameters', {})
     
     # Initialize engine

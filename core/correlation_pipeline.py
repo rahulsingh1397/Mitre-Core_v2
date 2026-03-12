@@ -109,7 +109,7 @@ class CorrelationPipeline:
     def _get_union_find_engine(self):
         """Lazy initialization of Union-Find engine."""
         if self._union_find_engine is None:
-            from correlation_indexer import enhanced_correlation
+            from core.correlation_indexer import enhanced_correlation  # fixed: was bare 'correlation_indexer'
             self._union_find_engine = enhanced_correlation
         return self._union_find_engine
     
@@ -117,7 +117,7 @@ class CorrelationPipeline:
         """Lazy initialization of HGNN engine."""
         if self._hgnn_engine is None:
             try:
-                from hgnn_correlation import HGNNCorrelationEngine
+                from hgnn.hgnn_correlation import HGNNCorrelationEngine  # fixed: was bare 'hgnn_correlation'
                 self._hgnn_engine = HGNNCorrelationEngine(
                     model_path=self.model_path,
                     device=self.device
@@ -130,7 +130,7 @@ class CorrelationPipeline:
     def _get_hybrid_engine(self):
         """Lazy initialization of Hybrid engine."""
         if self._hybrid_engine is None:
-            from hgnn_integration import HybridCorrelationEngine
+            from hgnn.hgnn_integration import HybridCorrelationEngine  # fixed: was bare 'hgnn_integration'
             self._hybrid_engine = HybridCorrelationEngine(
                 hgnn_weight=self.hgnn_weight,
                 union_find_weight=self.uf_weight,
@@ -140,28 +140,34 @@ class CorrelationPipeline:
         return self._hybrid_engine
     
     def _select_method(self, data: pd.DataFrame) -> CorrelationMethod:
-        """Automatically select best correlation method."""
+        """
+        Automatically select best correlation method.
+
+        Policy (updated 2026-03-07, based on v2.6–v2.9 sweep results):
+          - HGNN-only is the default for all dataset sizes when a model is available.
+            UF refinement is confirmed net-harmful for the UNSW-NB15 checkpoint:
+            ARI=0.4042 (HGNN-only) vs ARI=0.3541 (UF-enabled), singleton_fraction=1.0.
+          - Hybrid is NOT recommended for this checkpoint — it routes low-confidence
+            alerts to UF which creates singleton clusters and reduces ARI.
+          - Union-Find is used only as a hard fallback when no HGNN model is available.
+        """
         n_events = len(data)
-        
-        # Small datasets: Union-Find is faster and sufficient
-        if n_events < 100:
-            logger.info(f"Auto-selected Union-Find (small dataset: {n_events} events)")
-            return CorrelationMethod.UNION_FIND
-        
+
         # Check if HGNN model is available
         model_available = self.model_path and Path(self.model_path).exists()
-        
+
         if not model_available:
-            logger.info(f"Auto-selected Union-Find (HGNN model not available)")
+            logger.warning(
+                f"HGNN model not found at '{self.model_path}'. "
+                f"Falling back to Union-Find. Provide model_path for best results."
+            )
             return CorrelationMethod.UNION_FIND
-        
-        # Medium datasets: Hybrid for best accuracy/speed tradeoff
-        if n_events < 1000:
-            logger.info(f"Auto-selected Hybrid (medium dataset: {n_events} events)")
-            return CorrelationMethod.HYBRID
-        
-        # Large datasets: HGNN for best accuracy
-        logger.info(f"Auto-selected HGNN (large dataset: {n_events} events)")
+
+        # HGNN-only for all dataset sizes (empirically validated default)
+        logger.info(
+            f"Auto-selected HGNN (n_events={n_events}). "
+            f"UF refinement disabled — net-harmful for current checkpoint (v2.6 finding)."
+        )
         return CorrelationMethod.HGNN
     
     def correlate(
@@ -316,29 +322,3 @@ def enhanced_correlation(
     return result.data
 
 
-if __name__ == "__main__":
-    # Test the pipeline
-    print("Testing unified correlation pipeline...")
-    
-    # Create test data
-    test_data = pd.DataFrame({
-        'timestamp': pd.date_range('2024-01-01', periods=10, freq='H'),
-        'username': ['user1'] * 5 + ['user2'] * 5,
-        'ip': ['192.168.1.1'] * 3 + ['192.168.1.2'] * 3 + ['192.168.1.3'] * 4,
-        'event_type': ['login'] * 10
-    })
-    
-    # Test Union-Find
-    print("\n1. Testing Union-Find method...")
-    pipeline_uf = CorrelationPipeline(method='union_find')
-    result_uf = pipeline_uf.correlate(test_data, ['username'], ['ip'])
-    print(f"   Result: {result_uf.num_clusters} clusters in {result_uf.runtime_seconds:.3f}s")
-    
-    # Test auto method
-    print("\n2. Testing Auto method selection...")
-    pipeline_auto = CorrelationPipeline(method='auto')
-    result_auto = pipeline_auto.correlate(test_data, ['username'], ['ip'])
-    print(f"   Method used: {result_auto.method_used}")
-    print(f"   Result: {result_auto.num_clusters} clusters in {result_auto.runtime_seconds:.3f}s")
-    
-    print("\n✓ Pipeline tests passed!")

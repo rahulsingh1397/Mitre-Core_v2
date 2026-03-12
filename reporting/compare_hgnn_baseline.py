@@ -23,8 +23,8 @@ logger = logging.getLogger("mitre-core.comparison")
 
 # Import modules
 try:
-    from hgnn_correlation import MITREHeteroGNN
-    from correlation_indexer import enhanced_correlation
+    from hgnn.hgnn_correlation import MITREHeteroGNN
+    from core.correlation_indexer import enhanced_correlation
     HGNN_AVAILABLE = True
 except ImportError as e:
     logger.error(f"Modules not available: {e}")
@@ -57,7 +57,7 @@ class HGNNvsUnionFindComparator:
         """Load trained HGNN model with correct architecture."""
         logger.info("Loading HGNN model...")
         
-        checkpoint = torch.load(self.checkpoint_path, map_location=self.device)
+        checkpoint = torch.load(self.checkpoint_path, map_location=self.device, weights_only=True)
         
         # Get actual config from checkpoint or use defaults that match training
         state_dict = checkpoint['model_state_dict']

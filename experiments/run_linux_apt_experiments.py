@@ -82,7 +82,7 @@ def run_linux_apt_experiments():
     if unsw_ckpt.exists():
         try:
             import torch
-            state_dict = torch.load(unsw_ckpt, map_location=hgnn_engine.device)
+            state_dict = torch.load(unsw_ckpt, map_location=hgnn_engine.device, weights_only=True)
             keys_to_remove = []
             for k in state_dict.keys():
                 if any(x in k for x in ['user_encoder', 'host_encoder', 'ip_encoder', 'device_encoder', 'gateway_encoder', 'sensor_type_encoder', 'process_encoder', 'command_line_encoder']):

@@ -90,7 +90,7 @@ def calculate_temporal_proximity(timestamp1: str, timestamp2: str) -> float:
         max_time_window = 3600  # 1 hour in seconds
         proximity = max(0, 1 - (time_diff / max_time_window))
         return proximity
-    except Exception:
+    except (ValueError, TypeError):
         return 0.0
 
 
@@ -176,7 +176,7 @@ def enhanced_correlation(data: pd.DataFrame, usernames: List[str], addresses: Li
         try:
             timestamps = pd.to_datetime(data['EndDate']).values.astype('datetime64[s]').astype(np.float64)
             has_valid_times = ~np.isnan(timestamps)
-        except Exception:
+        except (ValueError, TypeError, AttributeError):
             timestamps = np.zeros(n_events)
             has_valid_times = np.zeros(n_events, dtype=bool)
     else:
@@ -429,7 +429,7 @@ def calculate_adaptive_threshold(data: pd.DataFrame, addresses: List[str],
                 time_span_hours = (timestamps.max() - timestamps.min()).total_seconds() / 3600
                 # Longer time spans suggest need for lower thresholds (more lenient correlation)
                 temporal_factor = -min(0.1, time_span_hours / 1000)  # Normalize to reasonable range
-        except Exception:
+        except (ValueError, TypeError):
             temporal_factor = 0.0
     
     adaptive_threshold = base_threshold + size_factor + diversity_adjustment + temporal_factor
@@ -479,12 +479,12 @@ def main(uri = 'Data/Raw_data/test_dataset.csv', use_subnet_blocking=False):
         # Optional imports to avoid hard dependencies during library use
         try:
             import Testing  # noqa: F401
-        except Exception as e:
+        except ImportError as e:
             print(f"Warning: optional Testing module unavailable: {e}")
             Testing = None  # type: ignore
         try:
             import plots  # noqa: F401
-        except Exception as e:
+        except ImportError as e:
             print(f"Warning: optional plots module unavailable: {e}")
             plots = None  # type: ignore
 
@@ -524,21 +524,3 @@ def main(uri = 'Data/Raw_data/test_dataset.csv', use_subnet_blocking=False):
         print(f"Error in main function: {e}")
 
 
-if __name__ == "__main__":
-    import argparse
-    parser = argparse.ArgumentParser(description="MITRE-CORE Correlation Indexer")
-    parser.add_argument("--subnet-filter", action="store_true", help="Enable IP-subnet blocking pre-filter")
-    parser.add_argument("--uri", type=str, default="Data/Raw_data/test_dataset.csv", help="URI of the dataset")
-    args = parser.parse_args()
-
-    t = time.localtime()
-    current_time = time.strftime("%H:%M:%S", t)
-    print("Enhanced correlation testing started at: " + str(current_time))
-
-    main(uri=args.uri, use_subnet_blocking=args.subnet_filter)
-
-    t = time.localtime()
-    current_time = time.strftime("%H:%M:%S", t)
-    print("Enhanced correlation testing ended at: " + str(current_time))
-         
-      

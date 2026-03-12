@@ -82,7 +82,7 @@ def run_ton_iot_experiments():
             # We skip loading the checkpoint if it causes dimension mismatch due to schema extension
             # In PyTorch, we can load with strict=False
             import torch
-            state_dict = torch.load(unsw_ckpt, map_location=hgnn_engine.device)
+            state_dict = torch.load(unsw_ckpt, map_location=hgnn_engine.device, weights_only=True)
             
             # Filter out entity encoders because their input dims depend on the number of unique entities (torch.eye(N))
             # The LazyLinear will re-initialize them for the new graph size on the first forward pass

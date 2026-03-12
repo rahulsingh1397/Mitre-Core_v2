@@ -1,13 +1,22 @@
 # MITRE-CORE v2 Execution Memory
 
-## 0. Active Fix Plan (2026-03-07)
-Full structural analysis completed. 17 issues documented in `docs/FIX_PLAN.md`.
-P1 fixes (crashes + wrong default) are being implemented now.
-- `Testing/__init__.py` — CREATE (build_data missing)
-- `siem/ingestion_engine.py:28` — wrong import path
-- `hgnn/hgnn_correlation.py:824` — use_uf_refinement default True→False
-- `security.py` — move to `core/security_utils.py`
-- See FIX_PLAN.md for full step-by-step instructions (P1–P5).
+## 0. Fix Session — 2026-03-07 (COMPLETE)
+Full structural analysis completed. All 17 issues from `docs/FIX_PLAN.md` resolved.
+
+P1–P5 status: ALL COMPLETE. Verified by automated checks.
+
+Key fixes applied:
+- `Testing/__init__.py` — created with `build_data(n_samples)` ✅
+- `siem/ingestion_engine.py:28` — import path fixed to `core.correlation_indexer` ✅
+- `siem/ingestion_engine.py` — sys.path guard added (deduplicated) ✅
+- `hgnn/hgnn_correlation.py:824` — `use_uf_refinement` default `True` → `False` ✅
+- `security.py` — copied to `core/security_utils.py`; shim left at root ✅
+- All root-level scripts moved to proper subdirectories ✅
+- Redundant directories merged and deleted ✅
+- Checkpoint directories consolidated into single `hgnn_checkpoints/` ✅
+
+Remaining work: see `docs/PENDING_CHANGES.md` (Groups A–F).
+Next research milestone: v3.0 (`all_points_membership_vectors()`).
 
 ## 1. Program Overview
 - **Objective:** Execute and validate the full MITRE-CORE v2 cybersecurity correlation pipeline (phases 0-8) across all eight mandated datasets, ensuring every gate condition is met before moving to the next phase.

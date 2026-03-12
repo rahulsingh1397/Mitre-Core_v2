@@ -1,24 +1,27 @@
-import pandas as pd 
-from core import postprocessing
 import json
+import logging
+import os
+import pandas as pd
+from core import postprocessing
 
-#  Data dictionaries
+logger = logging.getLogger("mitre-core.output")
 
-
-types = {
-"Connection to Malicious URL for malware_download": "INITIAL ACCESS",
-    "Event Triggered Execution": "EXECUTION",
-    "Persistence - Registry Key Manipulation": "PERSISTENCE",
-    "Privilege Escalation - Exploiting Vulnerability": "PRIVILEGE ESCALATION",
-    "Defense Evasion - Signature-based Evasion": "DEFENSE EVASION",
-    "Credential Access - Password Guessing" : "CREDENTIAL ACCESS",
-    "Discovery - Network Service Scanning": "DISCOVERY",
-    "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation": "LATERAL MOVEMENT",
-    "Collection - Data Exfiltration via Email": "COLLECTION",
-    "Command and Control - Communication over Tor Network": "COMMAND AND CONTROL",
-    "Exfiltration - File Transfer to External Server": "EXFILTRATION",
-    "Impact - Denial-of-Service (DoS) Attack": "IMPACT"
-}
+# Load tactic map from JSON — single source of truth.
+# Falls back to an empty dict if the file is missing (graceful degradation).
+_TACTIC_MAP_PATH = os.path.join(
+    os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+    "tactic_map.json"
+)
+try:
+    with open(_TACTIC_MAP_PATH, "r") as _f:
+        types = json.load(_f)
+    logger.info(f"Loaded {len(types)} tactic mappings from {_TACTIC_MAP_PATH}")
+except FileNotFoundError:
+    logger.warning(f"tactic_map.json not found at {_TACTIC_MAP_PATH}. All tactics will be UNKNOWN.")
+    types = {}
+except json.JSONDecodeError as _e:
+    logger.error(f"tactic_map.json is malformed: {_e}. All tactics will be UNKNOWN.")
+    types = {}
 
 
 Attack_stages = {
@@ -91,7 +94,7 @@ def generate_output(input_path="Data/Cleaned/Test_test_dataset.csv", output_path
         subattack_types = list(set(cluster['MalwareIntelAttackType']))
         tactics = list(set([types.get(description, "UNKNOWN") for description in subattack_types]))
         device_addresses = list(set(cluster['DeviceAddress']))
-        print("cluster" , c_no)
+        logger.debug("Processing cluster %s", c_no)
 
         stage = classify_attack_stage(tactics)
 
@@ -115,5 +118,3 @@ def generate_output(input_path="Data/Cleaned/Test_test_dataset.csv", output_path
     return compiled_output
 
 
-if __name__ == "__main__":
-    generate_output()
