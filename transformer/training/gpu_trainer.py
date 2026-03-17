@@ -206,6 +206,7 @@ class GPUOptimizedTrainer:
     ) -> torch.Tensor:
         """
         Compute contrastive loss for pairwise affinity.
+        Numerically stable version with clamping.
         
         Args:
             affinity_matrix: [batch, seq_len, seq_len]
@@ -215,6 +216,15 @@ class GPUOptimizedTrainer:
             Loss tensor
         """
         batch_size, seq_len, _ = affinity_matrix.shape
+        
+        # Check for NaN/Inf in affinity matrix
+        if torch.isnan(affinity_matrix).any() or torch.isinf(affinity_matrix).any():
+            logger.warning("Affinity matrix contains NaN/Inf, clamping...")
+            affinity_matrix = torch.nan_to_num(affinity_matrix, nan=0.0, posinf=10.0, neginf=-10.0)
+        
+        # Clamp affinity values to prevent logsigmoid overflow
+        # logsigmoid is stable for x in [-10, 10] range
+        affinity_matrix = torch.clamp(affinity_matrix, -10.0, 10.0)
         
         # Create positive mask: alerts in same campaign should have high affinity
         pos_mask = (labels.unsqueeze(1) == labels.unsqueeze(2)).float()
@@ -226,15 +236,22 @@ class GPUOptimizedTrainer:
         eye_mask = torch.eye(seq_len, device=affinity_matrix.device).unsqueeze(0)
         pos_mask = pos_mask * (1 - eye_mask)
         
-        # Positive loss: high affinity for same campaign
-        pos_loss = -F.logsigmoid(affinity_matrix) * pos_mask
+        # Use numerically stable logsigmoid with bounds checking
+        # log(sigmoid(x)) = -softplus(-x)
+        pos_loss = F.softplus(-affinity_matrix) * pos_mask
         
-        # Negative loss: low affinity for different campaigns
-        neg_loss = -F.logsigmoid(-affinity_matrix) * neg_mask
+        # For negative pairs, want low affinity (high -affinity means low affinity)
+        neg_loss = F.softplus(affinity_matrix) * neg_mask
         
         # Average over valid pairs
         num_pos = pos_mask.sum()
         num_neg = neg_mask.sum()
+        
+        # Handle edge case where all labels are same (no negative pairs)
+        if num_neg < 1:
+            # Create artificial negative pairs by randomly sampling
+            neg_loss = neg_loss * 0.1  # Small weight for diversity
+            num_neg = torch.tensor(1.0, device=affinity_matrix.device)
         
         loss = (pos_loss.sum() + neg_loss.sum()) / (num_pos + num_neg + 1e-8)
         

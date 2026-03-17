@@ -1,0 +1,79 @@
+{
+  "target": "192.168.1.200",
+  "timestamp": "2026-03-12T00:45:38.770650",
+  "stage_evaluations": [
+    {
+      "stage": "RECONNAISSANCE",
+      "execution_successful": true,
+      "output_quality": 0.85,
+      "reasoning_quality": 0.7,
+      "error_rate": 0.0,
+      "expected_behavior": "Produce 5 output types with confidence > 0.5",
+      "actual_behavior": "Produced 5 output types with confidence 0.95",
+      "failure_modes": [],
+      "improvement_suggestions": []
+    },
+    {
+      "stage": "VULNERABILITY_IDENTIFICATION",
+      "execution_successful": true,
+      "output_quality": 0.87,
+      "reasoning_quality": 1.0,
+      "error_rate": 0.0,
+      "expected_behavior": "Produce 3 output types with confidence > 0.4",
+      "actual_behavior": "Produced 3 output types with confidence 0.80",
+      "failure_modes": [],
+      "improvement_suggestions": [
+        "Integrate live CVE database API for real-time data"
+      ]
+    },
+    {
+      "stage": "EXPLOIT_SUGGESTION",
+      "execution_successful": false,
+      "output_quality": 0.884,
+      "reasoning_quality": 0.65,
+      "error_rate": 0.3333333333333333,
+      "expected_behavior": "Produce 3 output types with confidence > 0.4",
+      "actual_behavior": "Produced 3 output types with confidence 0.00",
+      "failure_modes": [
+        "Stage failed to execute: [\"'success_probability'\"]",
+        "Low confidence (0.00 < 0.4)"
+      ],
+      "improvement_suggestions": [
+        "Add error handling and graceful degradation",
+        "Implement additional validation checks to boost confidence scores",
+        "Add exploit code templates for common vulnerabilities"
+      ]
+    },
+    {
+      "stage": "LATERAL_MOVEMENT_PLANNING",
+      "execution_successful": false,
+      "output_quality": 0.6,
+      "reasoning_quality": 0.85,
+      "error_rate": 0.0,
+      "expected_behavior": "Produce 3 output types with confidence > 0.3",
+      "actual_behavior": "Produced 3 output types with confidence 0.10",
+      "failure_modes": [
+        "Stage failed to execute: []",
+        "Low confidence (0.10 < 0.3)",
+        "No lateral paths generated"
+      ],
+      "improvement_suggestions": [
+        "Add error handling and graceful degradation",
+        "Implement additional validation checks to boost confidence scores",
+        "Expand detection patterns and fingerprinting database"
+      ]
+    }
+  ],
+  "overall_score": 0.801,
+  "key_findings": [
+    "RECONNAISSANCE: High quality output (confidence=0.95)",
+    "VULNERABILITY_IDENTIFICATION: High quality output (confidence=0.80)"
+  ],
+  "limitations_observed": [
+    "EXPLOIT_SUGGESTION: Stage failed to execute: [\"'success_probability'\"]",
+    "EXPLOIT_SUGGESTION: Low confidence (0.00 < 0.4)",
+    "LATERAL_MOVEMENT_PLANNING: Stage failed to execute: []",
+    "LATERAL_MOVEMENT_PLANNING: Low confidence (0.10 < 0.3)",
+    "LATERAL_MOVEMENT_PLANNING: No lateral paths generated"
+  ]
+}

@@ -21,19 +21,20 @@ logger = logging.getLogger("mitre-core.transformer.model")
 
 class BiaffineAttention(nn.Module):
     """
-    Biaffine attention for pairwise scoring.
+    Biaffine attention for pairwise scoring with numerical stability.
     
-    Computes affinity scores between all pairs of alerts in O(n²) time
-    but with very low constant factor (just matrix multiplications).
+    Computes affinity scores between all pairs of alerts with scaled
+    outputs to prevent overflow/NaN.
     """
     
-    def __init__(self, d_model: int):
+    def __init__(self, d_model: int, scale: float = 0.1):
         super().__init__()
         self.d_model = d_model
+        self.scale = scale  # Scaling factor for stability
         
         # Learnable weight matrix
         self.W = nn.Parameter(torch.randn(d_model, d_model))
-        nn.init.xavier_uniform_(self.W)
+        nn.init.xavier_uniform_(self.W, gain=scale)  # Scaled initialization
         
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -43,18 +44,22 @@ class BiaffineAttention(nn.Module):
             x: [batch, seq_len, d_model]
             
         Returns:
-            scores: [batch, seq_len, seq_len]
+            scores: [batch, seq_len, seq_len] (scaled and clamped)
         """
-        # x @ W: [batch, seq_len, d_model]
-        # (x @ W) @ x.T: [batch, seq_len, seq_len]
         batch_size, seq_len, _ = x.shape
         
         # Expand W for batch
         W_batch = self.W.unsqueeze(0).expand(batch_size, -1, -1)
         
-        # Compute: x @ W @ x.T
+        # Compute: x @ W @ x.T with scaling
         intermediate = torch.bmm(x, W_batch)  # [batch, seq_len, d_model]
         scores = torch.bmm(intermediate, x.transpose(1, 2))  # [batch, seq_len, seq_len]
+        
+        # Scale down to prevent extreme values
+        scores = scores * self.scale
+        
+        # Clamp to prevent overflow in downstream operations
+        scores = torch.clamp(scores, -50.0, 50.0)
         
         return scores
 
@@ -131,8 +136,8 @@ class TransformerCandidateGenerator(nn.Module):
         # Gradient checkpointing flag
         self.use_gradient_checkpointing = use_gradient_checkpointing
         
-        # Pairwise scoring
-        self.pairwise_scorer = BiaffineAttention(d_model)
+        # Pairwise scoring with scaled biaffine attention
+        self.pairwise_scorer = BiaffineAttention(d_model, scale=0.1)
         
         # Confidence head
         self.confidence_head = nn.Sequential(
