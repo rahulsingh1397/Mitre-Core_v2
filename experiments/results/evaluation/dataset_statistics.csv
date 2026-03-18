@@ -1,0 +1,10 @@
+dataset,num_alerts,num_hosts,num_ips,num_edges_total
+unsw_nb15,257673,12883,25767,1043573
+ton_iot,211043,4220,776,848390
+linux_apt,59,1,48,355
+cicids2017,1000,50,100,4048
+nsl_kdd,148517,7425,14851,891101
+cicapt_iiot,20000,1000,2000,120001
+datasense_5sec,2000,100,200,14336
+datasense_1sec,2000,100,200,14336
+ynu_arm_pcap,20000,400,4000,119999

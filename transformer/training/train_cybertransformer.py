@@ -34,7 +34,7 @@ from torch.amp import autocast
 
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from transformer.models.candidate_generator import TransformerCandidateGenerator
+from transformer.models.candidate_generator import TransformerCandidateGenerator, create_model
 from transformer.training.gpu_trainer import GPUOptimizedTrainer, TrainingMetrics
 from transformer.config.gpu_config_8gb import DEFAULT_CONFIG_8GB
 from transformer.preprocessing.alert_preprocessor import AlertPreprocessor
@@ -253,31 +253,6 @@ class AlertDataset(Dataset):
             'attention_mask': batch['attention_mask'].squeeze(0),
             'labels': labels
         }
-
-
-def create_model(config: HyperparameterConfig, device: torch.device) -> TransformerCandidateGenerator:
-    """Create transformer model with given hyperparameters."""
-    model = TransformerCandidateGenerator(
-        vocab_size=10000,
-        num_entities=10000,
-        d_model=config.d_model,
-        n_layers=config.n_layers,
-        n_heads=config.n_heads,
-        max_seq_len=config.max_seq_len,
-        dropout=config.dropout,
-        use_gradient_checkpointing=True,
-        config=DEFAULT_CONFIG_8GB
-    )
-    
-    # Initialize with proper scaling
-    for p in model.parameters():
-        if p.dim() > 1:
-            torch.nn.init.xavier_uniform_(p, gain=0.1)  # Smaller initialization
-    
-    memory = model.get_memory_footprint()
-    logger.info(f"CyberTransformer created: {memory['total_size_mb']:.1f}MB")
-    
-    return model.to(device)
 
 
 def train_epoch(

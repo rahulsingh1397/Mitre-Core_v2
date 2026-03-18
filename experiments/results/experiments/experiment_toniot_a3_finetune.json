@@ -1,0 +1,6 @@
+{
+    "dataset": "TON_IoT",
+    "setting": "fine-tuned",
+    "ARI": 0.20438937742276886,
+    "NMI": 0.42324877552827794
+}

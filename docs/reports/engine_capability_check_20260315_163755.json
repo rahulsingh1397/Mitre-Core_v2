@@ -1,0 +1,239 @@
+{
+  "timestamp": "2026-03-15T16:37:54.954570",
+  "version": "v2.0",
+  "datasets_evaluated": [
+    {
+      "name": "Canara15WidgetExport_clustered",
+      "path": "e:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\datasets\\real_data\\Canara15WidgetExport_clustered_mitre_format.csv",
+      "type": "real_data",
+      "size_bytes": 34868
+    },
+    {
+      "name": "Canara_15_11_xlsx_-_WidgetExport",
+      "path": "e:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\datasets\\real_data\\Canara_15_11_xlsx_-_WidgetExport_mitre_format.csv",
+      "type": "real_data",
+      "size_bytes": 126296
+    },
+    {
+      "name": "Kmeans_test_dataset",
+      "path": "e:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\datasets\\real_data\\Kmeans_test_dataset_mitre_format.csv",
+      "type": "real_data",
+      "size_bytes": 7207
+    },
+    {
+      "name": "network",
+      "path": "e:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\datasets\\real_data\\network_mitre_format.csv",
+      "type": "real_data",
+      "size_bytes": 32364
+    },
+    {
+      "name": "network_test_dataset",
+      "path": "e:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\datasets\\real_data\\network_test_dataset_mitre_format.csv",
+      "type": "real_data",
+      "size_bytes": 7207
+    },
+    {
+      "name": "test_dataset",
+      "path": "e:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\datasets\\real_data\\test_dataset_mitre_format.csv",
+      "type": "real_data",
+      "size_bytes": 7207
+    },
+    {
+      "name": "nsl_kdd",
+      "path": "e:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\datasets\\nsl_kdd\\mitre_format.csv",
+      "type": "standard",
+      "size_bytes": 15330875
+    },
+    {
+      "name": "unsw_nb15",
+      "path": "e:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\datasets\\unsw_nb15\\mitre_format.csv",
+      "type": "standard",
+      "size_bytes": 22395410
+    }
+  ],
+  "performance_metrics": {
+    "Canara15WidgetExport_clustered": {
+      "name": "Canara15WidgetExport_clustered",
+      "load_time_ms": 9.132862091064453,
+      "preprocessing_time_ms": 0,
+      "tactic_coverage": {
+        "tactics_found": 1,
+        "tactics": {
+          "Unknown": 462
+        }
+      },
+      "row_count": 462,
+      "column_count": 8,
+      "missing_values": 289,
+      "errors": [],
+      "required_columns_present": 4,
+      "required_columns_missing": []
+    },
+    "Canara_15_11_xlsx_-_WidgetExport": {
+      "name": "Canara_15_11_xlsx_-_WidgetExport",
+      "load_time_ms": 9.844303131103516,
+      "preprocessing_time_ms": 0,
+      "tactic_coverage": {
+        "tactics_found": 1,
+        "tactics": {
+          "Unknown": 1781
+        }
+      },
+      "row_count": 1781,
+      "column_count": 8,
+      "missing_values": 1116,
+      "errors": [],
+      "required_columns_present": 4,
+      "required_columns_missing": []
+    },
+    "Kmeans_test_dataset": {
+      "name": "Kmeans_test_dataset",
+      "load_time_ms": 7.650852203369141,
+      "preprocessing_time_ms": 0,
+      "tactic_coverage": {
+        "tactics_found": 1,
+        "tactics": {
+          "Unknown": 65
+        }
+      },
+      "row_count": 65,
+      "column_count": 8,
+      "missing_values": 0,
+      "errors": [],
+      "required_columns_present": 4,
+      "required_columns_missing": []
+    },
+    "network": {
+      "name": "network",
+      "load_time_ms": 8.031368255615234,
+      "preprocessing_time_ms": 0,
+      "tactic_coverage": {
+        "tactics_found": 1,
+        "tactics": {
+          "Unknown": 462
+        }
+      },
+      "row_count": 462,
+      "column_count": 8,
+      "missing_values": 0,
+      "errors": [],
+      "required_columns_present": 4,
+      "required_columns_missing": []
+    },
+    "network_test_dataset": {
+      "name": "network_test_dataset",
+      "load_time_ms": 0.5273818969726562,
+      "preprocessing_time_ms": 0,
+      "tactic_coverage": {
+        "tactics_found": 1,
+        "tactics": {
+          "Unknown": 65
+        }
+      },
+      "row_count": 65,
+      "column_count": 8,
+      "missing_values": 0,
+      "errors": [],
+      "required_columns_present": 4,
+      "required_columns_missing": []
+    },
+    "test_dataset": {
+      "name": "test_dataset",
+      "load_time_ms": 0.0,
+      "preprocessing_time_ms": 0,
+      "tactic_coverage": {
+        "tactics_found": 1,
+        "tactics": {
+          "Unknown": 65
+        }
+      },
+      "row_count": 65,
+      "column_count": 8,
+      "missing_values": 0,
+      "errors": [],
+      "required_columns_present": 4,
+      "required_columns_missing": []
+    },
+    "nsl_kdd": {
+      "name": "nsl_kdd",
+      "load_time_ms": 198.44532012939453,
+      "preprocessing_time_ms": 0,
+      "tactic_coverage": {
+        "tactics_found": 9,
+        "tactics": {
+          "Impact": 44971,
+          "Reconnaissance": 11656,
+          "Initial Access": 971,
+          "Command and Control": 910,
+          "Credential Access": 53,
+          "Execution": 42,
+          "Lateral Movement": 15,
+          "Persistence": 10,
+          "Collection": 2
+        }
+      },
+      "row_count": 125973,
+      "column_count": 14,
+      "missing_values": 67343,
+      "errors": [],
+      "required_columns_present": 4,
+      "required_columns_missing": []
+    },
+    "unsw_nb15": {
+      "name": "unsw_nb15",
+      "load_time_ms": 357.42974281311035,
+      "preprocessing_time_ms": 0,
+      "tactic_coverage": {
+        "tactics_found": 7,
+        "tactics": {
+          "Initial Access": 73393,
+          "Execution": 19317,
+          "Impact": 12264,
+          "Reconnaissance": 10491,
+          "Collection": 2000,
+          "Persistence": 1746,
+          "Lateral Movement": 130
+        }
+      },
+      "row_count": 175341,
+      "column_count": 13,
+      "missing_values": 56000,
+      "errors": [],
+      "required_columns_present": 4,
+      "required_columns_missing": []
+    }
+  },
+  "issues_found": [],
+  "recommendations": [],
+  "cross_dataset": {
+    "total_unique_tactics": 10,
+    "all_tactics": [
+      "Reconnaissance",
+      "Persistence",
+      "Initial Access",
+      "Collection",
+      "Unknown",
+      "Impact",
+      "Execution",
+      "Lateral Movement",
+      "Command and Control",
+      "Credential Access"
+    ],
+    "mitre_coverage": 71.42857142857143
+  },
+  "capabilities": {
+    "dataset_loading": {
+      "total": 8,
+      "successful": 8,
+      "success_rate": 100.0
+    },
+    "tactic_mapping": {
+      "coverage_percent": 71.42857142857143,
+      "status": "good"
+    },
+    "data_quality": {
+      "total_rows": 304214,
+      "total_missing": 124748
+    }
+  }
+}

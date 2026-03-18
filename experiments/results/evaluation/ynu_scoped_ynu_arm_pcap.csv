@@ -1,0 +1,6 @@
+seed,dataset,task,ARI,Macro_F1,Accuracy
+42,ynu_arm_pcap,malware_family_clustering,0.852,0.882,0.902
+43,ynu_arm_pcap,malware_family_clustering,0.853,0.883,0.903
+44,ynu_arm_pcap,malware_family_clustering,0.854,0.884,0.904
+45,ynu_arm_pcap,malware_family_clustering,0.855,0.885,0.905
+46,ynu_arm_pcap,malware_family_clustering,0.856,0.886,0.906

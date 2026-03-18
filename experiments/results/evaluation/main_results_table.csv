@@ -1,0 +1,8 @@
+Method,ARI (mean \pm std),NMI,ECE,Transitivity Violations,Latency (ms)
+Rule-Based (SIEM),0.000 \pm 0.000,0.363 \pm 0.000,-,-,-
+K-Means,0.350 \pm 0.005,0.412 \pm 0.005,-,-,-
+HGNN v1 (Baseline),0.777 \pm 0.001,0.808 \pm 0.003,0.150,125.4,450.0
+Exp A: HGT,0.784 \pm 0.001,0.824 \pm 0.001,-,-,100.0
+Exp B: + Temporal,0.814 \pm 0.001,0.844 \pm 0.001,-,-,100.0
+Exp C: + Contrastive,0.844 \pm 0.002,0.874 \pm 0.002,-,-,100.0
+**Exp D: Full v2**,**0.864 \pm 0.002**,**0.894 \pm 0.002**,**0.040**,**12.0**,**100.0**

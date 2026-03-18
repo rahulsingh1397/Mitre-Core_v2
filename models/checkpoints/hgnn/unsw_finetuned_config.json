@@ -1,0 +1,18 @@
+{
+  "checkpoint_file": "unsw_finetuned.pt",
+  "trained_on": "UNSW-NB15",
+  "label_column": "campaign_id",
+  "model_kwargs": {
+    "hidden_dim": 128,
+    "num_heads": 4,
+    "num_layers": 1,
+    "dropout": 0.3
+  },
+  "training": {
+    "epochs": "unknown - not recorded",
+    "best_val_ari": "unknown - not recorded",
+    "seed": 42
+  },
+  "use_uf_refinement_default": false,
+  "notes": "Fine-tuned from unsw_nb15_best."
+}

@@ -116,10 +116,11 @@ DATASET_REGISTRY: Dict[str, DatasetMetadata] = {
     
     # ============ EXISTING DATASETS ============
     
-    "UNSW_NB15": DatasetMetadata(
+    "unsw_nb15": DatasetMetadata(
         name="UNSW-NB15",
         path="datasets/unsw_nb15",
         format="parquet",          # mitre_format.parquet only — avoids raw CSVs with wrong schema
+        file_pattern="mitre_format.parquet",  # Explicit pattern to avoid raw CSVs
         attack_label_col="tactic",
         timestamp_col="timestamp",
         source_ip_col="src_ip",

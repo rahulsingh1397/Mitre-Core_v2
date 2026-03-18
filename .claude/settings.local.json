@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c \":*)",
+      "Bash(python -c \":*)",
+      "Bash(find 'E:\\\\Private\\\\MITRE-CORE 2\\\\MITRE-CORE_V2\\\\datasets' -type f -name *.parquet)",
+      "Bash(find 'E:\\\\Private\\\\MITRE-CORE 2\\\\MITRE-CORE_V2\\\\datasets' -name *.parquet)",
+      "Bash(find 'E:\\\\Private\\\\MITRE-CORE 2\\\\MITRE-CORE_V2\\\\datasets' -iname *unsw* -o -iname *nb15*)",
+      "Bash(grep -E \"\\\\.py$\")",
+      "Bash(xargs ls:*)",
+      "Bash(cd /e)",
+      "Bash(find 'Private/MITRE-CORE 2/MITRE-CORE_V2/datasets' -name *.csv -type f)",
+      "Bash(python3 -m json.tool)",
+      "Bash(find 'E:/Private/MITRE-CORE 2/MITRE-CORE_V2/models' -name *.pt)",
+      "Bash(for dir:*)",
+      "Bash(do echo:*)",
+      "Read(//e/Private/MITRE-CORE 2/MITRE-CORE_V2/**)",
+      "Bash(du -sh E:/Private/MITRE-CORE 2/MITRE-CORE_V2/datasets/*/)",
+      "Bash(done)",
+      "WebFetch(domain:csr.lanl.gov)"
+    ]
+  }
+}

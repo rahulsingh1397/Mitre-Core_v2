@@ -1,0 +1,18 @@
+{
+  "checkpoint_file": "checkpoint_epoch_50_5datasets.pt",
+  "trained_on": "5 datasets",
+  "label_column": "mixed",
+  "model_kwargs": {
+    "hidden_dim": 128,
+    "num_heads": 4,
+    "num_layers": 1,
+    "dropout": 0.3
+  },
+  "training": {
+    "epochs": "50",
+    "best_val_ari": "unknown - not recorded",
+    "seed": 42
+  },
+  "use_uf_refinement_default": false,
+  "notes": "Foundation pretraining on 5 datasets."
+}

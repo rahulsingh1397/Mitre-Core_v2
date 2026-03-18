@@ -1,0 +1,1855 @@
+{
+  "dataset_name": "Canara_data_cleaned",
+  "dataset_path": "Data\\Cleaned\\Canara_data_cleaned.csv",
+  "total_events": 73,
+  "num_clusters": 73,
+  "avg_cluster_size": 1.0,
+  "max_cluster_size": "1",
+  "min_cluster_size": "1",
+  "correlation_method": "union_find",
+  "runtime_seconds": 0.021399974822998047,
+  "fallback_used": false,
+  "attack_types": [
+    "UEBA",
+    "Network",
+    "Malware",
+    "ThreatIntel",
+    "Web Attack"
+  ],
+  "tactics": [],
+  "clusters": [
+    {
+      "cluster_id": 0,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.68"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 1,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.214.10"
+      ],
+      "DestinationAddress": [
+        "192.168.198.7"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 2,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.1.205"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "172.24.2.108"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 3,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "103.241.226.237"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 4,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.241.212.45"
+      ],
+      "DestinationAddress": [
+        "119.226.14.194"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 5,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.11.23"
+      ],
+      "DestinationAddress": [
+        "192.9.198.39"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 6,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "149.50.96.28"
+      ],
+      "DestinationAddress": [
+        "123.252.243.66"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 7,
+      "size": 1,
+      "attack_types": [
+        "Malware"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "88.209.205.243"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 8,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "223.30.248.82"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 9,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "46.161.27.152"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 10,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "52.172.90.30"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 11,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.65"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 12,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.243"
+      ],
+      "DestinationAddress": [
+        "20.150.114.33"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 13,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "122.177.100.67"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 14,
+      "size": 1,
+      "attack_types": [
+        "Malware"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.229"
+      ],
+      "DestinationAddress": [
+        "23.57.214.123"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 15,
+      "size": 1,
+      "attack_types": [
+        "ThreatIntel"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "74.82.47.5"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 16,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "163.116.131.7"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 17,
+      "size": 1,
+      "attack_types": [
+        "Web Attack"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "10.0.32.8"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 18,
+      "size": 1,
+      "attack_types": [
+        "Malware"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.198.7"
+      ],
+      "DestinationAddress": [
+        "8.8.8.8"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 19,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.241.219.29"
+      ],
+      "DestinationAddress": [
+        "119.226.14.194"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 20,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.228.220.0"
+      ],
+      "DestinationAddress": [
+        "49.248.149.154"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 21,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.241.230.45"
+      ],
+      "DestinationAddress": [
+        "119.226.14.194"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 22,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "35.231.183.39"
+      ],
+      "DestinationAddress": [
+        "223.30.248.82"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 23,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.11.23"
+      ],
+      "DestinationAddress": [
+        "192.9.198.49"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 62.2593
+    },
+    {
+      "cluster_id": 24,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.203"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "172.24.2.108"
+      ],
+      "avg_correlation": 3.6833
+    },
+    {
+      "cluster_id": 25,
+      "size": 1,
+      "attack_types": [
+        "Web Attack"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "10.0.32.15"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 3.6833
+    },
+    {
+      "cluster_id": 26,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "20.219.12.76"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 3.6833
+    },
+    {
+      "cluster_id": 27,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "122.4.70.207"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 3.6833
+    },
+    {
+      "cluster_id": 28,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "163.116.205.118"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 3.6833
+    },
+    {
+      "cluster_id": 29,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "223.30.248.82"
+      ],
+      "DestinationAddress": [
+        "152.199.43.83"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 4.0667
+    },
+    {
+      "cluster_id": 30,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "223.30.248.82"
+      ],
+      "DestinationAddress": [
+        "20.150.114.33"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 4.0667
+    },
+    {
+      "cluster_id": 31,
+      "size": 1,
+      "attack_types": [
+        "Web Attack"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "223.30.248.82"
+      ],
+      "DestinationAddress": [
+        "18.161.229.65"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 4.0667
+    },
+    {
+      "cluster_id": 32,
+      "size": 1,
+      "attack_types": [
+        "Web Attack"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "223.30.248.82"
+      ],
+      "DestinationAddress": [
+        "162.159.152.4"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 4.0667
+    },
+    {
+      "cluster_id": 33,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "NIL"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 34,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "NIL"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "172.24.2.108"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 35,
+      "size": 1,
+      "attack_types": [
+        "Web Attack"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "10.0.32.14"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 36,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.88"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 37,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.206.12"
+      ],
+      "DestinationAddress": [
+        "192.168.198.5"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 38,
+      "size": 1,
+      "attack_types": [
+        "ThreatIntel"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "74.82.47.3"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 39,
+      "size": 1,
+      "attack_types": [
+        "Malware"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "144.208.12.18"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 40,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "125.71.200.138"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 41,
+      "size": 1,
+      "attack_types": [
+        "Web Attack"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "52.66.118.252"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 42,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.198.33"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 43,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "163.116.205.120"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 44,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "223.228.232.79"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 45,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.241.229.52"
+      ],
+      "DestinationAddress": [
+        "123.252.243.66"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 46,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.241.231.51"
+      ],
+      "DestinationAddress": [
+        "223.30.248.82"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 47,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "123.252.243.66"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 48,
+      "size": 1,
+      "attack_types": [
+        "Malware"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "NIL"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "192.9.217.14"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 49,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "167.248.133.171"
+      ],
+      "DestinationAddress": [
+        "223.30.248.82"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 50,
+      "size": 1,
+      "attack_types": [
+        "Web Attack"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "223.30.248.82"
+      ],
+      "DestinationAddress": [
+        "18.161.229.41"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 51,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.241.193.15"
+      ],
+      "DestinationAddress": [
+        "223.30.248.82"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 52,
+      "size": 1,
+      "attack_types": [
+        "Malware"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.231"
+      ],
+      "DestinationAddress": [
+        "192.9.217.14"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 53,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.11.23"
+      ],
+      "DestinationAddress": [
+        "192.9.198.22"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 48.2454
+    },
+    {
+      "cluster_id": 54,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.241.199.70"
+      ],
+      "DestinationAddress": [
+        "119.226.14.195"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 55,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.110"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 56,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.198.57"
+      ],
+      "DestinationAddress": [
+        "255.255.255.255"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 57,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.11.5"
+      ],
+      "DestinationAddress": [
+        "192.168.198.57"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 58,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.168"
+      ],
+      "DestinationAddress": [
+        "20.192.43.160"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 59,
+      "size": 1,
+      "attack_types": [
+        "Malware"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.230"
+      ],
+      "DestinationAddress": [
+        "142.251.42.10"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 60,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.11.23"
+      ],
+      "DestinationAddress": [
+        "192.9.198.208"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 61,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.72.5.92"
+      ],
+      "DestinationAddress": [
+        "223.30.248.82"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 62,
+      "size": 1,
+      "attack_types": [
+        "ThreatIntel"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "205.210.31.101"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 63,
+      "size": 1,
+      "attack_types": [
+        "UEBA"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "46.161.27.212"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 64,
+      "size": 1,
+      "attack_types": [
+        "ThreatIntel"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "94.102.61.29"
+      ],
+      "DestinationAddress": [
+        "123.252.243.66"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 65,
+      "size": 1,
+      "attack_types": [
+        "ThreatIntel"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.186"
+      ],
+      "DestinationAddress": [
+        "45.135.231.119"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 66,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.71"
+      ],
+      "DestinationAddress": [
+        "NIL"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 67,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "202.191.136.231"
+      ],
+      "DestinationAddress": [
+        "100.96.186.173"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 68,
+      "size": 1,
+      "attack_types": [
+        "ThreatIntel"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.243"
+      ],
+      "DestinationAddress": [
+        "173.233.139.164"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 69,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.198.192"
+      ],
+      "DestinationAddress": [
+        "13.248.169.48"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 70,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.168.11.23"
+      ],
+      "DestinationAddress": [
+        "192.9.198.67"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 71,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "34.171.187.25"
+      ],
+      "DestinationAddress": [
+        "123.252.243.66"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    },
+    {
+      "cluster_id": 72,
+      "size": 1,
+      "attack_types": [
+        "Network"
+      ],
+      "tactics": [],
+      "stage": "Other",
+      "SourceAddress": [
+        "192.9.200.3"
+      ],
+      "DestinationAddress": [
+        "192.168.198.7"
+      ],
+      "DeviceAddress": [
+        "NIL"
+      ],
+      "avg_correlation": 40.7948
+    }
+  ],
+  "graph_data": {
+    "nodes": [
+      {
+        "id": 0,
+        "label": "Cluster 0 | UEBA | Src: 192.9.198.68",
+        "cluster": 0,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 1,
+        "label": "Cluster 1 | Network | Src: 192.9.214.10",
+        "cluster": 1,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 2,
+        "label": "Cluster 2 | UEBA | Src: 192.168.1.205",
+        "cluster": 2,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 3,
+        "label": "Cluster 3 | Network | Src: 103.241.226.237",
+        "cluster": 3,
+        "color": "#d62728"
+      },
+      {
+        "id": 4,
+        "label": "Cluster 4 | Network | Src: 192.241.212.45",
+        "cluster": 4,
+        "color": "#9467bd"
+      },
+      {
+        "id": 5,
+        "label": "Cluster 5 | Network | Src: 192.168.11.23",
+        "cluster": 5,
+        "color": "#8c564b"
+      },
+      {
+        "id": 6,
+        "label": "Cluster 6 | Network | Src: 149.50.96.28",
+        "cluster": 6,
+        "color": "#e377c2"
+      },
+      {
+        "id": 7,
+        "label": "Cluster 7 | Malware | Src: 88.209.205.243",
+        "cluster": 7,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 8,
+        "label": "Cluster 8 | UEBA | Src: 223.30.248.82",
+        "cluster": 8,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 9,
+        "label": "Cluster 9 | UEBA | Src: 46.161.27.152",
+        "cluster": 9,
+        "color": "#17becf"
+      },
+      {
+        "id": 10,
+        "label": "Cluster 10 | UEBA | Src: 52.172.90.30",
+        "cluster": 10,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 11,
+        "label": "Cluster 11 | Network | Src: 192.9.198.65",
+        "cluster": 11,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 12,
+        "label": "Cluster 12 | Network | Src: 192.9.198.243",
+        "cluster": 12,
+        "color": "#98df8a"
+      },
+      {
+        "id": 13,
+        "label": "Cluster 13 | UEBA | Src: 122.177.100.67",
+        "cluster": 13,
+        "color": "#ff9896"
+      },
+      {
+        "id": 14,
+        "label": "Cluster 14 | Malware | Src: 192.9.198.229",
+        "cluster": 14,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 15,
+        "label": "Cluster 15 | ThreatIntel | Src: 74.82.47.5",
+        "cluster": 15,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 16,
+        "label": "Cluster 16 | UEBA | Src: 163.116.131.7",
+        "cluster": 16,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 17,
+        "label": "Cluster 17 | Web Attack | Src: 10.0.32.8",
+        "cluster": 17,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 18,
+        "label": "Cluster 18 | Malware | Src: 192.168.198.7",
+        "cluster": 18,
+        "color": "#d62728"
+      },
+      {
+        "id": 19,
+        "label": "Cluster 19 | Network | Src: 192.241.219.29",
+        "cluster": 19,
+        "color": "#9467bd"
+      },
+      {
+        "id": 20,
+        "label": "Cluster 20 | Network | Src: 192.228.220.0",
+        "cluster": 20,
+        "color": "#8c564b"
+      },
+      {
+        "id": 21,
+        "label": "Cluster 21 | Network | Src: 192.241.230.45",
+        "cluster": 21,
+        "color": "#e377c2"
+      },
+      {
+        "id": 22,
+        "label": "Cluster 22 | Network | Src: 35.231.183.39",
+        "cluster": 22,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 23,
+        "label": "Cluster 23 | Network | Src: 192.168.11.23",
+        "cluster": 23,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 24,
+        "label": "Cluster 24 | UEBA | Src: 192.9.198.203",
+        "cluster": 24,
+        "color": "#17becf"
+      },
+      {
+        "id": 25,
+        "label": "Cluster 25 | Web Attack | Src: 10.0.32.15",
+        "cluster": 25,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 26,
+        "label": "Cluster 26 | UEBA | Src: 20.219.12.76",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 27,
+        "label": "Cluster 27 | UEBA | Src: 122.4.70.207",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 28,
+        "label": "Cluster 28 | UEBA | Src: 163.116.205.118",
+        "cluster": 28,
+        "color": "#ff9896"
+      },
+      {
+        "id": 29,
+        "label": "Cluster 29 | UEBA | Src: 223.30.248.82",
+        "cluster": 29,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 30,
+        "label": "Cluster 30 | Network | Src: 223.30.248.82",
+        "cluster": 30,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 31,
+        "label": "Cluster 31 | Web Attack | Src: 223.30.248.82",
+        "cluster": 31,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 32,
+        "label": "Cluster 32 | Web Attack | Src: 223.30.248.82",
+        "cluster": 32,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 33,
+        "label": "Cluster 33 | UEBA | Src: NIL",
+        "cluster": 33,
+        "color": "#d62728"
+      },
+      {
+        "id": 34,
+        "label": "Cluster 34 | UEBA | Src: NIL",
+        "cluster": 34,
+        "color": "#9467bd"
+      },
+      {
+        "id": 35,
+        "label": "Cluster 35 | Web Attack | Src: 10.0.32.14",
+        "cluster": 35,
+        "color": "#8c564b"
+      },
+      {
+        "id": 36,
+        "label": "Cluster 36 | UEBA | Src: 192.9.198.88",
+        "cluster": 36,
+        "color": "#e377c2"
+      },
+      {
+        "id": 37,
+        "label": "Cluster 37 | Network | Src: 192.9.206.12",
+        "cluster": 37,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 38,
+        "label": "Cluster 38 | ThreatIntel | Src: 74.82.47.3",
+        "cluster": 38,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 39,
+        "label": "Cluster 39 | Malware | Src: 144.208.12.18",
+        "cluster": 39,
+        "color": "#17becf"
+      },
+      {
+        "id": 40,
+        "label": "Cluster 40 | UEBA | Src: 125.71.200.138",
+        "cluster": 40,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 41,
+        "label": "Cluster 41 | Web Attack | Src: 52.66.118.252",
+        "cluster": 41,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 42,
+        "label": "Cluster 42 | UEBA | Src: 192.168.198.33",
+        "cluster": 42,
+        "color": "#98df8a"
+      },
+      {
+        "id": 43,
+        "label": "Cluster 43 | UEBA | Src: 163.116.205.120",
+        "cluster": 43,
+        "color": "#ff9896"
+      },
+      {
+        "id": 44,
+        "label": "Cluster 44 | Network | Src: 223.228.232.79",
+        "cluster": 44,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 45,
+        "label": "Cluster 45 | Network | Src: 192.241.229.52",
+        "cluster": 45,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 46,
+        "label": "Cluster 46 | Network | Src: 192.241.231.51",
+        "cluster": 46,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 47,
+        "label": "Cluster 47 | UEBA | Src: 123.252.243.66",
+        "cluster": 47,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 48,
+        "label": "Cluster 48 | Malware | Src: NIL",
+        "cluster": 48,
+        "color": "#d62728"
+      },
+      {
+        "id": 49,
+        "label": "Cluster 49 | Network | Src: 167.248.133.171",
+        "cluster": 49,
+        "color": "#9467bd"
+      },
+      {
+        "id": 50,
+        "label": "Cluster 50 | Web Attack | Src: 223.30.248.82",
+        "cluster": 50,
+        "color": "#8c564b"
+      },
+      {
+        "id": 51,
+        "label": "Cluster 51 | Network | Src: 192.241.193.15",
+        "cluster": 51,
+        "color": "#e377c2"
+      },
+      {
+        "id": 52,
+        "label": "Cluster 52 | Malware | Src: 192.9.198.231",
+        "cluster": 52,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 53,
+        "label": "Cluster 53 | Network | Src: 192.168.11.23",
+        "cluster": 53,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 54,
+        "label": "Cluster 54 | Network | Src: 192.241.199.70",
+        "cluster": 54,
+        "color": "#17becf"
+      },
+      {
+        "id": 55,
+        "label": "Cluster 55 | UEBA | Src: 192.9.198.110",
+        "cluster": 55,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 56,
+        "label": "Cluster 56 | Network | Src: 192.168.198.57",
+        "cluster": 56,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 57,
+        "label": "Cluster 57 | Network | Src: 192.168.11.5",
+        "cluster": 57,
+        "color": "#98df8a"
+      },
+      {
+        "id": 58,
+        "label": "Cluster 58 | Network | Src: 192.9.198.168",
+        "cluster": 58,
+        "color": "#ff9896"
+      },
+      {
+        "id": 59,
+        "label": "Cluster 59 | Malware | Src: 192.9.198.230",
+        "cluster": 59,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 60,
+        "label": "Cluster 60 | Network | Src: 192.168.11.23",
+        "cluster": 60,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 61,
+        "label": "Cluster 61 | Network | Src: 192.72.5.92",
+        "cluster": 61,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 62,
+        "label": "Cluster 62 | ThreatIntel | Src: 205.210.31.101",
+        "cluster": 62,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 63,
+        "label": "Cluster 63 | UEBA | Src: 46.161.27.212",
+        "cluster": 63,
+        "color": "#d62728"
+      },
+      {
+        "id": 64,
+        "label": "Cluster 64 | ThreatIntel | Src: 94.102.61.29",
+        "cluster": 64,
+        "color": "#9467bd"
+      },
+      {
+        "id": 65,
+        "label": "Cluster 65 | ThreatIntel | Src: 192.9.198.186",
+        "cluster": 65,
+        "color": "#8c564b"
+      },
+      {
+        "id": 66,
+        "label": "Cluster 66 | Network | Src: 192.9.198.71",
+        "cluster": 66,
+        "color": "#e377c2"
+      },
+      {
+        "id": 67,
+        "label": "Cluster 67 | Network | Src: 202.191.136.231",
+        "cluster": 67,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 68,
+        "label": "Cluster 68 | ThreatIntel | Src: 192.9.198.243",
+        "cluster": 68,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 69,
+        "label": "Cluster 69 | Network | Src: 192.9.198.192",
+        "cluster": 69,
+        "color": "#17becf"
+      },
+      {
+        "id": 70,
+        "label": "Cluster 70 | Network | Src: 192.168.11.23",
+        "cluster": 70,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 71,
+        "label": "Cluster 71 | Network | Src: 34.171.187.25",
+        "cluster": 71,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 72,
+        "label": "Cluster 72 | Network | Src: 192.9.200.3",
+        "cluster": 72,
+        "color": "#98df8a"
+      }
+    ],
+    "edges": []
+  },
+  "timestamp": "2026-03-14T04:43:38.915736",
+  "success": true,
+  "error_message": null
+}

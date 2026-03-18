@@ -1,0 +1,9 @@
+[
+  {
+    "dataset": "DataSense IIoT 2025 (Synthetic)",
+    "num_events": 1000,
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "time_seconds": 0.3794
+  }
+]

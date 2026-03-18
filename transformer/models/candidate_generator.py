@@ -411,3 +411,25 @@ class LightweightTransformerLayer(nn.Module):
         x = residual + self.dropout(self.ff(x))
         
         return x
+
+
+def create_model(config, device: torch.device) -> TransformerCandidateGenerator:
+    """Shared factory — imported by both training scripts."""
+    model = TransformerCandidateGenerator(
+        vocab_size=10000,
+        num_entities=10000,
+        d_model=config.d_model,
+        n_layers=config.n_layers,
+        n_heads=config.n_heads,
+        max_seq_len=config.max_seq_len,
+        dropout=config.dropout,
+        use_gradient_checkpointing=True,
+        config=DEFAULT_CONFIG_8GB
+    )
+    for p in model.parameters():
+        if p.dim() > 1:
+            torch.nn.init.xavier_uniform_(p, gain=0.1)
+    logger.info(
+        f"Model created: {model.get_memory_footprint()['total_size_mb']:.1f}MB"
+    )
+    return model.to(device)

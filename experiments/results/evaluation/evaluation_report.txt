@@ -1,0 +1,114 @@
+MITRE-CORE HGNN Evaluation Report
+================================================================================
+
+Total Campaigns Evaluated: 3
+Methods Tested: Union-Find, HGNN, Hybrid
+
+Summary Statistics by Method
+--------------------------------------------------------------------------------
+
+
+Union-Find:
+  Number of tests: 5
+  Avg Dataset Size: 5.0 alerts
+
+  Accuracy Metrics:
+    ARI:           1.0000 ± 0.0000
+    NMI:           1.0000 ± 0.0000
+    V-Measure:     1.0000 ± 0.0000
+    Purity:        1.0000 ± nan
+
+  Performance:
+    Avg Time:      0.022s
+    Min/Max Time:  0.006s / 0.056s
+
+  Cluster Quality:
+    Avg Clusters:  1.0
+    Avg Size:      4.8 alerts/cluster
+
+HGNN:
+  Number of tests: 5
+  Avg Dataset Size: 5.0 alerts
+
+  Accuracy Metrics:
+    ARI:           0.8000 ± 0.4472
+    NMI:           0.8000 ± 0.4472
+    V-Measure:     0.8000 ± 0.4472
+    Purity:        1.0000 ± nan
+
+  Performance:
+    Avg Time:      0.029s
+    Min/Max Time:  0.020s / 0.047s
+
+  Cluster Quality:
+    Avg Clusters:  1.2
+    Avg Size:      4.5 alerts/cluster
+    Avg Confidence: 0.115
+
+Hybrid:
+  Number of tests: 5
+  Avg Dataset Size: 5.0 alerts
+
+  Accuracy Metrics:
+    ARI:           1.0000 ± 0.0000
+    NMI:           1.0000 ± 0.0000
+    V-Measure:     1.0000 ± 0.0000
+    Purity:        1.0000 ± nan
+
+  Performance:
+    Avg Time:      0.048s
+    Min/Max Time:  0.033s / 0.090s
+
+  Cluster Quality:
+    Avg Clusters:  1.0
+    Avg Size:      4.8 alerts/cluster
+
+Comparative Analysis
+--------------------------------------------------------------------------------
+
+
+ARI Comparison:
+  [1] Hybrid         : 1.0000
+  [2] Union-Find     : 1.0000
+  [3] HGNN           : 0.8000
+
+     Best improvement: +0.0% vs 2nd place
+
+NMI Comparison:
+  [1] Hybrid         : 1.0000
+  [2] Union-Find     : 1.0000
+  [3] HGNN           : 0.8000
+
+     Best improvement: +0.0% vs 2nd place
+
+V_MEASURE Comparison:
+  [1] Hybrid         : 1.0000
+  [2] Union-Find     : 1.0000
+  [3] HGNN           : 0.8000
+
+     Best improvement: +0.0% vs 2nd place
+
+PURITY Comparison:
+  [1] HGNN           : 1.0000
+  [2] Hybrid         : 1.0000
+  [3] Union-Find     : 1.0000
+
+     Best improvement: +0.0% vs 2nd place
+
+Statistical Significance (Paired T-Test)
+--------------------------------------------------------------------------------
+
+HGNN vs Union-Find ARI difference:
+  T-statistic: -1.0000
+  P-value: 0.3739 (not significant)
+
+
+Conclusion
+--------------------------------------------------------------------------------
+
+Overall Best Method: Union-Find (lowest average rank)
+
+Recommendation: Union-Find remains competitive. Consider:
+  1. HGNN may need more training data
+  2. Current handcrafted weights may be well-tuned
+  3. Monitor HGNN evolution for future migration

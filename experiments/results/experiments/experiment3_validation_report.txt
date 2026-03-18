@@ -1,0 +1,55 @@
+# MITRE-CORE Clustering Validation Report
+==================================================
+
+## Method Comparison Summary
+                 Method   ARI   NMI  Homogeneity  Completeness  V-Measure  Fowlkes-Mallows  Silhouette  Num_Clusters  Accuracy  ARI_Rank  NMI_Rank  Homogeneity_Rank  Completeness_Rank  V-Measure_Rank  Fowlkes-Mallows_Rank  Silhouette_Rank  Accuracy_Rank  Average_Rank
+MITRE-CORE (Union-Find) 0.000 0.000        0.000         1.000      0.000            0.310      -1.000             0     0.123     1.500     1.500             1.500              1.500           1.500                 1.500            1.500          1.500         1.500
+                 DBSCAN 0.000 0.000        0.000         1.000      0.000            0.310      -1.000             0     0.123     1.500     1.500             1.500              1.500           1.500                 1.500            1.500          1.500         1.500
+
+## Detailed Results: MITRE-CORE (Union-Find)
+------------------------------
+- Total Samples: 93
+- Valid Samples: 81
+- Noise Samples: 12
+- Number of Clusters: 0
+
+### External Validation Metrics:
+- Adjusted Rand Index: 0.000
+- Normalized Mutual Information: 0.000
+- Homogeneity Score: 0.000
+- Completeness Score: 1.000
+- V-Measure Score: 0.000
+- Fowlkes-Mallows Score: 0.310
+
+### Statistical Significance:
+- Chi-square statistic: 0.000
+- P-value: 1.000
+- Statistically significant: False
+
+## Detailed Results: DBSCAN
+------------------------------
+- Total Samples: 93
+- Valid Samples: 81
+- Noise Samples: 12
+- Number of Clusters: 0
+
+### External Validation Metrics:
+- Adjusted Rand Index: 0.000
+- Normalized Mutual Information: 0.000
+- Homogeneity Score: 0.000
+- Completeness Score: 1.000
+- V-Measure Score: 0.000
+- Fowlkes-Mallows Score: 0.310
+
+### Statistical Significance:
+- Chi-square statistic: 0.000
+- P-value: 1.000
+- Statistically significant: False
+
+## Recommendations
+--------------------
+- Best performing method: MITRE-CORE (Union-Find) (ARI: 0.000)
+- WARNING: Low clustering quality detected. Consider:
+  * Adjusting algorithm parameters
+  * Using different feature representations
+  * Collecting more training data

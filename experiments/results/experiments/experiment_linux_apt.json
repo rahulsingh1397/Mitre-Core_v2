@@ -1,0 +1,14 @@
+[
+    {
+        "method": "Union-Find",
+        "ARI": 0.0,
+        "NMI": 0.0,
+        "ATT&CK_F1": 0.6190476190476191
+    },
+    {
+        "method": "HGNN (Zero-shot)",
+        "ARI": 0.0,
+        "NMI": 0.0,
+        "ATT&CK_F1": 0.6190476190476191
+    }
+]

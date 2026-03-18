@@ -29,7 +29,7 @@ from tqdm import tqdm
 # Add parent to path
 sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
-from transformer.models.candidate_generator import TransformerCandidateGenerator
+from transformer.models.candidate_generator import TransformerCandidateGenerator, create_model
 from transformer.config.gpu_config_8gb import DEFAULT_CONFIG_8GB
 from transformer.training.gpu_trainer import GPUOptimizedTrainer, TrainingMetrics
 from transformer.preprocessing.alert_preprocessor import AlertPreprocessor
@@ -159,7 +159,7 @@ def stream_dataset_chunks(
         logger.warning(f"No files found in {path}")
         return
     
-    logger.info(f"[{name}] Streaming {len(files)} files, chunksize={chunksize}")
+    logger.info(f"[{name}] Reading {len(files)} file(s): {[f.name for f in files[:5]]}{'...' if len(files) > 5 else ''}")
     
     chunk_count = 0
     for file in files:
@@ -283,31 +283,6 @@ class HyperparameterConfig:
         self.n_layers = gpu_config.n_layers
         self.n_heads = gpu_config.n_heads
         self.max_seq_len = gpu_config.max_seq_len
-
-
-def create_model(config: HyperparameterConfig, device: torch.device):
-    """Create transformer model."""
-    model = TransformerCandidateGenerator(
-        vocab_size=10000,
-        num_entities=10000,
-        d_model=config.d_model,
-        n_layers=config.n_layers,
-        n_heads=config.n_heads,
-        max_seq_len=config.max_seq_len,
-        dropout=config.dropout,
-        use_gradient_checkpointing=True,
-        config=DEFAULT_CONFIG_8GB
-    )
-    
-    # Initialize with proper scaling
-    for p in model.parameters():
-        if p.dim() > 1:
-            torch.nn.init.xavier_uniform_(p, gain=0.1)
-    
-    memory = model.get_memory_footprint()
-    logger.info(f"Model created: {memory['total_size_mb']:.1f}MB")
-    
-    return model.to(device)
 
 
 def train_with_streaming(

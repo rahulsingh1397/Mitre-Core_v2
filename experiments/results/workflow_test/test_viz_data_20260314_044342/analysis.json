@@ -1,0 +1,6201 @@
+{
+  "dataset_name": "test_viz_data",
+  "dataset_path": "Data\\Cleaned\\test_viz_data.csv",
+  "total_events": 213,
+  "num_clusters": 213,
+  "avg_cluster_size": 1.0,
+  "max_cluster_size": "1",
+  "min_cluster_size": "1",
+  "correlation_method": "union_find",
+  "runtime_seconds": 0.07713198661804199,
+  "fallback_used": false,
+  "attack_types": [],
+  "tactics": [],
+  "clusters": [
+    {
+      "cluster_id": 0,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "241.25.164.189"
+      ],
+      "DestinationAddress": [
+        "164.146.147.237"
+      ],
+      "DeviceAddress": [
+        "203.160.78.102"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 1,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "20.86.0.1"
+      ],
+      "DestinationAddress": [
+        "164.146.147.237"
+      ],
+      "DeviceAddress": [
+        "225.141.141.245"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 2,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "204.195.133.224"
+      ],
+      "DestinationAddress": [
+        "167.54.177.216"
+      ],
+      "DeviceAddress": [
+        "20.86.0.1"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 3,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "20.86.0.1"
+      ],
+      "DestinationAddress": [
+        "220.129.234.243"
+      ],
+      "DeviceAddress": [
+        "167.208.64.132"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 4,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "53.140.87.84"
+      ],
+      "DestinationAddress": [
+        "20.86.0.1"
+      ],
+      "DeviceAddress": [
+        "194.79.22.78"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 5,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "72.38.184.18"
+      ],
+      "DestinationAddress": [
+        "10.245.169.220"
+      ],
+      "DeviceAddress": [
+        "53.140.87.84"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 6,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "135.74.250.186"
+      ],
+      "DestinationAddress": [
+        "72.38.184.18"
+      ],
+      "DeviceAddress": [
+        "148.60.188.107"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 7,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "165.52.135.127"
+      ],
+      "DestinationAddress": [
+        "114.163.241.239"
+      ],
+      "DeviceAddress": [
+        "148.60.188.107"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 8,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "164.48.30.116"
+      ],
+      "DestinationAddress": [
+        "133.22.159.73"
+      ],
+      "DeviceAddress": [
+        "114.163.241.239"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 9,
+      "size": 1,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "208.123.68.84"
+      ],
+      "DestinationAddress": [
+        "37.187.193.83"
+      ],
+      "DeviceAddress": [
+        "133.22.159.73"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 10,
+      "size": 1,
+      "start_date": "2023-12-08 15:23:45.678000+05:30",
+      "end_date": "2023-12-08 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "61.175.188.242"
+      ],
+      "DestinationAddress": [
+        "63.209.70.0"
+      ],
+      "DeviceAddress": [
+        "133.22.159.73"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 11,
+      "size": 1,
+      "start_date": "2023-12-09 15:23:45.678000+05:30",
+      "end_date": "2023-12-09 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "208.124.170.212"
+      ],
+      "DestinationAddress": [
+        "1.76.118.230"
+      ],
+      "DeviceAddress": [
+        "133.22.159.73"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 12,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "34.218.27.87"
+      ],
+      "DestinationAddress": [
+        "159.16.118.52"
+      ],
+      "DeviceAddress": [
+        "208.27.214.98"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 13,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "228.214.49.80"
+      ],
+      "DestinationAddress": [
+        "137.134.164.45"
+      ],
+      "DeviceAddress": [
+        "34.218.27.87"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 14,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "46.116.197.254"
+      ],
+      "DestinationAddress": [
+        "66.123.94.244"
+      ],
+      "DeviceAddress": [
+        "137.134.164.45"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 15,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "245.216.136.125"
+      ],
+      "DestinationAddress": [
+        "46.116.197.254"
+      ],
+      "DeviceAddress": [
+        "206.32.82.206"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 16,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "212.151.160.232"
+      ],
+      "DestinationAddress": [
+        "53.88.61.69"
+      ],
+      "DeviceAddress": [
+        "44.123.184.148"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 17,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "86.150.88.158"
+      ],
+      "DestinationAddress": [
+        "30.16.95.253"
+      ],
+      "DeviceAddress": [
+        "44.123.184.148"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 18,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "86.150.88.158"
+      ],
+      "DestinationAddress": [
+        "63.37.16.97"
+      ],
+      "DeviceAddress": [
+        "77.86.113.148"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 19,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "221.104.108.170"
+      ],
+      "DestinationAddress": [
+        "109.56.102.37"
+      ],
+      "DeviceAddress": [
+        "63.37.16.97"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 20,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "106.154.0.212"
+      ],
+      "DestinationAddress": [
+        "52.58.203.184"
+      ],
+      "DeviceAddress": [
+        "208.59.65.86"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 21,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "52.58.203.184"
+      ],
+      "DestinationAddress": [
+        "197.103.122.15"
+      ],
+      "DeviceAddress": [
+        "155.40.170.101"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 22,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "60.240.37.249"
+      ],
+      "DestinationAddress": [
+        "52.58.203.184"
+      ],
+      "DeviceAddress": [
+        "235.131.85.183"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 23,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "76.108.20.23"
+      ],
+      "DestinationAddress": [
+        "187.212.205.46"
+      ],
+      "DeviceAddress": [
+        "52.58.203.184"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 24,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "208.148.163.232"
+      ],
+      "DestinationAddress": [
+        "76.108.20.23"
+      ],
+      "DeviceAddress": [
+        "104.41.65.83"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 25,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "76.108.20.23"
+      ],
+      "DestinationAddress": [
+        "147.232.149.104"
+      ],
+      "DeviceAddress": [
+        "46.103.235.20"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 26,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "9.34.249.51"
+      ],
+      "DestinationAddress": [
+        "89.80.82.63"
+      ],
+      "DeviceAddress": [
+        "76.108.20.23"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 27,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "141.145.176.37"
+      ],
+      "DestinationAddress": [
+        "196.219.1.116"
+      ],
+      "DeviceAddress": [
+        "9.34.249.51"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 28,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "9.34.249.51"
+      ],
+      "DestinationAddress": [
+        "12.160.120.18"
+      ],
+      "DeviceAddress": [
+        "252.230.162.160"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 29,
+      "size": 1,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "201.201.16.248"
+      ],
+      "DestinationAddress": [
+        "237.155.149.80"
+      ],
+      "DeviceAddress": [
+        "9.34.249.51"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 30,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "226.198.92.122"
+      ],
+      "DestinationAddress": [
+        "62.152.96.41"
+      ],
+      "DeviceAddress": [
+        "176.226.122.140"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 31,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "176.226.122.140"
+      ],
+      "DestinationAddress": [
+        "180.3.117.15"
+      ],
+      "DeviceAddress": [
+        "87.210.244.158"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 32,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "180.3.117.15"
+      ],
+      "DestinationAddress": [
+        "203.55.56.249"
+      ],
+      "DeviceAddress": [
+        "230.231.236.119"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 33,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "19.52.224.2"
+      ],
+      "DestinationAddress": [
+        "180.3.117.15"
+      ],
+      "DeviceAddress": [
+        "252.146.133.35"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 34,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "85.35.156.115"
+      ],
+      "DestinationAddress": [
+        "33.223.23.237"
+      ],
+      "DeviceAddress": [
+        "252.146.133.35"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 35,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "26.235.44.126"
+      ],
+      "DestinationAddress": [
+        "252.146.133.35"
+      ],
+      "DeviceAddress": [
+        "83.177.214.104"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 36,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "210.255.10.64"
+      ],
+      "DestinationAddress": [
+        "237.14.177.198"
+      ],
+      "DeviceAddress": [
+        "252.146.133.35"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 37,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "182.37.191.134"
+      ],
+      "DestinationAddress": [
+        "237.14.177.198"
+      ],
+      "DeviceAddress": [
+        "11.1.252.193"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 38,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "11.49.226.241"
+      ],
+      "DestinationAddress": [
+        "249.24.134.15"
+      ],
+      "DeviceAddress": [
+        "182.37.191.134"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 39,
+      "size": 1,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "90.159.240.80"
+      ],
+      "DestinationAddress": [
+        "11.49.226.241"
+      ],
+      "DeviceAddress": [
+        "147.251.0.24"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 40,
+      "size": 1,
+      "start_date": "2023-12-08 15:23:45.678000+05:30",
+      "end_date": "2023-12-08 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "147.251.0.24"
+      ],
+      "DestinationAddress": [
+        "151.203.120.133"
+      ],
+      "DeviceAddress": [
+        "46.245.80.1"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 41,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "11.100.176.63"
+      ],
+      "DestinationAddress": [
+        "111.245.118.126"
+      ],
+      "DeviceAddress": [
+        "48.235.203.226"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 42,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "125.10.221.74"
+      ],
+      "DestinationAddress": [
+        "106.201.108.130"
+      ],
+      "DeviceAddress": [
+        "11.100.176.63"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 43,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "229.43.67.131"
+      ],
+      "DestinationAddress": [
+        "39.221.117.151"
+      ],
+      "DeviceAddress": [
+        "125.10.221.74"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 44,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "97.54.105.241"
+      ],
+      "DestinationAddress": [
+        "148.13.231.185"
+      ],
+      "DeviceAddress": [
+        "39.221.117.151"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 45,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "177.94.69.187"
+      ],
+      "DestinationAddress": [
+        "226.172.60.56"
+      ],
+      "DeviceAddress": [
+        "97.54.105.241"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 46,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "159.19.33.15"
+      ],
+      "DestinationAddress": [
+        "97.54.105.241"
+      ],
+      "DeviceAddress": [
+        "106.96.70.125"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 47,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "200.46.46.64"
+      ],
+      "DestinationAddress": [
+        "159.19.33.15"
+      ],
+      "DeviceAddress": [
+        "233.15.62.50"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 48,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "45.214.92.108"
+      ],
+      "DestinationAddress": [
+        "222.29.26.212"
+      ],
+      "DeviceAddress": [
+        "10.82.111.192"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 49,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "222.29.26.212"
+      ],
+      "DestinationAddress": [
+        "83.208.189.212"
+      ],
+      "DeviceAddress": [
+        "87.82.83.204"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 50,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "222.29.26.212"
+      ],
+      "DestinationAddress": [
+        "29.171.134.50"
+      ],
+      "DeviceAddress": [
+        "167.44.153.13"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 51,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "123.250.58.174"
+      ],
+      "DestinationAddress": [
+        "196.91.51.42"
+      ],
+      "DeviceAddress": [
+        "167.44.153.13"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 52,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "207.9.105.213"
+      ],
+      "DestinationAddress": [
+        "167.44.153.13"
+      ],
+      "DeviceAddress": [
+        "19.105.56.144"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 53,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "234.200.105.148"
+      ],
+      "DestinationAddress": [
+        "207.9.105.213"
+      ],
+      "DeviceAddress": [
+        "235.140.33.16"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 54,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "235.205.153.146"
+      ],
+      "DestinationAddress": [
+        "161.33.112.219"
+      ],
+      "DeviceAddress": [
+        "141.45.229.186"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 55,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "161.33.112.219"
+      ],
+      "DestinationAddress": [
+        "217.28.143.139"
+      ],
+      "DeviceAddress": [
+        "19.85.214.132"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 56,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "161.33.112.219"
+      ],
+      "DestinationAddress": [
+        "1.92.29.235"
+      ],
+      "DeviceAddress": [
+        "12.248.180.98"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 57,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "161.33.112.219"
+      ],
+      "DestinationAddress": [
+        "191.71.91.0"
+      ],
+      "DeviceAddress": [
+        "24.243.231.187"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 58,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "161.33.112.219"
+      ],
+      "DestinationAddress": [
+        "72.15.70.109"
+      ],
+      "DeviceAddress": [
+        "27.40.168.60"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 59,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "175.190.149.92"
+      ],
+      "DestinationAddress": [
+        "80.114.118.181"
+      ],
+      "DeviceAddress": [
+        "33.33.214.182"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 60,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "7.157.9.199"
+      ],
+      "DestinationAddress": [
+        "33.33.214.182"
+      ],
+      "DeviceAddress": [
+        "133.34.65.234"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 61,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "239.245.210.254"
+      ],
+      "DestinationAddress": [
+        "133.34.65.234"
+      ],
+      "DeviceAddress": [
+        "18.67.1.40"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 62,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "133.34.65.234"
+      ],
+      "DestinationAddress": [
+        "213.148.209.168"
+      ],
+      "DeviceAddress": [
+        "133.33.165.127"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 63,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "213.148.209.168"
+      ],
+      "DestinationAddress": [
+        "117.56.95.84"
+      ],
+      "DeviceAddress": [
+        "108.31.30.49"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 64,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "213.148.209.168"
+      ],
+      "DestinationAddress": [
+        "185.133.157.150"
+      ],
+      "DeviceAddress": [
+        "222.234.111.8"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 65,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "146.233.11.7"
+      ],
+      "DestinationAddress": [
+        "37.159.142.97"
+      ],
+      "DeviceAddress": [
+        "174.131.97.155"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 66,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "26.169.247.188"
+      ],
+      "DestinationAddress": [
+        "234.202.194.30"
+      ],
+      "DeviceAddress": [
+        "174.131.97.155"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 67,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "15.150.172.88"
+      ],
+      "DestinationAddress": [
+        "23.91.30.244"
+      ],
+      "DeviceAddress": [
+        "234.202.194.30"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 68,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "162.241.108.184"
+      ],
+      "DestinationAddress": [
+        "23.91.30.244"
+      ],
+      "DeviceAddress": [
+        "100.138.39.38"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 69,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "251.123.114.92"
+      ],
+      "DestinationAddress": [
+        "100.138.39.38"
+      ],
+      "DeviceAddress": [
+        "253.155.113.31"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 70,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "120.203.34.34"
+      ],
+      "DestinationAddress": [
+        "49.158.229.54"
+      ],
+      "DeviceAddress": [
+        "253.155.113.31"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 71,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "98.31.114.181"
+      ],
+      "DestinationAddress": [
+        "49.158.229.54"
+      ],
+      "DeviceAddress": [
+        "140.182.27.235"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 72,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "88.7.123.31"
+      ],
+      "DestinationAddress": [
+        "49.158.229.54"
+      ],
+      "DeviceAddress": [
+        "194.184.68.70"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 73,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "9.138.79.70"
+      ],
+      "DestinationAddress": [
+        "53.18.218.245"
+      ],
+      "DeviceAddress": [
+        "194.184.68.70"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 74,
+      "size": 1,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "148.213.10.254"
+      ],
+      "DestinationAddress": [
+        "228.186.139.88"
+      ],
+      "DeviceAddress": [
+        "194.184.68.70"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 75,
+      "size": 1,
+      "start_date": "2023-12-08 15:23:45.678000+05:30",
+      "end_date": "2023-12-08 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "194.184.68.70"
+      ],
+      "DestinationAddress": [
+        "86.251.249.136"
+      ],
+      "DeviceAddress": [
+        "84.33.112.249"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 76,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "154.68.116.10"
+      ],
+      "DestinationAddress": [
+        "6.107.34.106"
+      ],
+      "DeviceAddress": [
+        "96.203.126.234"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 77,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "168.124.205.149"
+      ],
+      "DestinationAddress": [
+        "6.107.34.106"
+      ],
+      "DeviceAddress": [
+        "99.128.251.244"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 78,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "84.168.12.184"
+      ],
+      "DestinationAddress": [
+        "99.128.251.244"
+      ],
+      "DeviceAddress": [
+        "87.11.71.97"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 79,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "99.128.251.244"
+      ],
+      "DestinationAddress": [
+        "170.6.232.154"
+      ],
+      "DeviceAddress": [
+        "179.87.156.19"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 80,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "170.6.232.154"
+      ],
+      "DestinationAddress": [
+        "145.27.177.225"
+      ],
+      "DeviceAddress": [
+        "15.125.60.22"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 81,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "247.26.201.215"
+      ],
+      "DestinationAddress": [
+        "112.137.242.181"
+      ],
+      "DeviceAddress": [
+        "15.125.60.22"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 82,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "65.241.81.56"
+      ],
+      "DestinationAddress": [
+        "206.184.127.105"
+      ],
+      "DeviceAddress": [
+        "247.26.201.215"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 83,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "118.221.199.67"
+      ],
+      "DestinationAddress": [
+        "152.123.169.99"
+      ],
+      "DeviceAddress": [
+        "130.102.124.16"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 84,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "117.17.211.8"
+      ],
+      "DestinationAddress": [
+        "152.123.169.99"
+      ],
+      "DeviceAddress": [
+        "44.51.149.60"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 85,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "33.152.36.39"
+      ],
+      "DestinationAddress": [
+        "209.207.145.101"
+      ],
+      "DeviceAddress": [
+        "44.51.149.60"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 86,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "99.92.111.220"
+      ],
+      "DestinationAddress": [
+        "53.139.150.11"
+      ],
+      "DeviceAddress": [
+        "44.51.149.60"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 87,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "44.51.149.60"
+      ],
+      "DestinationAddress": [
+        "84.194.126.14"
+      ],
+      "DeviceAddress": [
+        "99.78.127.241"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 88,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "84.194.126.14"
+      ],
+      "DestinationAddress": [
+        "21.58.165.209"
+      ],
+      "DeviceAddress": [
+        "78.227.82.148"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 89,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "77.64.27.218"
+      ],
+      "DestinationAddress": [
+        "84.194.126.14"
+      ],
+      "DeviceAddress": [
+        "106.4.30.8"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 90,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "84.194.126.14"
+      ],
+      "DestinationAddress": [
+        "31.21.144.92"
+      ],
+      "DeviceAddress": [
+        "37.192.26.193"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 91,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "166.73.154.227"
+      ],
+      "DestinationAddress": [
+        "9.244.217.20"
+      ],
+      "DeviceAddress": [
+        "15.18.252.138"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 92,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "124.39.115.52"
+      ],
+      "DestinationAddress": [
+        "166.73.154.227"
+      ],
+      "DeviceAddress": [
+        "116.193.71.36"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 93,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "247.170.107.169"
+      ],
+      "DestinationAddress": [
+        "225.157.192.104"
+      ],
+      "DeviceAddress": [
+        "166.73.154.227"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 94,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "207.144.191.177"
+      ],
+      "DestinationAddress": [
+        "166.73.154.227"
+      ],
+      "DeviceAddress": [
+        "78.41.122.159"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 95,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "233.122.204.10"
+      ],
+      "DestinationAddress": [
+        "207.144.191.177"
+      ],
+      "DeviceAddress": [
+        "243.89.174.117"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 96,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "141.245.249.137"
+      ],
+      "DestinationAddress": [
+        "104.199.4.176"
+      ],
+      "DeviceAddress": [
+        "124.63.40.246"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 97,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "6.4.6.59"
+      ],
+      "DestinationAddress": [
+        "6.92.154.227"
+      ],
+      "DeviceAddress": [
+        "104.199.4.176"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 98,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "247.196.107.81"
+      ],
+      "DestinationAddress": [
+        "147.49.255.143"
+      ],
+      "DeviceAddress": [
+        "6.4.6.59"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 99,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "204.110.140.243"
+      ],
+      "DestinationAddress": [
+        "71.133.166.233"
+      ],
+      "DeviceAddress": [
+        "6.4.6.59"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 100,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "161.33.161.214"
+      ],
+      "DestinationAddress": [
+        "87.135.173.141"
+      ],
+      "DeviceAddress": [
+        "6.4.6.59"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 101,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "161.33.161.214"
+      ],
+      "DestinationAddress": [
+        "58.253.9.240"
+      ],
+      "DeviceAddress": [
+        "202.141.210.47"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 102,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "83.206.37.164"
+      ],
+      "DestinationAddress": [
+        "48.47.251.95"
+      ],
+      "DeviceAddress": [
+        "161.33.161.214"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 103,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "90.252.233.109"
+      ],
+      "DestinationAddress": [
+        "129.70.224.83"
+      ],
+      "DeviceAddress": [
+        "48.47.251.95"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 104,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "87.202.191.223"
+      ],
+      "DestinationAddress": [
+        "44.20.77.25"
+      ],
+      "DeviceAddress": [
+        "48.47.251.95"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 105,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "137.1.37.35"
+      ],
+      "DestinationAddress": [
+        "131.61.10.134"
+      ],
+      "DeviceAddress": [
+        "71.161.122.229"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 106,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "131.61.10.134"
+      ],
+      "DestinationAddress": [
+        "212.69.156.74"
+      ],
+      "DeviceAddress": [
+        "162.164.37.46"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 107,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "121.132.33.76"
+      ],
+      "DestinationAddress": [
+        "27.169.219.245"
+      ],
+      "DeviceAddress": [
+        "212.69.156.74"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 108,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "244.250.83.235"
+      ],
+      "DestinationAddress": [
+        "146.94.232.190"
+      ],
+      "DeviceAddress": [
+        "27.169.219.245"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 109,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "245.112.120.151"
+      ],
+      "DestinationAddress": [
+        "113.161.213.131"
+      ],
+      "DeviceAddress": [
+        "146.94.232.190"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 110,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "254.186.175.107"
+      ],
+      "DestinationAddress": [
+        "113.161.213.131"
+      ],
+      "DeviceAddress": [
+        "168.142.69.233"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 111,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "44.148.241.46"
+      ],
+      "DestinationAddress": [
+        "254.186.175.107"
+      ],
+      "DeviceAddress": [
+        "0.74.62.119"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 112,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "146.8.235.41"
+      ],
+      "DestinationAddress": [
+        "254.186.175.107"
+      ],
+      "DeviceAddress": [
+        "25.135.220.51"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 113,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "134.201.228.193"
+      ],
+      "DestinationAddress": [
+        "123.206.245.78"
+      ],
+      "DeviceAddress": [
+        "138.80.192.138"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 114,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "146.60.169.56"
+      ],
+      "DestinationAddress": [
+        "138.80.192.138"
+      ],
+      "DeviceAddress": [
+        "178.46.48.36"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 115,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "168.112.214.241"
+      ],
+      "DestinationAddress": [
+        "210.154.246.175"
+      ],
+      "DeviceAddress": [
+        "146.60.169.56"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 116,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "69.92.254.247"
+      ],
+      "DestinationAddress": [
+        "253.223.45.37"
+      ],
+      "DeviceAddress": [
+        "210.154.246.175"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 117,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "210.154.246.175"
+      ],
+      "DestinationAddress": [
+        "28.53.142.151"
+      ],
+      "DeviceAddress": [
+        "168.136.40.169"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 118,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "28.53.142.151"
+      ],
+      "DestinationAddress": [
+        "74.236.30.205"
+      ],
+      "DeviceAddress": [
+        "62.95.191.86"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 119,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "235.7.4.74"
+      ],
+      "DestinationAddress": [
+        "196.77.148.93"
+      ],
+      "DeviceAddress": [
+        "28.53.142.151"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 120,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "33.6.151.236"
+      ],
+      "DestinationAddress": [
+        "213.209.48.8"
+      ],
+      "DeviceAddress": [
+        "196.77.148.93"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 121,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "168.127.185.96"
+      ],
+      "DestinationAddress": [
+        "33.6.151.236"
+      ],
+      "DeviceAddress": [
+        "77.57.105.37"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 122,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "4.220.193.211"
+      ],
+      "DestinationAddress": [
+        "197.234.248.176"
+      ],
+      "DeviceAddress": [
+        "116.192.215.224"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 123,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "4.220.193.211"
+      ],
+      "DestinationAddress": [
+        "103.128.236.11"
+      ],
+      "DeviceAddress": [
+        "195.148.137.239"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 124,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "13.183.29.75"
+      ],
+      "DestinationAddress": [
+        "195.148.137.239"
+      ],
+      "DeviceAddress": [
+        "238.248.212.69"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 125,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "3.16.133.106"
+      ],
+      "DestinationAddress": [
+        "37.167.20.244"
+      ],
+      "DeviceAddress": [
+        "179.247.128.38"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 126,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "11.83.144.119"
+      ],
+      "DestinationAddress": [
+        "157.19.28.140"
+      ],
+      "DeviceAddress": [
+        "37.167.20.244"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 127,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "11.83.144.119"
+      ],
+      "DestinationAddress": [
+        "190.12.254.26"
+      ],
+      "DeviceAddress": [
+        "76.231.96.171"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 128,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "228.208.30.24"
+      ],
+      "DestinationAddress": [
+        "249.121.115.125"
+      ],
+      "DeviceAddress": [
+        "89.183.4.131"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 129,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "113.201.108.27"
+      ],
+      "DestinationAddress": [
+        "89.183.4.131"
+      ],
+      "DeviceAddress": [
+        "231.37.240.143"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 130,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "231.37.240.143"
+      ],
+      "DestinationAddress": [
+        "209.144.208.57"
+      ],
+      "DeviceAddress": [
+        "92.21.102.97"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 131,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "92.21.102.97"
+      ],
+      "DestinationAddress": [
+        "203.246.78.189"
+      ],
+      "DeviceAddress": [
+        "190.109.37.65"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 132,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "148.72.33.107"
+      ],
+      "DestinationAddress": [
+        "92.21.102.97"
+      ],
+      "DeviceAddress": [
+        "197.39.23.230"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 133,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "148.72.33.107"
+      ],
+      "DestinationAddress": [
+        "156.149.198.219"
+      ],
+      "DeviceAddress": [
+        "22.149.148.133"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 134,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "148.72.33.107"
+      ],
+      "DestinationAddress": [
+        "175.250.250.54"
+      ],
+      "DeviceAddress": [
+        "99.140.83.198"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 135,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "231.85.120.58"
+      ],
+      "DestinationAddress": [
+        "148.72.33.107"
+      ],
+      "DeviceAddress": [
+        "233.239.127.207"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 136,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "233.239.127.207"
+      ],
+      "DestinationAddress": [
+        "206.231.3.46"
+      ],
+      "DeviceAddress": [
+        "212.65.179.202"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 137,
+      "size": 1,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "96.14.233.223"
+      ],
+      "DestinationAddress": [
+        "186.241.56.173"
+      ],
+      "DeviceAddress": [
+        "206.231.3.46"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 138,
+      "size": 1,
+      "start_date": "2023-12-08 15:23:45.678000+05:30",
+      "end_date": "2023-12-08 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "186.241.56.173"
+      ],
+      "DestinationAddress": [
+        "87.127.255.202"
+      ],
+      "DeviceAddress": [
+        "148.164.139.105"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 139,
+      "size": 1,
+      "start_date": "2023-12-09 15:23:45.678000+05:30",
+      "end_date": "2023-12-09 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "87.127.255.202"
+      ],
+      "DestinationAddress": [
+        "250.211.12.135"
+      ],
+      "DeviceAddress": [
+        "138.2.215.184"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 140,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "110.50.92.201"
+      ],
+      "DestinationAddress": [
+        "106.194.72.67"
+      ],
+      "DeviceAddress": [
+        "138.130.4.1"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 141,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "182.140.186.191"
+      ],
+      "DestinationAddress": [
+        "8.255.57.165"
+      ],
+      "DeviceAddress": [
+        "138.130.4.1"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 142,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "67.194.152.165"
+      ],
+      "DestinationAddress": [
+        "68.92.141.15"
+      ],
+      "DeviceAddress": [
+        "8.255.57.165"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 143,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "92.102.179.251"
+      ],
+      "DestinationAddress": [
+        "70.168.239.53"
+      ],
+      "DeviceAddress": [
+        "8.255.57.165"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 144,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "196.12.167.18"
+      ],
+      "DestinationAddress": [
+        "212.111.122.184"
+      ],
+      "DeviceAddress": [
+        "92.102.179.251"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 145,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "93.146.197.113"
+      ],
+      "DestinationAddress": [
+        "92.102.179.251"
+      ],
+      "DeviceAddress": [
+        "218.68.138.18"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 146,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "171.111.94.246"
+      ],
+      "DestinationAddress": [
+        "93.146.197.113"
+      ],
+      "DeviceAddress": [
+        "129.63.170.80"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 147,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "85.110.133.169"
+      ],
+      "DestinationAddress": [
+        "129.63.170.80"
+      ],
+      "DeviceAddress": [
+        "198.91.217.220"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 148,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "85.110.133.169"
+      ],
+      "DestinationAddress": [
+        "2.202.28.102"
+      ],
+      "DeviceAddress": [
+        "84.179.118.137"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 149,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "219.118.124.142"
+      ],
+      "DestinationAddress": [
+        "125.96.6.118"
+      ],
+      "DeviceAddress": [
+        "80.245.180.176"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 150,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "125.96.6.118"
+      ],
+      "DestinationAddress": [
+        "160.81.184.159"
+      ],
+      "DeviceAddress": [
+        "84.241.9.66"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 151,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "97.155.160.108"
+      ],
+      "DestinationAddress": [
+        "19.41.159.25"
+      ],
+      "DeviceAddress": [
+        "160.81.184.159"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 152,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "75.70.159.105"
+      ],
+      "DestinationAddress": [
+        "179.71.195.57"
+      ],
+      "DeviceAddress": [
+        "94.66.72.234"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 153,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "103.147.145.109"
+      ],
+      "DestinationAddress": [
+        "179.130.78.88"
+      ],
+      "DeviceAddress": [
+        "179.71.195.57"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 154,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "101.56.161.3"
+      ],
+      "DestinationAddress": [
+        "102.187.165.120"
+      ],
+      "DeviceAddress": [
+        "103.147.145.109"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 155,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "102.187.165.120"
+      ],
+      "DestinationAddress": [
+        "87.247.19.13"
+      ],
+      "DeviceAddress": [
+        "55.148.192.93"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 156,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "152.222.154.72"
+      ],
+      "DestinationAddress": [
+        "55.148.192.93"
+      ],
+      "DeviceAddress": [
+        "71.248.241.35"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 157,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "159.79.130.64"
+      ],
+      "DestinationAddress": [
+        "152.222.154.72"
+      ],
+      "DeviceAddress": [
+        "132.90.105.250"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 158,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "131.169.80.186"
+      ],
+      "DestinationAddress": [
+        "114.5.200.237"
+      ],
+      "DeviceAddress": [
+        "159.79.130.64"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 159,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "58.241.230.220"
+      ],
+      "DestinationAddress": [
+        "13.84.24.180"
+      ],
+      "DeviceAddress": [
+        "131.169.80.186"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 160,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "165.106.161.52"
+      ],
+      "DestinationAddress": [
+        "249.242.28.226"
+      ],
+      "DeviceAddress": [
+        "189.186.93.246"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 161,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "219.157.189.156"
+      ],
+      "DestinationAddress": [
+        "100.85.252.56"
+      ],
+      "DeviceAddress": [
+        "249.242.28.226"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 162,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "54.2.224.115"
+      ],
+      "DestinationAddress": [
+        "207.59.46.207"
+      ],
+      "DeviceAddress": [
+        "219.157.189.156"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 163,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "73.75.162.67"
+      ],
+      "DestinationAddress": [
+        "130.108.159.93"
+      ],
+      "DeviceAddress": [
+        "87.97.216.17"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 164,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "130.108.159.93"
+      ],
+      "DestinationAddress": [
+        "160.109.159.66"
+      ],
+      "DeviceAddress": [
+        "100.251.76.28"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 165,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "11.5.111.88"
+      ],
+      "DestinationAddress": [
+        "66.131.178.235"
+      ],
+      "DeviceAddress": [
+        "130.108.159.93"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 166,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "119.104.191.193"
+      ],
+      "DestinationAddress": [
+        "11.5.111.88"
+      ],
+      "DeviceAddress": [
+        "39.21.219.123"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 167,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "83.100.23.84"
+      ],
+      "DestinationAddress": [
+        "128.204.66.144"
+      ],
+      "DeviceAddress": [
+        "11.5.111.88"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 168,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "128.204.66.144"
+      ],
+      "DestinationAddress": [
+        "168.183.151.64"
+      ],
+      "DeviceAddress": [
+        "160.125.155.175"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 169,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "195.35.84.203"
+      ],
+      "DestinationAddress": [
+        "168.183.151.64"
+      ],
+      "DeviceAddress": [
+        "85.16.250.187"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 170,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "168.183.151.64"
+      ],
+      "DestinationAddress": [
+        "45.183.36.159"
+      ],
+      "DeviceAddress": [
+        "197.138.28.194"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 171,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "37.132.184.134"
+      ],
+      "DestinationAddress": [
+        "233.199.229.191"
+      ],
+      "DeviceAddress": [
+        "53.212.250.58"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 172,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "37.132.184.134"
+      ],
+      "DestinationAddress": [
+        "60.42.29.3"
+      ],
+      "DeviceAddress": [
+        "118.48.118.109"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 173,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "121.128.8.174"
+      ],
+      "DestinationAddress": [
+        "167.176.36.106"
+      ],
+      "DeviceAddress": [
+        "60.42.29.3"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 174,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "126.172.202.134"
+      ],
+      "DestinationAddress": [
+        "115.48.203.90"
+      ],
+      "DeviceAddress": [
+        "121.128.8.174"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 175,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "219.139.2.35"
+      ],
+      "DestinationAddress": [
+        "188.115.8.210"
+      ],
+      "DeviceAddress": [
+        "121.128.8.174"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 176,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "205.80.131.49"
+      ],
+      "DestinationAddress": [
+        "140.143.218.92"
+      ],
+      "DeviceAddress": [
+        "19.156.106.226"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 177,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "140.143.218.92"
+      ],
+      "DestinationAddress": [
+        "192.109.214.168"
+      ],
+      "DeviceAddress": [
+        "93.61.122.252"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 178,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "140.143.218.92"
+      ],
+      "DestinationAddress": [
+        "184.32.162.6"
+      ],
+      "DeviceAddress": [
+        "62.123.7.207"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 179,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "186.30.216.83"
+      ],
+      "DestinationAddress": [
+        "62.123.7.207"
+      ],
+      "DeviceAddress": [
+        "4.62.237.25"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 180,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "24.141.162.255"
+      ],
+      "DestinationAddress": [
+        "224.218.94.38"
+      ],
+      "DeviceAddress": [
+        "186.30.216.83"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 181,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "71.96.53.182"
+      ],
+      "DestinationAddress": [
+        "186.30.216.83"
+      ],
+      "DeviceAddress": [
+        "60.31.32.40"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 182,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "217.124.220.223"
+      ],
+      "DestinationAddress": [
+        "186.30.216.83"
+      ],
+      "DeviceAddress": [
+        "30.125.74.164"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 183,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "231.64.63.71"
+      ],
+      "DestinationAddress": [
+        "186.30.216.83"
+      ],
+      "DeviceAddress": [
+        "20.158.113.156"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 184,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "186.30.216.83"
+      ],
+      "DestinationAddress": [
+        "39.150.75.127"
+      ],
+      "DeviceAddress": [
+        "81.23.99.198"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 185,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "228.105.20.150"
+      ],
+      "DestinationAddress": [
+        "100.133.28.2"
+      ],
+      "DeviceAddress": [
+        "157.183.189.230"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 186,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "179.20.144.235"
+      ],
+      "DestinationAddress": [
+        "1.194.109.195"
+      ],
+      "DeviceAddress": [
+        "100.133.28.2"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 187,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "95.64.221.250"
+      ],
+      "DestinationAddress": [
+        "222.35.62.149"
+      ],
+      "DeviceAddress": [
+        "1.194.109.195"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 188,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "220.185.113.150"
+      ],
+      "DestinationAddress": [
+        "176.168.55.28"
+      ],
+      "DeviceAddress": [
+        "222.35.62.149"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 189,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "243.250.198.71"
+      ],
+      "DestinationAddress": [
+        "161.166.87.106"
+      ],
+      "DeviceAddress": [
+        "136.204.120.33"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 190,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "193.210.247.174"
+      ],
+      "DestinationAddress": [
+        "136.204.120.33"
+      ],
+      "DeviceAddress": [
+        "51.205.69.182"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 191,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "51.205.69.182"
+      ],
+      "DestinationAddress": [
+        "214.188.81.107"
+      ],
+      "DeviceAddress": [
+        "4.101.10.151"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 192,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "51.205.69.182"
+      ],
+      "DestinationAddress": [
+        "219.75.138.56"
+      ],
+      "DeviceAddress": [
+        "239.173.223.70"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 193,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "219.75.138.56"
+      ],
+      "DestinationAddress": [
+        "34.72.29.21"
+      ],
+      "DeviceAddress": [
+        "76.129.12.126"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 194,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "63.114.109.73"
+      ],
+      "DestinationAddress": [
+        "219.75.138.56"
+      ],
+      "DeviceAddress": [
+        "173.249.50.66"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 195,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "66.81.66.208"
+      ],
+      "DestinationAddress": [
+        "56.68.141.249"
+      ],
+      "DeviceAddress": [
+        "219.75.138.56"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 196,
+      "size": 1,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "237.146.161.233"
+      ],
+      "DestinationAddress": [
+        "34.102.221.254"
+      ],
+      "DeviceAddress": [
+        "219.75.138.56"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 197,
+      "size": 1,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "133.223.31.13"
+      ],
+      "DestinationAddress": [
+        "7.233.190.218"
+      ],
+      "DeviceAddress": [
+        "34.102.221.254"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 198,
+      "size": 1,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "125.169.3.4"
+      ],
+      "DestinationAddress": [
+        "14.240.219.37"
+      ],
+      "DeviceAddress": [
+        "7.233.190.218"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 199,
+      "size": 1,
+      "start_date": "2023-12-08 15:23:45.678000+05:30",
+      "end_date": "2023-12-08 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "7.233.190.218"
+      ],
+      "DestinationAddress": [
+        "175.163.232.110"
+      ],
+      "DeviceAddress": [
+        "22.17.152.240"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 200,
+      "size": 1,
+      "start_date": "2023-12-09 15:23:45.678000+05:30",
+      "end_date": "2023-12-09 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "23.8.217.119"
+      ],
+      "DestinationAddress": [
+        "22.17.152.240"
+      ],
+      "DeviceAddress": [
+        "221.248.178.43"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 201,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "231.117.127.253"
+      ],
+      "DestinationAddress": [
+        "186.165.169.197"
+      ],
+      "DeviceAddress": [
+        "102.200.124.182"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 202,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "179.237.188.15"
+      ],
+      "DestinationAddress": [
+        "102.200.124.182"
+      ],
+      "DeviceAddress": [
+        "192.110.192.134"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 203,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "102.200.124.182"
+      ],
+      "DestinationAddress": [
+        "14.73.174.19"
+      ],
+      "DeviceAddress": [
+        "4.59.57.23"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 204,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "190.52.15.170"
+      ],
+      "DestinationAddress": [
+        "102.200.124.182"
+      ],
+      "DeviceAddress": [
+        "120.155.87.124"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 205,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "44.61.32.38"
+      ],
+      "DestinationAddress": [
+        "220.146.28.105"
+      ],
+      "DeviceAddress": [
+        "190.52.15.170"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 206,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "214.235.136.165"
+      ],
+      "DestinationAddress": [
+        "188.158.43.161"
+      ],
+      "DeviceAddress": [
+        "220.146.28.105"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 207,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "196.170.229.56"
+      ],
+      "DestinationAddress": [
+        "0.223.249.167"
+      ],
+      "DeviceAddress": [
+        "74.113.62.244"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 208,
+      "size": 1,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "196.170.229.56"
+      ],
+      "DestinationAddress": [
+        "0.191.67.177"
+      ],
+      "DeviceAddress": [
+        "73.211.109.222"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 209,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "99.148.96.214"
+      ],
+      "DestinationAddress": [
+        "234.225.51.67"
+      ],
+      "DeviceAddress": [
+        "0.191.67.177"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 210,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "103.116.190.167"
+      ],
+      "DestinationAddress": [
+        "200.25.247.42"
+      ],
+      "DeviceAddress": [
+        "99.148.96.214"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 211,
+      "size": 1,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "22.94.57.124"
+      ],
+      "DestinationAddress": [
+        "99.148.96.214"
+      ],
+      "DeviceAddress": [
+        "159.81.9.95"
+      ],
+      "threshold_used": 0.3903
+    },
+    {
+      "cluster_id": 212,
+      "size": 1,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "214.170.250.110"
+      ],
+      "DestinationAddress": [
+        "234.147.46.51"
+      ],
+      "DeviceAddress": [
+        "99.148.96.214"
+      ],
+      "threshold_used": 0.3903
+    }
+  ],
+  "graph_data": {
+    "nodes": [
+      {
+        "id": 0,
+        "label": "Cluster 0 | Connection to Malicious URL for malware_download | Src: 241.25.164.189",
+        "cluster": 0,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 1,
+        "label": "Cluster 1 | Event Triggered Execution | Src: 20.86.0.1",
+        "cluster": 1,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 2,
+        "label": "Cluster 2 | Persistence - Registry Key Manipulation | Src: 204.195.133.224",
+        "cluster": 2,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 3,
+        "label": "Cluster 3 | Privilege Escalation - Exploiting Vulnerability | Src: 20.86.0.1",
+        "cluster": 3,
+        "color": "#d62728"
+      },
+      {
+        "id": 4,
+        "label": "Cluster 4 | Defense Evasion - Signature-based Evasion | Src: 53.140.87.84",
+        "cluster": 4,
+        "color": "#9467bd"
+      },
+      {
+        "id": 5,
+        "label": "Cluster 5 | Credential Access - Password Guessing | Src: 72.38.184.18",
+        "cluster": 5,
+        "color": "#8c564b"
+      },
+      {
+        "id": 6,
+        "label": "Cluster 6 | Discovery - Network Service Scanning | Src: 135.74.250.186",
+        "cluster": 6,
+        "color": "#e377c2"
+      },
+      {
+        "id": 7,
+        "label": "Cluster 7 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 165.52.135.127",
+        "cluster": 7,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 8,
+        "label": "Cluster 8 | Collection - Data Exfiltration via Email | Src: 164.48.30.116",
+        "cluster": 8,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 9,
+        "label": "Cluster 9 | Command and Control - Communication over Tor Network | Src: 208.123.68.84",
+        "cluster": 9,
+        "color": "#17becf"
+      },
+      {
+        "id": 10,
+        "label": "Cluster 10 | Exfiltration - File Transfer to External Server | Src: 61.175.188.242",
+        "cluster": 10,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 11,
+        "label": "Cluster 11 | Impact - Denial-of-Service (DoS) Attack | Src: 208.124.170.212",
+        "cluster": 11,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 12,
+        "label": "Cluster 12 | Persistence - Registry Key Manipulation | Src: 34.218.27.87",
+        "cluster": 12,
+        "color": "#98df8a"
+      },
+      {
+        "id": 13,
+        "label": "Cluster 13 | Discovery - Network Service Scanning | Src: 228.214.49.80",
+        "cluster": 13,
+        "color": "#ff9896"
+      },
+      {
+        "id": 14,
+        "label": "Cluster 14 | Collection - Data Exfiltration via Email | Src: 46.116.197.254",
+        "cluster": 14,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 15,
+        "label": "Cluster 15 | Exfiltration - File Transfer to External Server | Src: 245.216.136.125",
+        "cluster": 15,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 16,
+        "label": "Cluster 16 | Persistence - Registry Key Manipulation | Src: 212.151.160.232",
+        "cluster": 16,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 17,
+        "label": "Cluster 17 | Privilege Escalation - Exploiting Vulnerability | Src: 86.150.88.158",
+        "cluster": 17,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 18,
+        "label": "Cluster 18 | Defense Evasion - Signature-based Evasion | Src: 86.150.88.158",
+        "cluster": 18,
+        "color": "#d62728"
+      },
+      {
+        "id": 19,
+        "label": "Cluster 19 | Collection - Data Exfiltration via Email | Src: 221.104.108.170",
+        "cluster": 19,
+        "color": "#9467bd"
+      },
+      {
+        "id": 20,
+        "label": "Cluster 20 | Connection to Malicious URL for malware_download | Src: 106.154.0.212",
+        "cluster": 20,
+        "color": "#8c564b"
+      },
+      {
+        "id": 21,
+        "label": "Cluster 21 | Event Triggered Execution | Src: 52.58.203.184",
+        "cluster": 21,
+        "color": "#e377c2"
+      },
+      {
+        "id": 22,
+        "label": "Cluster 22 | Persistence - Registry Key Manipulation | Src: 60.240.37.249",
+        "cluster": 22,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 23,
+        "label": "Cluster 23 | Privilege Escalation - Exploiting Vulnerability | Src: 76.108.20.23",
+        "cluster": 23,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 24,
+        "label": "Cluster 24 | Defense Evasion - Signature-based Evasion | Src: 208.148.163.232",
+        "cluster": 24,
+        "color": "#17becf"
+      },
+      {
+        "id": 25,
+        "label": "Cluster 25 | Discovery - Network Service Scanning | Src: 76.108.20.23",
+        "cluster": 25,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 26,
+        "label": "Cluster 26 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 9.34.249.51",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 27,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 141.145.176.37",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 28,
+        "label": "Cluster 28 | Exfiltration - File Transfer to External Server | Src: 9.34.249.51",
+        "cluster": 28,
+        "color": "#ff9896"
+      },
+      {
+        "id": 29,
+        "label": "Cluster 29 | Impact - Denial-of-Service (DoS) Attack | Src: 201.201.16.248",
+        "cluster": 29,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 30,
+        "label": "Cluster 30 | Connection to Malicious URL for malware_download | Src: 226.198.92.122",
+        "cluster": 30,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 31,
+        "label": "Cluster 31 | Event Triggered Execution | Src: 176.226.122.140",
+        "cluster": 31,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 32,
+        "label": "Cluster 32 | Persistence - Registry Key Manipulation | Src: 180.3.117.15",
+        "cluster": 32,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 33,
+        "label": "Cluster 33 | Privilege Escalation - Exploiting Vulnerability | Src: 19.52.224.2",
+        "cluster": 33,
+        "color": "#d62728"
+      },
+      {
+        "id": 34,
+        "label": "Cluster 34 | Defense Evasion - Signature-based Evasion | Src: 85.35.156.115",
+        "cluster": 34,
+        "color": "#9467bd"
+      },
+      {
+        "id": 35,
+        "label": "Cluster 35 | Discovery - Network Service Scanning | Src: 26.235.44.126",
+        "cluster": 35,
+        "color": "#8c564b"
+      },
+      {
+        "id": 36,
+        "label": "Cluster 36 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 210.255.10.64",
+        "cluster": 36,
+        "color": "#e377c2"
+      },
+      {
+        "id": 37,
+        "label": "Cluster 37 | Collection - Data Exfiltration via Email | Src: 182.37.191.134",
+        "cluster": 37,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 38,
+        "label": "Cluster 38 | Command and Control - Communication over Tor Network | Src: 11.49.226.241",
+        "cluster": 38,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 39,
+        "label": "Cluster 39 | Exfiltration - File Transfer to External Server | Src: 90.159.240.80",
+        "cluster": 39,
+        "color": "#17becf"
+      },
+      {
+        "id": 40,
+        "label": "Cluster 40 | Impact - Denial-of-Service (DoS) Attack | Src: 147.251.0.24",
+        "cluster": 40,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 41,
+        "label": "Cluster 41 | Event Triggered Execution | Src: 11.100.176.63",
+        "cluster": 41,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 42,
+        "label": "Cluster 42 | Persistence - Registry Key Manipulation | Src: 125.10.221.74",
+        "cluster": 42,
+        "color": "#98df8a"
+      },
+      {
+        "id": 43,
+        "label": "Cluster 43 | Defense Evasion - Signature-based Evasion | Src: 229.43.67.131",
+        "cluster": 43,
+        "color": "#ff9896"
+      },
+      {
+        "id": 44,
+        "label": "Cluster 44 | Credential Access - Password Guessing | Src: 97.54.105.241",
+        "cluster": 44,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 45,
+        "label": "Cluster 45 | Command and Control - Communication over Tor Network | Src: 177.94.69.187",
+        "cluster": 45,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 46,
+        "label": "Cluster 46 | Exfiltration - File Transfer to External Server | Src: 159.19.33.15",
+        "cluster": 46,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 47,
+        "label": "Cluster 47 | Impact - Denial-of-Service (DoS) Attack | Src: 200.46.46.64",
+        "cluster": 47,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 48,
+        "label": "Cluster 48 | Persistence - Registry Key Manipulation | Src: 45.214.92.108",
+        "cluster": 48,
+        "color": "#d62728"
+      },
+      {
+        "id": 49,
+        "label": "Cluster 49 | Privilege Escalation - Exploiting Vulnerability | Src: 222.29.26.212",
+        "cluster": 49,
+        "color": "#9467bd"
+      },
+      {
+        "id": 50,
+        "label": "Cluster 50 | Defense Evasion - Signature-based Evasion | Src: 222.29.26.212",
+        "cluster": 50,
+        "color": "#8c564b"
+      },
+      {
+        "id": 51,
+        "label": "Cluster 51 | Credential Access - Password Guessing | Src: 123.250.58.174",
+        "cluster": 51,
+        "color": "#e377c2"
+      },
+      {
+        "id": 52,
+        "label": "Cluster 52 | Command and Control - Communication over Tor Network | Src: 207.9.105.213",
+        "cluster": 52,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 53,
+        "label": "Cluster 53 | Impact - Denial-of-Service (DoS) Attack | Src: 234.200.105.148",
+        "cluster": 53,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 54,
+        "label": "Cluster 54 | Connection to Malicious URL for malware_download | Src: 235.205.153.146",
+        "cluster": 54,
+        "color": "#17becf"
+      },
+      {
+        "id": 55,
+        "label": "Cluster 55 | Privilege Escalation - Exploiting Vulnerability | Src: 161.33.112.219",
+        "cluster": 55,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 56,
+        "label": "Cluster 56 | Discovery - Network Service Scanning | Src: 161.33.112.219",
+        "cluster": 56,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 57,
+        "label": "Cluster 57 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 161.33.112.219",
+        "cluster": 57,
+        "color": "#98df8a"
+      },
+      {
+        "id": 58,
+        "label": "Cluster 58 | Exfiltration - File Transfer to External Server | Src: 161.33.112.219",
+        "cluster": 58,
+        "color": "#ff9896"
+      },
+      {
+        "id": 59,
+        "label": "Cluster 59 | Privilege Escalation - Exploiting Vulnerability | Src: 175.190.149.92",
+        "cluster": 59,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 60,
+        "label": "Cluster 60 | Defense Evasion - Signature-based Evasion | Src: 7.157.9.199",
+        "cluster": 60,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 61,
+        "label": "Cluster 61 | Collection - Data Exfiltration via Email | Src: 239.245.210.254",
+        "cluster": 61,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 62,
+        "label": "Cluster 62 | Command and Control - Communication over Tor Network | Src: 133.34.65.234",
+        "cluster": 62,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 63,
+        "label": "Cluster 63 | Exfiltration - File Transfer to External Server | Src: 213.148.209.168",
+        "cluster": 63,
+        "color": "#d62728"
+      },
+      {
+        "id": 64,
+        "label": "Cluster 64 | Impact - Denial-of-Service (DoS) Attack | Src: 213.148.209.168",
+        "cluster": 64,
+        "color": "#9467bd"
+      },
+      {
+        "id": 65,
+        "label": "Cluster 65 | Connection to Malicious URL for malware_download | Src: 146.233.11.7",
+        "cluster": 65,
+        "color": "#8c564b"
+      },
+      {
+        "id": 66,
+        "label": "Cluster 66 | Event Triggered Execution | Src: 26.169.247.188",
+        "cluster": 66,
+        "color": "#e377c2"
+      },
+      {
+        "id": 67,
+        "label": "Cluster 67 | Persistence - Registry Key Manipulation | Src: 15.150.172.88",
+        "cluster": 67,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 68,
+        "label": "Cluster 68 | Privilege Escalation - Exploiting Vulnerability | Src: 162.241.108.184",
+        "cluster": 68,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 69,
+        "label": "Cluster 69 | Defense Evasion - Signature-based Evasion | Src: 251.123.114.92",
+        "cluster": 69,
+        "color": "#17becf"
+      },
+      {
+        "id": 70,
+        "label": "Cluster 70 | Discovery - Network Service Scanning | Src: 120.203.34.34",
+        "cluster": 70,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 71,
+        "label": "Cluster 71 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 98.31.114.181",
+        "cluster": 71,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 72,
+        "label": "Cluster 72 | Collection - Data Exfiltration via Email | Src: 88.7.123.31",
+        "cluster": 72,
+        "color": "#98df8a"
+      },
+      {
+        "id": 73,
+        "label": "Cluster 73 | Command and Control - Communication over Tor Network | Src: 9.138.79.70",
+        "cluster": 73,
+        "color": "#ff9896"
+      },
+      {
+        "id": 74,
+        "label": "Cluster 74 | Exfiltration - File Transfer to External Server | Src: 148.213.10.254",
+        "cluster": 74,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 75,
+        "label": "Cluster 75 | Impact - Denial-of-Service (DoS) Attack | Src: 194.184.68.70",
+        "cluster": 75,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 76,
+        "label": "Cluster 76 | Persistence - Registry Key Manipulation | Src: 154.68.116.10",
+        "cluster": 76,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 77,
+        "label": "Cluster 77 | Privilege Escalation - Exploiting Vulnerability | Src: 168.124.205.149",
+        "cluster": 77,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 78,
+        "label": "Cluster 78 | Defense Evasion - Signature-based Evasion | Src: 84.168.12.184",
+        "cluster": 78,
+        "color": "#d62728"
+      },
+      {
+        "id": 79,
+        "label": "Cluster 79 | Discovery - Network Service Scanning | Src: 99.128.251.244",
+        "cluster": 79,
+        "color": "#9467bd"
+      },
+      {
+        "id": 80,
+        "label": "Cluster 80 | Collection - Data Exfiltration via Email | Src: 170.6.232.154",
+        "cluster": 80,
+        "color": "#8c564b"
+      },
+      {
+        "id": 81,
+        "label": "Cluster 81 | Command and Control - Communication over Tor Network | Src: 247.26.201.215",
+        "cluster": 81,
+        "color": "#e377c2"
+      },
+      {
+        "id": 82,
+        "label": "Cluster 82 | Impact - Denial-of-Service (DoS) Attack | Src: 65.241.81.56",
+        "cluster": 82,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 83,
+        "label": "Cluster 83 | Connection to Malicious URL for malware_download | Src: 118.221.199.67",
+        "cluster": 83,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 84,
+        "label": "Cluster 84 | Privilege Escalation - Exploiting Vulnerability | Src: 117.17.211.8",
+        "cluster": 84,
+        "color": "#17becf"
+      },
+      {
+        "id": 85,
+        "label": "Cluster 85 | Defense Evasion - Signature-based Evasion | Src: 33.152.36.39",
+        "cluster": 85,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 86,
+        "label": "Cluster 86 | Discovery - Network Service Scanning | Src: 99.92.111.220",
+        "cluster": 86,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 87,
+        "label": "Cluster 87 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 44.51.149.60",
+        "cluster": 87,
+        "color": "#98df8a"
+      },
+      {
+        "id": 88,
+        "label": "Cluster 88 | Collection - Data Exfiltration via Email | Src: 84.194.126.14",
+        "cluster": 88,
+        "color": "#ff9896"
+      },
+      {
+        "id": 89,
+        "label": "Cluster 89 | Exfiltration - File Transfer to External Server | Src: 77.64.27.218",
+        "cluster": 89,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 90,
+        "label": "Cluster 90 | Impact - Denial-of-Service (DoS) Attack | Src: 84.194.126.14",
+        "cluster": 90,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 91,
+        "label": "Cluster 91 | Discovery - Network Service Scanning | Src: 166.73.154.227",
+        "cluster": 91,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 92,
+        "label": "Cluster 92 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 124.39.115.52",
+        "cluster": 92,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 93,
+        "label": "Cluster 93 | Command and Control - Communication over Tor Network | Src: 247.170.107.169",
+        "cluster": 93,
+        "color": "#d62728"
+      },
+      {
+        "id": 94,
+        "label": "Cluster 94 | Exfiltration - File Transfer to External Server | Src: 207.144.191.177",
+        "cluster": 94,
+        "color": "#9467bd"
+      },
+      {
+        "id": 95,
+        "label": "Cluster 95 | Impact - Denial-of-Service (DoS) Attack | Src: 233.122.204.10",
+        "cluster": 95,
+        "color": "#8c564b"
+      },
+      {
+        "id": 96,
+        "label": "Cluster 96 | Connection to Malicious URL for malware_download | Src: 141.245.249.137",
+        "cluster": 96,
+        "color": "#e377c2"
+      },
+      {
+        "id": 97,
+        "label": "Cluster 97 | Event Triggered Execution | Src: 6.4.6.59",
+        "cluster": 97,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 98,
+        "label": "Cluster 98 | Persistence - Registry Key Manipulation | Src: 247.196.107.81",
+        "cluster": 98,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 99,
+        "label": "Cluster 99 | Privilege Escalation - Exploiting Vulnerability | Src: 204.110.140.243",
+        "cluster": 99,
+        "color": "#17becf"
+      },
+      {
+        "id": 100,
+        "label": "Cluster 100 | Defense Evasion - Signature-based Evasion | Src: 161.33.161.214",
+        "cluster": 100,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 101,
+        "label": "Cluster 101 | Credential Access - Password Guessing | Src: 161.33.161.214",
+        "cluster": 101,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 102,
+        "label": "Cluster 102 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 83.206.37.164",
+        "cluster": 102,
+        "color": "#98df8a"
+      },
+      {
+        "id": 103,
+        "label": "Cluster 103 | Command and Control - Communication over Tor Network | Src: 90.252.233.109",
+        "cluster": 103,
+        "color": "#ff9896"
+      },
+      {
+        "id": 104,
+        "label": "Cluster 104 | Exfiltration - File Transfer to External Server | Src: 87.202.191.223",
+        "cluster": 104,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 105,
+        "label": "Cluster 105 | Connection to Malicious URL for malware_download | Src: 137.1.37.35",
+        "cluster": 105,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 106,
+        "label": "Cluster 106 | Event Triggered Execution | Src: 131.61.10.134",
+        "cluster": 106,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 107,
+        "label": "Cluster 107 | Persistence - Registry Key Manipulation | Src: 121.132.33.76",
+        "cluster": 107,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 108,
+        "label": "Cluster 108 | Privilege Escalation - Exploiting Vulnerability | Src: 244.250.83.235",
+        "cluster": 108,
+        "color": "#d62728"
+      },
+      {
+        "id": 109,
+        "label": "Cluster 109 | Defense Evasion - Signature-based Evasion | Src: 245.112.120.151",
+        "cluster": 109,
+        "color": "#9467bd"
+      },
+      {
+        "id": 110,
+        "label": "Cluster 110 | Credential Access - Password Guessing | Src: 254.186.175.107",
+        "cluster": 110,
+        "color": "#8c564b"
+      },
+      {
+        "id": 111,
+        "label": "Cluster 111 | Collection - Data Exfiltration via Email | Src: 44.148.241.46",
+        "cluster": 111,
+        "color": "#e377c2"
+      },
+      {
+        "id": 112,
+        "label": "Cluster 112 | Command and Control - Communication over Tor Network | Src: 146.8.235.41",
+        "cluster": 112,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 113,
+        "label": "Cluster 113 | Connection to Malicious URL for malware_download | Src: 134.201.228.193",
+        "cluster": 113,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 114,
+        "label": "Cluster 114 | Persistence - Registry Key Manipulation | Src: 146.60.169.56",
+        "cluster": 114,
+        "color": "#17becf"
+      },
+      {
+        "id": 115,
+        "label": "Cluster 115 | Privilege Escalation - Exploiting Vulnerability | Src: 168.112.214.241",
+        "cluster": 115,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 116,
+        "label": "Cluster 116 | Defense Evasion - Signature-based Evasion | Src: 69.92.254.247",
+        "cluster": 116,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 117,
+        "label": "Cluster 117 | Credential Access - Password Guessing | Src: 210.154.246.175",
+        "cluster": 117,
+        "color": "#98df8a"
+      },
+      {
+        "id": 118,
+        "label": "Cluster 118 | Discovery - Network Service Scanning | Src: 28.53.142.151",
+        "cluster": 118,
+        "color": "#ff9896"
+      },
+      {
+        "id": 119,
+        "label": "Cluster 119 | Collection - Data Exfiltration via Email | Src: 235.7.4.74",
+        "cluster": 119,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 120,
+        "label": "Cluster 120 | Exfiltration - File Transfer to External Server | Src: 33.6.151.236",
+        "cluster": 120,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 121,
+        "label": "Cluster 121 | Impact - Denial-of-Service (DoS) Attack | Src: 168.127.185.96",
+        "cluster": 121,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 122,
+        "label": "Cluster 122 | Event Triggered Execution | Src: 4.220.193.211",
+        "cluster": 122,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 123,
+        "label": "Cluster 123 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 4.220.193.211",
+        "cluster": 123,
+        "color": "#d62728"
+      },
+      {
+        "id": 124,
+        "label": "Cluster 124 | Command and Control - Communication over Tor Network | Src: 13.183.29.75",
+        "cluster": 124,
+        "color": "#9467bd"
+      },
+      {
+        "id": 125,
+        "label": "Cluster 125 | Persistence - Registry Key Manipulation | Src: 3.16.133.106",
+        "cluster": 125,
+        "color": "#8c564b"
+      },
+      {
+        "id": 126,
+        "label": "Cluster 126 | Credential Access - Password Guessing | Src: 11.83.144.119",
+        "cluster": 126,
+        "color": "#e377c2"
+      },
+      {
+        "id": 127,
+        "label": "Cluster 127 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 11.83.144.119",
+        "cluster": 127,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 128,
+        "label": "Cluster 128 | Connection to Malicious URL for malware_download | Src: 228.208.30.24",
+        "cluster": 128,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 129,
+        "label": "Cluster 129 | Event Triggered Execution | Src: 113.201.108.27",
+        "cluster": 129,
+        "color": "#17becf"
+      },
+      {
+        "id": 130,
+        "label": "Cluster 130 | Persistence - Registry Key Manipulation | Src: 231.37.240.143",
+        "cluster": 130,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 131,
+        "label": "Cluster 131 | Privilege Escalation - Exploiting Vulnerability | Src: 92.21.102.97",
+        "cluster": 131,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 132,
+        "label": "Cluster 132 | Defense Evasion - Signature-based Evasion | Src: 148.72.33.107",
+        "cluster": 132,
+        "color": "#98df8a"
+      },
+      {
+        "id": 133,
+        "label": "Cluster 133 | Credential Access - Password Guessing | Src: 148.72.33.107",
+        "cluster": 133,
+        "color": "#ff9896"
+      },
+      {
+        "id": 134,
+        "label": "Cluster 134 | Discovery - Network Service Scanning | Src: 148.72.33.107",
+        "cluster": 134,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 135,
+        "label": "Cluster 135 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 231.85.120.58",
+        "cluster": 135,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 136,
+        "label": "Cluster 136 | Collection - Data Exfiltration via Email | Src: 233.239.127.207",
+        "cluster": 136,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 137,
+        "label": "Cluster 137 | Command and Control - Communication over Tor Network | Src: 96.14.233.223",
+        "cluster": 137,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 138,
+        "label": "Cluster 138 | Exfiltration - File Transfer to External Server | Src: 186.241.56.173",
+        "cluster": 138,
+        "color": "#d62728"
+      },
+      {
+        "id": 139,
+        "label": "Cluster 139 | Impact - Denial-of-Service (DoS) Attack | Src: 87.127.255.202",
+        "cluster": 139,
+        "color": "#9467bd"
+      },
+      {
+        "id": 140,
+        "label": "Cluster 140 | Connection to Malicious URL for malware_download | Src: 110.50.92.201",
+        "cluster": 140,
+        "color": "#8c564b"
+      },
+      {
+        "id": 141,
+        "label": "Cluster 141 | Event Triggered Execution | Src: 182.140.186.191",
+        "cluster": 141,
+        "color": "#e377c2"
+      },
+      {
+        "id": 142,
+        "label": "Cluster 142 | Privilege Escalation - Exploiting Vulnerability | Src: 67.194.152.165",
+        "cluster": 142,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 143,
+        "label": "Cluster 143 | Defense Evasion - Signature-based Evasion | Src: 92.102.179.251",
+        "cluster": 143,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 144,
+        "label": "Cluster 144 | Credential Access - Password Guessing | Src: 196.12.167.18",
+        "cluster": 144,
+        "color": "#17becf"
+      },
+      {
+        "id": 145,
+        "label": "Cluster 145 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 93.146.197.113",
+        "cluster": 145,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 146,
+        "label": "Cluster 146 | Collection - Data Exfiltration via Email | Src: 171.111.94.246",
+        "cluster": 146,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 147,
+        "label": "Cluster 147 | Command and Control - Communication over Tor Network | Src: 85.110.133.169",
+        "cluster": 147,
+        "color": "#98df8a"
+      },
+      {
+        "id": 148,
+        "label": "Cluster 148 | Exfiltration - File Transfer to External Server | Src: 85.110.133.169",
+        "cluster": 148,
+        "color": "#ff9896"
+      },
+      {
+        "id": 149,
+        "label": "Cluster 149 | Connection to Malicious URL for malware_download | Src: 219.118.124.142",
+        "cluster": 149,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 150,
+        "label": "Cluster 150 | Event Triggered Execution | Src: 125.96.6.118",
+        "cluster": 150,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 151,
+        "label": "Cluster 151 | Defense Evasion - Signature-based Evasion | Src: 97.155.160.108",
+        "cluster": 151,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 152,
+        "label": "Cluster 152 | Persistence - Registry Key Manipulation | Src: 75.70.159.105",
+        "cluster": 152,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 153,
+        "label": "Cluster 153 | Privilege Escalation - Exploiting Vulnerability | Src: 103.147.145.109",
+        "cluster": 153,
+        "color": "#d62728"
+      },
+      {
+        "id": 154,
+        "label": "Cluster 154 | Defense Evasion - Signature-based Evasion | Src: 101.56.161.3",
+        "cluster": 154,
+        "color": "#9467bd"
+      },
+      {
+        "id": 155,
+        "label": "Cluster 155 | Credential Access - Password Guessing | Src: 102.187.165.120",
+        "cluster": 155,
+        "color": "#8c564b"
+      },
+      {
+        "id": 156,
+        "label": "Cluster 156 | Discovery - Network Service Scanning | Src: 152.222.154.72",
+        "cluster": 156,
+        "color": "#e377c2"
+      },
+      {
+        "id": 157,
+        "label": "Cluster 157 | Collection - Data Exfiltration via Email | Src: 159.79.130.64",
+        "cluster": 157,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 158,
+        "label": "Cluster 158 | Command and Control - Communication over Tor Network | Src: 131.169.80.186",
+        "cluster": 158,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 159,
+        "label": "Cluster 159 | Impact - Denial-of-Service (DoS) Attack | Src: 58.241.230.220",
+        "cluster": 159,
+        "color": "#17becf"
+      },
+      {
+        "id": 160,
+        "label": "Cluster 160 | Persistence - Registry Key Manipulation | Src: 165.106.161.52",
+        "cluster": 160,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 161,
+        "label": "Cluster 161 | Command and Control - Communication over Tor Network | Src: 219.157.189.156",
+        "cluster": 161,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 162,
+        "label": "Cluster 162 | Impact - Denial-of-Service (DoS) Attack | Src: 54.2.224.115",
+        "cluster": 162,
+        "color": "#98df8a"
+      },
+      {
+        "id": 163,
+        "label": "Cluster 163 | Connection to Malicious URL for malware_download | Src: 73.75.162.67",
+        "cluster": 163,
+        "color": "#ff9896"
+      },
+      {
+        "id": 164,
+        "label": "Cluster 164 | Event Triggered Execution | Src: 130.108.159.93",
+        "cluster": 164,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 165,
+        "label": "Cluster 165 | Persistence - Registry Key Manipulation | Src: 11.5.111.88",
+        "cluster": 165,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 166,
+        "label": "Cluster 166 | Privilege Escalation - Exploiting Vulnerability | Src: 119.104.191.193",
+        "cluster": 166,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 167,
+        "label": "Cluster 167 | Defense Evasion - Signature-based Evasion | Src: 83.100.23.84",
+        "cluster": 167,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 168,
+        "label": "Cluster 168 | Collection - Data Exfiltration via Email | Src: 128.204.66.144",
+        "cluster": 168,
+        "color": "#d62728"
+      },
+      {
+        "id": 169,
+        "label": "Cluster 169 | Exfiltration - File Transfer to External Server | Src: 195.35.84.203",
+        "cluster": 169,
+        "color": "#9467bd"
+      },
+      {
+        "id": 170,
+        "label": "Cluster 170 | Impact - Denial-of-Service (DoS) Attack | Src: 168.183.151.64",
+        "cluster": 170,
+        "color": "#8c564b"
+      },
+      {
+        "id": 171,
+        "label": "Cluster 171 | Persistence - Registry Key Manipulation | Src: 37.132.184.134",
+        "cluster": 171,
+        "color": "#e377c2"
+      },
+      {
+        "id": 172,
+        "label": "Cluster 172 | Discovery - Network Service Scanning | Src: 37.132.184.134",
+        "cluster": 172,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 173,
+        "label": "Cluster 173 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 121.128.8.174",
+        "cluster": 173,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 174,
+        "label": "Cluster 174 | Command and Control - Communication over Tor Network | Src: 126.172.202.134",
+        "cluster": 174,
+        "color": "#17becf"
+      },
+      {
+        "id": 175,
+        "label": "Cluster 175 | Exfiltration - File Transfer to External Server | Src: 219.139.2.35",
+        "cluster": 175,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 176,
+        "label": "Cluster 176 | Connection to Malicious URL for malware_download | Src: 205.80.131.49",
+        "cluster": 176,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 177,
+        "label": "Cluster 177 | Event Triggered Execution | Src: 140.143.218.92",
+        "cluster": 177,
+        "color": "#98df8a"
+      },
+      {
+        "id": 178,
+        "label": "Cluster 178 | Persistence - Registry Key Manipulation | Src: 140.143.218.92",
+        "cluster": 178,
+        "color": "#ff9896"
+      },
+      {
+        "id": 179,
+        "label": "Cluster 179 | Defense Evasion - Signature-based Evasion | Src: 186.30.216.83",
+        "cluster": 179,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 180,
+        "label": "Cluster 180 | Discovery - Network Service Scanning | Src: 24.141.162.255",
+        "cluster": 180,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 181,
+        "label": "Cluster 181 | Collection - Data Exfiltration via Email | Src: 71.96.53.182",
+        "cluster": 181,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 182,
+        "label": "Cluster 182 | Command and Control - Communication over Tor Network | Src: 217.124.220.223",
+        "cluster": 182,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 183,
+        "label": "Cluster 183 | Exfiltration - File Transfer to External Server | Src: 231.64.63.71",
+        "cluster": 183,
+        "color": "#d62728"
+      },
+      {
+        "id": 184,
+        "label": "Cluster 184 | Impact - Denial-of-Service (DoS) Attack | Src: 186.30.216.83",
+        "cluster": 184,
+        "color": "#9467bd"
+      },
+      {
+        "id": 185,
+        "label": "Cluster 185 | Defense Evasion - Signature-based Evasion | Src: 228.105.20.150",
+        "cluster": 185,
+        "color": "#8c564b"
+      },
+      {
+        "id": 186,
+        "label": "Cluster 186 | Credential Access - Password Guessing | Src: 179.20.144.235",
+        "cluster": 186,
+        "color": "#e377c2"
+      },
+      {
+        "id": 187,
+        "label": "Cluster 187 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 95.64.221.250",
+        "cluster": 187,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 188,
+        "label": "Cluster 188 | Command and Control - Communication over Tor Network | Src: 220.185.113.150",
+        "cluster": 188,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 189,
+        "label": "Cluster 189 | Connection to Malicious URL for malware_download | Src: 243.250.198.71",
+        "cluster": 189,
+        "color": "#17becf"
+      },
+      {
+        "id": 190,
+        "label": "Cluster 190 | Event Triggered Execution | Src: 193.210.247.174",
+        "cluster": 190,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 191,
+        "label": "Cluster 191 | Persistence - Registry Key Manipulation | Src: 51.205.69.182",
+        "cluster": 191,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 192,
+        "label": "Cluster 192 | Privilege Escalation - Exploiting Vulnerability | Src: 51.205.69.182",
+        "cluster": 192,
+        "color": "#98df8a"
+      },
+      {
+        "id": 193,
+        "label": "Cluster 193 | Defense Evasion - Signature-based Evasion | Src: 219.75.138.56",
+        "cluster": 193,
+        "color": "#ff9896"
+      },
+      {
+        "id": 194,
+        "label": "Cluster 194 | Credential Access - Password Guessing | Src: 63.114.109.73",
+        "cluster": 194,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 195,
+        "label": "Cluster 195 | Discovery - Network Service Scanning | Src: 66.81.66.208",
+        "cluster": 195,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 196,
+        "label": "Cluster 196 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 237.146.161.233",
+        "cluster": 196,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 197,
+        "label": "Cluster 197 | Collection - Data Exfiltration via Email | Src: 133.223.31.13",
+        "cluster": 197,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 198,
+        "label": "Cluster 198 | Command and Control - Communication over Tor Network | Src: 125.169.3.4",
+        "cluster": 198,
+        "color": "#d62728"
+      },
+      {
+        "id": 199,
+        "label": "Cluster 199 | Exfiltration - File Transfer to External Server | Src: 7.233.190.218",
+        "cluster": 199,
+        "color": "#9467bd"
+      },
+      {
+        "id": 200,
+        "label": "Cluster 200 | Impact - Denial-of-Service (DoS) Attack | Src: 23.8.217.119",
+        "cluster": 200,
+        "color": "#8c564b"
+      },
+      {
+        "id": 201,
+        "label": "Cluster 201 | Persistence - Registry Key Manipulation | Src: 231.117.127.253",
+        "cluster": 201,
+        "color": "#e377c2"
+      },
+      {
+        "id": 202,
+        "label": "Cluster 202 | Privilege Escalation - Exploiting Vulnerability | Src: 179.237.188.15",
+        "cluster": 202,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 203,
+        "label": "Cluster 203 | Defense Evasion - Signature-based Evasion | Src: 102.200.124.182",
+        "cluster": 203,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 204,
+        "label": "Cluster 204 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 190.52.15.170",
+        "cluster": 204,
+        "color": "#17becf"
+      },
+      {
+        "id": 205,
+        "label": "Cluster 205 | Collection - Data Exfiltration via Email | Src: 44.61.32.38",
+        "cluster": 205,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 206,
+        "label": "Cluster 206 | Command and Control - Communication over Tor Network | Src: 214.235.136.165",
+        "cluster": 206,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 207,
+        "label": "Cluster 207 | Event Triggered Execution | Src: 196.170.229.56",
+        "cluster": 207,
+        "color": "#98df8a"
+      },
+      {
+        "id": 208,
+        "label": "Cluster 208 | Persistence - Registry Key Manipulation | Src: 196.170.229.56",
+        "cluster": 208,
+        "color": "#ff9896"
+      },
+      {
+        "id": 209,
+        "label": "Cluster 209 | Defense Evasion - Signature-based Evasion | Src: 99.148.96.214",
+        "cluster": 209,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 210,
+        "label": "Cluster 210 | Discovery - Network Service Scanning | Src: 103.116.190.167",
+        "cluster": 210,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 211,
+        "label": "Cluster 211 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 22.94.57.124",
+        "cluster": 211,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 212,
+        "label": "Cluster 212 | Exfiltration - File Transfer to External Server | Src: 214.170.250.110",
+        "cluster": 212,
+        "color": "#2ca02c"
+      }
+    ],
+    "edges": []
+  },
+  "timestamp": "2026-03-14T04:43:42.235620",
+  "success": true,
+  "error_message": null
+}

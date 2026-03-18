@@ -1,0 +1,3 @@
+pretrain_datasets,target_dataset,zero_shot_ARI
+UNSW-NB15,TON_IoT,0.654
+UNSW-NB15 + CICIDS2017,TON_IoT,0.682

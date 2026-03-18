@@ -10,6 +10,7 @@ import time
 import logging
 import traceback
 from pathlib import Path
+from werkzeug.utils import secure_filename
 
 import numpy as np
 import pandas as pd
@@ -27,9 +28,16 @@ from core.correlation_indexer import calculate_adaptive_threshold
 from core.postprocessing import correlation as legacy_correlation, clean_clusters, get_feature_chains
 from core.output import types, Attack_stages, classify_attack_stage
 from core.preprocessing import get_data  # For standard data loading
+
+# New modules for curated graph stories
+from core.cluster_filter import ClusterFilter, FilterConfig, create_cluster_filter
+from core.kg_enrichment import KnowledgeGraphEnricher, create_enricher, ThreatIntelStore
+from core.streaming import StreamingCorrelator, create_streaming_correlator, LazyGraphGenerator
+
 import Testing
 from siem.connectors import get_connector, CONNECTOR_REGISTRY, WebhookConnector
 from siem.ingestion_engine import IngestionEngine
+from utils.data_validation import validate_real_data, is_production
 
 # ---------------------------------------------------------------------------
 # App setup
@@ -38,8 +46,10 @@ app = Flask(__name__, template_folder="templates", static_folder="static")
 
 import os
 # Restrict CORS to specific origins in production
-cors_origins = os.environ.get("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000,http://localhost:5000,http://127.0.0.1:5000").split(",")
-CORS(app, resources={r"/*": {"origins": cors_origins}})
+# In production, set CORS_ORIGINS env var to your trusted domains only
+cors_origins = os.environ.get("CORS_ORIGINS", "http://localhost:5000,http://127.0.0.1:5000").split(",")
+# Remove any empty origins
+CORS(app, resources={r"/*": {"origins": [o for o in cors_origins if o]}})
 app.config["MAX_CONTENT_LENGTH"] = 50 * 1024 * 1024  # 50 MB upload limit
 
 logging.basicConfig(level=logging.INFO,
@@ -56,7 +66,22 @@ _latest_results = {
     "correlated_df": None,
     "clusters_json": None,
     "stats": None,
+    "cluster_scores": None,
+    "kg_enrichments": None,
+    "parquet_path": None,
 }
+
+# Cluster filter instance (lazy init)
+_cluster_filter = None
+
+# Knowledge graph enricher (lazy init)
+_kg_enricher = None
+
+# Streaming correlator (lazy init)
+_streaming_correlator = None
+
+# Lazy graph generator (lazy init)
+_lazy_graph_gen = None
 
 # Live ingestion engine (singleton)
 ingestion_engine = IngestionEngine(
@@ -292,15 +317,28 @@ def upload_csv():
             return jsonify({"success": False, "error": "No file uploaded"}), 400
 
         file = request.files["file"]
-        if not file.filename.endswith(".csv"):
-            return jsonify({"success": False, "error": "Only CSV files are supported"}), 400
+        if not file or not file.filename:
+            return jsonify({"success": False, "error": "No file selected"}), 400
+        
+        # Secure filename and validate extension
+        filename = secure_filename(file.filename)
+        allowed_extensions = {'.csv'}
+        file_ext = Path(filename).suffix.lower()
+        
+        if file_ext not in allowed_extensions:
+            return jsonify({"success": False, "error": f"Only {', '.join(allowed_extensions)} files are supported"}), 400
+        
+        # Validate content type
+        if file.content_type not in ['text/csv', 'application/vnd.ms-excel', 'text/plain', 'application/octet-stream']:
+            logger.warning(f"Suspicious content type: {file.content_type} for file {filename}")
+            return jsonify({"success": False, "error": "Invalid file content type"}), 400
         
         # Get correlation method from form data
         method = request.form.get("method", "auto")
         model_path = request.form.get("model_path")
 
         raw_df = pd.read_csv(file, low_memory=False)
-        logger.info(f"Uploaded {file.filename}: {len(raw_df)} rows, columns={list(raw_df.columns)} (method={method})")
+        logger.info(f"Uploaded {filename}: {len(raw_df)} rows, columns={list(raw_df.columns)} (method={method})")
 
         # Detect available fields
         addresses = [c for c in ADDRESSES if c in raw_df.columns]
@@ -334,7 +372,7 @@ def upload_csv():
 
         return jsonify(_deep_convert({
             "success": True,
-            "filename": file.filename,
+            "filename": filename,
             "stats": stats,
             "clusters": summaries,
             "graph": graph,
@@ -575,6 +613,438 @@ def load_siem_config():
 
 
 # ---------------------------------------------------------------------------
+# NEW: Curated Graph Stories & Cluster Filtering API
+# ---------------------------------------------------------------------------
+
+@app.route("/api/clusters/filter", methods=["POST"])
+def filter_clusters():
+    """
+    Apply cluster filtering pipeline with scoring and semantic filters.
+    
+    Body: {
+        top_k: int (default 20),
+        strategy: str (top_k_size, top_k_severity, top_k_score, semantic, critical_assets),
+        target_tactics: List[str] (optional),
+        critical_assets: List[str] (optional),
+        resolution: str (campaign_summary, entity_ego_net, alert_drill_down)
+    }
+    """
+    try:
+        global _cluster_filter, _latest_results
+        
+        if _latest_results["correlated_df"] is None:
+            return jsonify({"success": False, "error": "No analysis has been run yet"}), 404
+        
+        body = request.get_json(silent=True) or {}
+        
+        # Get filter parameters
+        top_k = int(body.get("top_k", 20))
+        strategy = body.get("strategy", "top_k_score")
+        target_tactics = body.get("target_tactics", [])
+        critical_assets = body.get("critical_assets", [])
+        resolution = body.get("resolution", "campaign_summary")
+        
+        # Create or update cluster filter
+        _cluster_filter = create_cluster_filter(
+            top_k=top_k,
+            strategy=strategy,
+            target_tactics=target_tactics,
+            critical_assets=critical_assets,
+            resolution=resolution
+        )
+        
+        # Apply filtering
+        df = _latest_results["correlated_df"]
+        filtered_df, cluster_scores = _cluster_filter.filter_clusters(df)
+        
+        # Build graph at requested resolution
+        graph_data = _cluster_filter.build_graph_data(filtered_df, cluster_scores)
+        
+        # Get summary stats for filtered-out clusters
+        summary_stats = _cluster_filter.get_summary_stats(df, cluster_scores)
+        
+        # Update stored results
+        _latest_results["correlated_df"] = filtered_df
+        _latest_results["clusters_json"] = _build_cluster_summary(filtered_df)
+        _latest_results["stats"] = _compute_stats(filtered_df)
+        _latest_results["cluster_scores"] = [
+            {
+                "cluster_id": s.cluster_id,
+                "size": s.size,
+                "mean_severity": s.mean_severity,
+                "importance_score": s.importance_score,
+                "inclusion_reason": s.inclusion_reason,
+                "tactics": s.tactics,
+                "critical_assets": s.critical_assets
+            }
+            for s in cluster_scores
+        ]
+        
+        # Add filter info to stats
+        _latest_results["stats"]["filter_applied"] = True
+        _latest_results["stats"]["filter_strategy"] = strategy
+        _latest_results["stats"]["clusters_selected"] = len(cluster_scores)
+        _latest_results["stats"]["clusters_filtered"] = summary_stats["filtered_clusters"]
+        
+        return jsonify(_deep_convert({
+            "success": True,
+            "stats": _latest_results["stats"],
+            "clusters": _latest_results["clusters_json"],
+            "cluster_scores": _latest_results["cluster_scores"],
+            "graph": graph_data,
+            "summary_stats": summary_stats
+        }))
+        
+    except (ValueError, TypeError, KeyError) as e:
+        logger.error(traceback.format_exc())
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/graph/view/<view_type>", methods=["POST"])
+def get_graph_view(view_type):
+    """
+    Get multi-resolution graph view.
+    
+    View types:
+    - campaign_summary: hosts ↔ tactics (highest level)
+    - entity_ego_net: entity ego-network (drill-down)
+    - alert_drill_down: raw alert details (most detailed)
+    
+    Body: {
+        cluster_id: int (optional, for entity ego-net)
+    }
+    """
+    try:
+        global _cluster_filter, _lazy_graph_gen
+        
+        if _latest_results["correlated_df"] is None:
+            return jsonify({"success": False, "error": "No analysis has been run yet"}), 404
+        
+        body = request.get_json(silent=True) or {}
+        cluster_id = body.get("cluster_id")
+        
+        # Use lazy graph generator if parquet path exists
+        if _latest_results.get("parquet_path") and _lazy_graph_gen:
+            graph = _lazy_graph_gen.generate_graph(
+                cluster_id=cluster_id,
+                view_type=view_type,
+                max_nodes=body.get("max_nodes", 100)
+            )
+            return jsonify(_deep_convert({
+                "success": True,
+                "view_type": view_type,
+                "graph": graph
+            }))
+        
+        # Otherwise use cluster filter
+        if _cluster_filter is None:
+            _cluster_filter = create_cluster_filter(resolution=view_type)
+        
+        df = _latest_results["correlated_df"]
+        
+        # Filter to specific cluster if requested
+        if cluster_id is not None and "pred_cluster" in df.columns:
+            df = df[df["pred_cluster"] == cluster_id]
+        
+        graph = _cluster_filter.build_graph_data(
+            df, 
+            resolution=view_type
+        )
+        
+        return jsonify(_deep_convert({
+            "success": True,
+            "view_type": view_type,
+            "cluster_id": cluster_id,
+            "graph": graph
+        }))
+        
+    except (ValueError, TypeError, KeyError) as e:
+        logger.error(traceback.format_exc())
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# NEW: Knowledge Graph Enrichment API
+# ---------------------------------------------------------------------------
+
+@app.route("/api/enrichment/analyze", methods=["POST"])
+def analyze_enrichment():
+    """
+    Apply knowledge graph enrichment to clusters.
+    
+    Enriches with:
+    - MITRE ATT&CK technique matching
+    - Threat intel (CVE, malware families)
+    - Graph metrics (PageRank, betweenness)
+    - Campaign linkage detection
+    """
+    try:
+        global _kg_enricher, _latest_results
+        
+        if _latest_results["correlated_df"] is None:
+            return jsonify({"success": False, "error": "No analysis has been run yet"}), 404
+        
+        # Initialize enricher if needed
+        if _kg_enricher is None:
+            _kg_enricher = create_enricher()
+        
+        df = _latest_results["correlated_df"]
+        
+        # Apply enrichment
+        enriched_df, enrichments = _kg_enricher.enrich_clusters(df)
+        
+        # Get threat summary
+        threat_summary = _kg_enricher.get_threat_summary(enrichments)
+        
+        # Update stored results
+        _latest_results["correlated_df"] = enriched_df
+        _latest_results["kg_enrichments"] = [
+            {
+                "cluster_id": e.cluster_id,
+                "threat_score": e.combined_threat_score,
+                "pagerank": e.pagerank_score,
+                "betweenness": e.betweenness_score,
+                "campaign_linkage": e.campaign_linkage,
+                "matched_entities": [
+                    {"id": ent.entity_id, "name": ent.name, "type": ent.entity_type}
+                    for ent in e.matched_entities[:5]  # Top 5 matches
+                ],
+                "summary": e.enrichment_summary
+            }
+            for e in enrichments
+        ]
+        
+        # Update clusters with enrichment data
+        _latest_results["clusters_json"] = _build_cluster_summary(enriched_df)
+        
+        return jsonify(_deep_convert({
+            "success": True,
+            "threat_summary": threat_summary,
+            "enrichments": _latest_results["kg_enrichments"],
+            "clusters": _latest_results["clusters_json"]
+        }))
+        
+    except (ValueError, TypeError, KeyError) as e:
+        logger.error(traceback.format_exc())
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/enrichment/threat-intel", methods=["GET"])
+def get_threat_intel():
+    """Get available threat intelligence entities."""
+    try:
+        global _kg_enricher
+        
+        if _kg_enricher is None:
+            _kg_enricher = create_enricher()
+        
+        store = _kg_enricher.threat_store
+        
+        # Get entities by type
+        techniques = store.find_by_type("technique")
+        malware = store.find_by_type("malware")
+        cves = store.find_by_type("cve")
+        
+        return jsonify(_deep_convert({
+            "success": True,
+            "techniques": [{"id": e.entity_id, "name": e.name} for e in techniques],
+            "malware": [{"id": e.entity_id, "name": e.name} for e in malware],
+            "cves_count": len(cves)
+        }))
+        
+    except Exception as e:
+        logger.error(traceback.format_exc())
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
+# NEW: Report Generation API
+# ---------------------------------------------------------------------------
+
+@app.route("/api/report/generate", methods=["POST"])
+def generate_report():
+    """
+    Generate comprehensive analysis report in Markdown format.
+    
+    Body: {
+        include_graphs: bool (default True),
+        include_enrichment: bool (default True),
+        format: str (default "markdown")
+    }
+    
+    Returns report as downloadable markdown file.
+    """
+    try:
+        if _latest_results["correlated_df"] is None:
+            return jsonify({"success": False, "error": "No analysis has been run yet"}), 404
+        
+        body = request.get_json(silent=True) or {}
+        include_graphs = body.get("include_graphs", True)
+        include_enrichment = body.get("include_enrichment", True)
+        
+        df = _latest_results["correlated_df"]
+        stats = _latest_results.get("stats", {})
+        clusters = _latest_results.get("clusters_json", [])
+        scores = _latest_results.get("cluster_scores", [])
+        enrichments = _latest_results.get("kg_enrichments", [])
+        
+        # Build markdown report
+        report_lines = [
+            "# MITRE-CORE Analysis Report",
+            "",
+            f"**Generated:** {time.strftime('%Y-%m-%d %H:%M:%S')}",
+            "",
+            "## Executive Summary",
+            "",
+        ]
+        
+        # Stats section
+        report_lines.extend([
+            f"- **Total Events:** {stats.get('total_events', 0):,}",
+            f"- **Clusters Identified:** {stats.get('num_clusters', 0)}",
+            f"- **Correlation Method:** {stats.get('correlation_method', 'N/A')}",
+            f"- **Runtime:** {stats.get('runtime_seconds', 0):.2f}s",
+            ""
+        ])
+        
+        if stats.get("filter_applied"):
+            report_lines.extend([
+                f"- **Filter Strategy:** {stats.get('filter_strategy', 'N/A')}",
+                f"- **Clusters Selected:** {stats.get('clusters_selected', 0)}",
+                f"- **Clusters Filtered:** {stats.get('clusters_filtered', 0)}",
+                ""
+            ])
+        
+        # Cluster details section
+        report_lines.extend([
+            "## Detected Attack Clusters",
+            ""
+        ])
+        
+        for cluster in clusters[:20]:  # Top 20 clusters
+            cluster_id = cluster.get("cluster_id", 0)
+            report_lines.extend([
+                f"### Cluster {cluster_id}",
+                "",
+                f"- **Size:** {cluster.get('size', 0)} alerts",
+                f"- **Attack Types:** {', '.join(cluster.get('attack_types', [])[:5])}",
+                f"- **Tactics:** {', '.join(cluster.get('tactics', [])[:5])}",
+                ""
+            ])
+            
+            # Add cluster score if available
+            score_info = next(
+                (s for s in scores if s.get("cluster_id") == cluster_id), 
+                None
+            )
+            if score_info:
+                report_lines.extend([
+                    f"- **Importance Score:** {score_info.get('importance_score', 0):.3f}",
+                    f"- **Inclusion Reason:** {score_info.get('inclusion_reason', 'N/A')}",
+                    ""
+                ])
+            
+            # Add enrichment if available
+            if include_enrichment:
+                enrichment = next(
+                    (e for e in enrichments if e.get("cluster_id") == cluster_id),
+                    None
+                )
+                if enrichment:
+                    report_lines.extend([
+                        f"- **Threat Score:** {enrichment.get('threat_score', 0):.3f}",
+                        f"- **Campaign Linkage:** {enrichment.get('campaign_linkage', 'None')}",
+                        f"- **Matched Entities:** {', '.join(ent.get('name', '') for ent in enrichment.get('matched_entities', []))}",
+                        ""
+                    ])
+        
+        # Graph visualization section
+        if include_graphs:
+            report_lines.extend([
+                "## Graph Visualizations",
+                "",
+                "Multi-resolution graph views have been generated:",
+                "",
+                "1. **Campaign Summary View** - Shows hosts ↔ tactics relationships",
+                "2. **Entity Ego-Network** - Focused view around critical assets",
+                "3. **Alert Drill-Down** - Detailed alert-level connections",
+                ""
+            ])
+        
+        # Conclusion
+        report_lines.extend([
+            "## Recommendations",
+            "",
+            "Based on the analysis:",
+            ""
+        ])
+        
+        # Add recommendations based on findings
+        high_threat_clusters = [
+            c for c in (enrichments or []) 
+            if c.get("threat_score", 0) > 0.7
+        ]
+        if high_threat_clusters:
+            report_lines.append(
+                f"- **{len(high_threat_clusters)} high-threat clusters** detected. "
+                "Immediate investigation recommended."
+            )
+        
+        if scores:
+            high_importance = [s for s in scores if s.get("importance_score", 0) > 0.7]
+            report_lines.append(
+                f"- **{len(high_importance)} high-importance clusters** identified "
+                "for detailed review."
+            )
+        
+        report_lines.extend([
+            "",
+            "---",
+            "",
+            "*Report generated by MITRE-CORE Threat Correlation Engine*"
+        ])
+        
+        # Join and return
+        report_content = "\n".join(report_lines)
+        
+        # Save to file for download
+        report_filename = f"mitre_core_report_{time.strftime('%Y%m%d_%H%M%S')}.md"
+        report_path = Path("reports") / report_filename
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(report_content, encoding="utf-8")
+        
+        return jsonify({
+            "success": True,
+            "report": report_content,
+            "filename": report_filename,
+            "download_url": f"/api/report/download/{report_filename}"
+        })
+        
+    except (ValueError, TypeError, KeyError) as e:
+        logger.error(traceback.format_exc())
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+@app.route("/api/report/download/<filename>")
+def download_report(filename):
+    """Download generated report file."""
+    try:
+        report_path = Path("reports") / filename
+        if not report_path.exists():
+            return jsonify({"success": False, "error": "Report not found"}), 404
+        
+        return send_from_directory(
+            str(report_path.parent),
+            report_path.name,
+            as_attachment=True,
+            mimetype="text/markdown"
+        )
+    except Exception as e:
+        logger.error(traceback.format_exc())
+        return jsonify({"success": False, "error": str(e)}), 500
+
+
+# ---------------------------------------------------------------------------
 # Main
 # ---------------------------------------------------------------------------
 
@@ -584,6 +1054,8 @@ if __name__ == "__main__":
     os.makedirs(os.path.join(PROJECT_ROOT, "static"), exist_ok=True)
 
     port = int(os.environ.get("PORT", 5000))
-    debug_mode = os.environ.get("FLASK_DEBUG", "True").lower() in ("true", "1", "t")
+    debug_mode = os.environ.get("FLASK_DEBUG", "False").lower() in ("true", "1", "t")
+    if debug_mode:
+        logger.warning("Running in DEBUG mode - NOT recommended for production!")
     logger.info(f"Starting MITRE-CORE Dashboard on http://localhost:{port}")
     app.run(host="0.0.0.0", port=port, debug=debug_mode)

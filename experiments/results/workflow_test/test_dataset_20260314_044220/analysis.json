@@ -1,0 +1,2740 @@
+{
+  "dataset_name": "test_dataset",
+  "dataset_path": "Data\\Cleaned\\test_dataset.csv",
+  "total_events": 148,
+  "num_clusters": 65,
+  "avg_cluster_size": 2.276923076923077,
+  "max_cluster_size": "8",
+  "min_cluster_size": "1",
+  "correlation_method": "union_find",
+  "runtime_seconds": 0.05918097496032715,
+  "fallback_used": false,
+  "attack_types": [],
+  "tactics": [],
+  "clusters": [
+    {
+      "cluster_id": 0,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "118.198.182.211"
+      ],
+      "DestinationAddress": [
+        "171.177.122.192"
+      ],
+      "DeviceAddress": [
+        "125.116.211.249"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 1,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "160.136.241.128"
+      ],
+      "DestinationAddress": [
+        "132.50.196.69"
+      ],
+      "DeviceAddress": [
+        "118.198.182.211"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 2,
+      "size": 2,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "209.83.208.111"
+      ],
+      "DestinationAddress": [
+        "23.147.78.169"
+      ],
+      "DeviceAddress": [
+        "132.50.196.69"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 3,
+      "size": 2,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "209.83.208.111"
+      ],
+      "DestinationAddress": [
+        "246.118.96.67"
+      ],
+      "DeviceAddress": [
+        "78.132.134.89"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 4,
+      "size": 2,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "164.121.98.234"
+      ],
+      "DestinationAddress": [
+        "54.151.170.213"
+      ],
+      "DeviceAddress": [
+        "209.83.208.111"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 5,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "135.175.35.86"
+      ],
+      "DestinationAddress": [
+        "78.51.140.0"
+      ],
+      "DeviceAddress": [
+        "200.249.5.107"
+      ],
+      "avg_correlation": 3.1
+    },
+    {
+      "cluster_id": 6,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "18.202.125.103"
+      ],
+      "DestinationAddress": [
+        "78.51.140.0"
+      ],
+      "DeviceAddress": [
+        "169.224.135.50"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 7,
+      "size": 3,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "78.51.140.0"
+      ],
+      "DestinationAddress": [
+        "247.13.32.227"
+      ],
+      "DeviceAddress": [
+        "93.192.123.55"
+      ],
+      "avg_correlation": 1.3667
+    },
+    {
+      "cluster_id": 8,
+      "size": 1,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "20.113.116.177"
+      ],
+      "DestinationAddress": [
+        "93.192.123.55"
+      ],
+      "DeviceAddress": [
+        "138.244.17.98"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 9,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "173.251.99.223"
+      ],
+      "DestinationAddress": [
+        "65.193.60.60"
+      ],
+      "DeviceAddress": [
+        "247.74.232.45"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 10,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "173.251.99.223"
+      ],
+      "DestinationAddress": [
+        "39.134.255.81"
+      ],
+      "DeviceAddress": [
+        "102.79.128.35"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 11,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "52.192.221.122"
+      ],
+      "DestinationAddress": [
+        "39.134.255.81"
+      ],
+      "DeviceAddress": [
+        "108.39.210.213"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 12,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "165.25.137.226"
+      ],
+      "DestinationAddress": [
+        "34.71.101.27"
+      ],
+      "DeviceAddress": [
+        "25.252.59.141"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 13,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "244.133.8.178"
+      ],
+      "DestinationAddress": [
+        "130.111.207.126"
+      ],
+      "DeviceAddress": [
+        "25.252.59.141"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 14,
+      "size": 2,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "107.161.150.46"
+      ],
+      "DestinationAddress": [
+        "255.161.33.250"
+      ],
+      "DeviceAddress": [
+        "244.133.8.178"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 15,
+      "size": 2,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "150.140.87.24"
+      ],
+      "DestinationAddress": [
+        "124.154.28.88"
+      ],
+      "DeviceAddress": [
+        "255.161.33.250"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 16,
+      "size": 2,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "150.140.87.24"
+      ],
+      "DestinationAddress": [
+        "96.215.92.47"
+      ],
+      "DeviceAddress": [
+        "254.235.0.80"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 17,
+      "size": 2,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "74.96.246.74"
+      ],
+      "DestinationAddress": [
+        "69.199.194.133"
+      ],
+      "DeviceAddress": [
+        "96.215.92.47"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 18,
+      "size": 1,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "2.163.205.113"
+      ],
+      "DestinationAddress": [
+        "69.199.194.133"
+      ],
+      "DeviceAddress": [
+        "110.81.132.55"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 19,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "139.22.101.109"
+      ],
+      "DestinationAddress": [
+        "150.237.145.208"
+      ],
+      "DeviceAddress": [
+        "101.101.209.168"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 20,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "235.170.111.124"
+      ],
+      "DestinationAddress": [
+        "101.101.209.168"
+      ],
+      "DeviceAddress": [
+        "24.250.171.22"
+      ],
+      "avg_correlation": 14.3
+    },
+    {
+      "cluster_id": 21,
+      "size": 2,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "245.90.63.81"
+      ],
+      "DestinationAddress": [
+        "235.170.111.124"
+      ],
+      "DeviceAddress": [
+        "119.38.251.182"
+      ],
+      "avg_correlation": 24.8
+    },
+    {
+      "cluster_id": 22,
+      "size": 3,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Privilege Escalation - Exploiting Vulnerability"
+      ],
+      "tactics": [
+        "PRIVILEGE ESCALATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "18.37.137.168"
+      ],
+      "DestinationAddress": [
+        "235.170.111.124"
+      ],
+      "DeviceAddress": [
+        "37.167.45.121"
+      ],
+      "avg_correlation": 21.7667
+    },
+    {
+      "cluster_id": 23,
+      "size": 4,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "235.170.111.124"
+      ],
+      "DestinationAddress": [
+        "133.228.181.149"
+      ],
+      "DeviceAddress": [
+        "80.169.53.71"
+      ],
+      "avg_correlation": 19.0
+    },
+    {
+      "cluster_id": 24,
+      "size": 5,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "235.170.111.124"
+      ],
+      "DestinationAddress": [
+        "114.82.237.225"
+      ],
+      "DeviceAddress": [
+        "218.196.4.9"
+      ],
+      "avg_correlation": 16.5
+    },
+    {
+      "cluster_id": 25,
+      "size": 6,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "148.44.169.157"
+      ],
+      "DestinationAddress": [
+        "108.145.164.49"
+      ],
+      "DeviceAddress": [
+        "235.170.111.124"
+      ],
+      "avg_correlation": 14.2667
+    },
+    {
+      "cluster_id": 26,
+      "size": 7,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "235.170.111.124"
+      ],
+      "DestinationAddress": [
+        "28.54.116.85"
+      ],
+      "DeviceAddress": [
+        "227.153.37.70"
+      ],
+      "avg_correlation": 12.3
+    },
+    {
+      "cluster_id": 27,
+      "size": 8,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "130.112.151.238"
+      ],
+      "DestinationAddress": [
+        "70.245.145.19"
+      ],
+      "DeviceAddress": [
+        "235.170.111.124"
+      ],
+      "avg_correlation": 11.15
+    },
+    {
+      "cluster_id": 28,
+      "size": 2,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "70.245.145.19"
+      ],
+      "DestinationAddress": [
+        "36.77.154.108"
+      ],
+      "DeviceAddress": [
+        "248.197.132.110"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 29,
+      "size": 2,
+      "start_date": "2023-12-08 15:23:45.678000+05:30",
+      "end_date": "2023-12-08 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "86.130.40.214"
+      ],
+      "DestinationAddress": [
+        "26.216.174.91"
+      ],
+      "DeviceAddress": [
+        "70.245.145.19"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 30,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "66.85.251.249"
+      ],
+      "DestinationAddress": [
+        "179.237.201.94"
+      ],
+      "DeviceAddress": [
+        "138.98.152.62"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 31,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "66.85.251.249"
+      ],
+      "DestinationAddress": [
+        "249.4.72.175"
+      ],
+      "DeviceAddress": [
+        "14.140.7.112"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 32,
+      "size": 2,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "109.124.96.147"
+      ],
+      "DestinationAddress": [
+        "181.92.6.113"
+      ],
+      "DeviceAddress": [
+        "14.140.7.112"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 33,
+      "size": 3,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "209.153.127.134"
+      ],
+      "DestinationAddress": [
+        "14.140.7.112"
+      ],
+      "DeviceAddress": [
+        "147.16.206.12"
+      ],
+      "avg_correlation": 1.3667
+    },
+    {
+      "cluster_id": 34,
+      "size": 2,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "209.153.127.134"
+      ],
+      "DestinationAddress": [
+        "184.109.211.144"
+      ],
+      "DeviceAddress": [
+        "31.100.6.141"
+      ],
+      "avg_correlation": 3.5
+    },
+    {
+      "cluster_id": 35,
+      "size": 2,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "50.228.60.96"
+      ],
+      "DestinationAddress": [
+        "31.100.6.141"
+      ],
+      "DeviceAddress": [
+        "57.47.155.41"
+      ],
+      "avg_correlation": 4.8
+    },
+    {
+      "cluster_id": 36,
+      "size": 3,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "122.208.168.42"
+      ],
+      "DestinationAddress": [
+        "31.100.6.141"
+      ],
+      "DeviceAddress": [
+        "247.4.35.132"
+      ],
+      "avg_correlation": 3.3667
+    },
+    {
+      "cluster_id": 37,
+      "size": 4,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "31.100.6.141"
+      ],
+      "DestinationAddress": [
+        "72.7.202.87"
+      ],
+      "DeviceAddress": [
+        "7.66.198.58"
+      ],
+      "avg_correlation": 2.65
+    },
+    {
+      "cluster_id": 38,
+      "size": 2,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "60.161.162.91"
+      ],
+      "DestinationAddress": [
+        "72.7.202.87"
+      ],
+      "DeviceAddress": [
+        "118.61.50.244"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 39,
+      "size": 1,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "77.176.230.211"
+      ],
+      "DestinationAddress": [
+        "112.148.115.140"
+      ],
+      "DeviceAddress": [
+        "118.61.50.244"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 40,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "38.39.178.246"
+      ],
+      "DestinationAddress": [
+        "9.200.125.217"
+      ],
+      "DeviceAddress": [
+        "205.193.55.226"
+      ],
+      "avg_correlation": 3.1
+    },
+    {
+      "cluster_id": 41,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "9.200.125.217"
+      ],
+      "DestinationAddress": [
+        "157.39.158.144"
+      ],
+      "DeviceAddress": [
+        "176.79.152.47"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 42,
+      "size": 3,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Persistence - Registry Key Manipulation"
+      ],
+      "tactics": [
+        "PERSISTENCE"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "9.200.125.217"
+      ],
+      "DestinationAddress": [
+        "178.255.201.237"
+      ],
+      "DeviceAddress": [
+        "52.8.2.169"
+      ],
+      "avg_correlation": 1.3667
+    },
+    {
+      "cluster_id": 43,
+      "size": 2,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Defense Evasion - Signature-based Evasion"
+      ],
+      "tactics": [
+        "DEFENSE EVASION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "177.96.245.233"
+      ],
+      "DestinationAddress": [
+        "52.8.2.169"
+      ],
+      "DeviceAddress": [
+        "53.12.95.206"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 44,
+      "size": 2,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "177.96.245.233"
+      ],
+      "DestinationAddress": [
+        "218.12.41.229"
+      ],
+      "DeviceAddress": [
+        "20.76.78.31"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 45,
+      "size": 2,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "90.63.211.53"
+      ],
+      "DestinationAddress": [
+        "218.12.41.229"
+      ],
+      "DeviceAddress": [
+        "172.86.71.21"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 46,
+      "size": 3,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "239.122.38.151"
+      ],
+      "DestinationAddress": [
+        "196.146.96.168"
+      ],
+      "DeviceAddress": [
+        "218.12.41.229"
+      ],
+      "avg_correlation": 3.3667
+    },
+    {
+      "cluster_id": 47,
+      "size": 2,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "242.207.150.191"
+      ],
+      "DestinationAddress": [
+        "239.122.38.151"
+      ],
+      "DeviceAddress": [
+        "175.239.217.230"
+      ],
+      "avg_correlation": 4.8
+    },
+    {
+      "cluster_id": 48,
+      "size": 3,
+      "start_date": "2023-12-06 15:23:45.678000+05:30",
+      "end_date": "2023-12-06 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "239.122.38.151"
+      ],
+      "DestinationAddress": [
+        "56.59.200.212"
+      ],
+      "DeviceAddress": [
+        "65.48.192.174"
+      ],
+      "avg_correlation": 3.3667
+    },
+    {
+      "cluster_id": 49,
+      "size": 4,
+      "start_date": "2023-12-07 15:23:45.678000+05:30",
+      "end_date": "2023-12-07 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "243.104.13.82"
+      ],
+      "DestinationAddress": [
+        "181.247.48.56"
+      ],
+      "DeviceAddress": [
+        "239.122.38.151"
+      ],
+      "avg_correlation": 2.65
+    },
+    {
+      "cluster_id": 50,
+      "size": 1,
+      "start_date": "2023-12-08 15:23:45.678000+05:30",
+      "end_date": "2023-12-08 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "253.32.125.243"
+      ],
+      "DestinationAddress": [
+        "243.104.13.82"
+      ],
+      "DeviceAddress": [
+        "99.159.129.11"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 51,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "134.83.190.244"
+      ],
+      "DestinationAddress": [
+        "124.115.117.101"
+      ],
+      "DeviceAddress": [
+        "243.56.230.191"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 52,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "33.228.87.56"
+      ],
+      "DestinationAddress": [
+        "212.155.61.224"
+      ],
+      "DeviceAddress": [
+        "124.115.117.101"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 53,
+      "size": 1,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "212.155.61.224"
+      ],
+      "DestinationAddress": [
+        "49.169.131.178"
+      ],
+      "DeviceAddress": [
+        "33.126.67.200"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 54,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Connection to Malicious URL for malware_download"
+      ],
+      "tactics": [
+        "INITIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "96.190.180.70"
+      ],
+      "DestinationAddress": [
+        "53.239.97.98"
+      ],
+      "DeviceAddress": [
+        "56.112.17.130"
+      ],
+      "avg_correlation": 6.5
+    },
+    {
+      "cluster_id": 55,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "128.38.13.184"
+      ],
+      "DestinationAddress": [
+        "208.97.0.255"
+      ],
+      "DeviceAddress": [
+        "53.239.97.98"
+      ],
+      "avg_correlation": 4.8
+    },
+    {
+      "cluster_id": 56,
+      "size": 3,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Credential Access - Password Guessing"
+      ],
+      "tactics": [
+        "CREDENTIAL ACCESS"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "53.239.97.98"
+      ],
+      "DestinationAddress": [
+        "29.149.5.238"
+      ],
+      "DeviceAddress": [
+        "251.35.162.76"
+      ],
+      "avg_correlation": 3.3667
+    },
+    {
+      "cluster_id": 57,
+      "size": 4,
+      "start_date": "2023-12-01 15:23:45.678000+05:30",
+      "end_date": "2023-12-01 15:23:45.678000+05:30",
+      "attack_types": [
+        "Discovery - Network Service Scanning"
+      ],
+      "tactics": [
+        "DISCOVERY"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "53.239.97.98"
+      ],
+      "DestinationAddress": [
+        "129.15.149.195"
+      ],
+      "DeviceAddress": [
+        "9.170.134.164"
+      ],
+      "avg_correlation": 2.65
+    },
+    {
+      "cluster_id": 58,
+      "size": 2,
+      "start_date": "2023-12-02 15:23:45.678000+05:30",
+      "end_date": "2023-12-02 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "35.118.255.107"
+      ],
+      "DestinationAddress": [
+        "25.24.117.6"
+      ],
+      "DeviceAddress": [
+        "129.15.149.195"
+      ],
+      "avg_correlation": 0.5
+    },
+    {
+      "cluster_id": 59,
+      "size": 2,
+      "start_date": "2023-12-03 15:23:45.678000+05:30",
+      "end_date": "2023-12-03 15:23:45.678000+05:30",
+      "attack_types": [
+        "Collection - Data Exfiltration via Email"
+      ],
+      "tactics": [
+        "COLLECTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "70.157.180.52"
+      ],
+      "DestinationAddress": [
+        "146.168.227.174"
+      ],
+      "DeviceAddress": [
+        "25.24.117.6"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 60,
+      "size": 2,
+      "start_date": "2023-12-04 15:23:45.678000+05:30",
+      "end_date": "2023-12-04 15:23:45.678000+05:30",
+      "attack_types": [
+        "Command and Control - Communication over Tor Network"
+      ],
+      "tactics": [
+        "COMMAND AND CONTROL"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "146.168.227.174"
+      ],
+      "DestinationAddress": [
+        "167.95.244.198"
+      ],
+      "DeviceAddress": [
+        "122.42.118.133"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 61,
+      "size": 2,
+      "start_date": "2023-12-05 15:23:45.678000+05:30",
+      "end_date": "2023-12-05 15:23:45.678000+05:30",
+      "attack_types": [
+        "Impact - Denial-of-Service (DoS) Attack"
+      ],
+      "tactics": [
+        "IMPACT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "251.92.159.100"
+      ],
+      "DestinationAddress": [
+        "83.220.70.145"
+      ],
+      "DeviceAddress": [
+        "146.168.227.174"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 62,
+      "size": 1,
+      "start_date": "2023-11-28 15:23:45.678000+05:30",
+      "end_date": "2023-11-28 15:23:45.678000+05:30",
+      "attack_types": [
+        "Event Triggered Execution"
+      ],
+      "tactics": [
+        "EXECUTION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "136.70.162.73"
+      ],
+      "DestinationAddress": [
+        "172.24.113.21"
+      ],
+      "DeviceAddress": [
+        "92.176.108.130"
+      ],
+      "avg_correlation": 3.1
+    },
+    {
+      "cluster_id": 63,
+      "size": 2,
+      "start_date": "2023-11-29 15:23:45.678000+05:30",
+      "end_date": "2023-11-29 15:23:45.678000+05:30",
+      "attack_types": [
+        "Lateral Movement - Remote Desktop Protocol (RDP) Exploitation"
+      ],
+      "tactics": [
+        "LATERAL MOVEMENT"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "211.41.61.118"
+      ],
+      "DestinationAddress": [
+        "222.249.73.48"
+      ],
+      "DeviceAddress": [
+        "136.70.162.73"
+      ],
+      "avg_correlation": 1.8
+    },
+    {
+      "cluster_id": 64,
+      "size": 2,
+      "start_date": "2023-11-30 15:23:45.678000+05:30",
+      "end_date": "2023-11-30 15:23:45.678000+05:30",
+      "attack_types": [
+        "Exfiltration - File Transfer to External Server"
+      ],
+      "tactics": [
+        "EXFILTRATION"
+      ],
+      "stage": "Other",
+      "SourceAddress": [
+        "118.49.229.69"
+      ],
+      "DestinationAddress": [
+        "43.216.131.55"
+      ],
+      "DeviceAddress": [
+        "136.70.162.73"
+      ],
+      "avg_correlation": 1.8
+    }
+  ],
+  "graph_data": {
+    "nodes": [
+      {
+        "id": 0,
+        "label": "Cluster 0 | Connection to Malicious URL for malware_download | Src: 118.198.182.211",
+        "cluster": 0,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 1,
+        "label": "Cluster 1 | Persistence - Registry Key Manipulation | Src: 160.136.241.128",
+        "cluster": 1,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 2,
+        "label": "Cluster 1 | Persistence - Registry Key Manipulation | Src: 160.136.241.128",
+        "cluster": 1,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 3,
+        "label": "Cluster 2 | Credential Access - Password Guessing | Src: 209.83.208.111",
+        "cluster": 2,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 4,
+        "label": "Cluster 2 | Credential Access - Password Guessing | Src: 209.83.208.111",
+        "cluster": 2,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 5,
+        "label": "Cluster 3 | Command and Control - Communication over Tor Network | Src: 209.83.208.111",
+        "cluster": 3,
+        "color": "#d62728"
+      },
+      {
+        "id": 6,
+        "label": "Cluster 4 | Exfiltration - File Transfer to External Server | Src: 164.121.98.234",
+        "cluster": 4,
+        "color": "#9467bd"
+      },
+      {
+        "id": 7,
+        "label": "Cluster 3 | Command and Control - Communication over Tor Network | Src: 209.83.208.111",
+        "cluster": 3,
+        "color": "#d62728"
+      },
+      {
+        "id": 8,
+        "label": "Cluster 4 | Exfiltration - File Transfer to External Server | Src: 164.121.98.234",
+        "cluster": 4,
+        "color": "#9467bd"
+      },
+      {
+        "id": 9,
+        "label": "Cluster 5 | Event Triggered Execution | Src: 135.175.35.86",
+        "cluster": 5,
+        "color": "#8c564b"
+      },
+      {
+        "id": 10,
+        "label": "Cluster 6 | Persistence - Registry Key Manipulation | Src: 18.202.125.103",
+        "cluster": 6,
+        "color": "#e377c2"
+      },
+      {
+        "id": 11,
+        "label": "Cluster 7 | Credential Access - Password Guessing | Src: 78.51.140.0",
+        "cluster": 7,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 12,
+        "label": "Cluster 6 | Persistence - Registry Key Manipulation | Src: 18.202.125.103",
+        "cluster": 6,
+        "color": "#e377c2"
+      },
+      {
+        "id": 13,
+        "label": "Cluster 7 | Credential Access - Password Guessing | Src: 78.51.140.0",
+        "cluster": 7,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 14,
+        "label": "Cluster 7 | Credential Access - Password Guessing | Src: 78.51.140.0",
+        "cluster": 7,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 15,
+        "label": "Cluster 8 | Command and Control - Communication over Tor Network | Src: 20.113.116.177",
+        "cluster": 8,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 16,
+        "label": "Cluster 9 | Defense Evasion - Signature-based Evasion | Src: 173.251.99.223",
+        "cluster": 9,
+        "color": "#17becf"
+      },
+      {
+        "id": 17,
+        "label": "Cluster 10 | Exfiltration - File Transfer to External Server | Src: 173.251.99.223",
+        "cluster": 10,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 18,
+        "label": "Cluster 10 | Exfiltration - File Transfer to External Server | Src: 173.251.99.223",
+        "cluster": 10,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 19,
+        "label": "Cluster 11 | Impact - Denial-of-Service (DoS) Attack | Src: 52.192.221.122",
+        "cluster": 11,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 20,
+        "label": "Cluster 12 | Connection to Malicious URL for malware_download | Src: 165.25.137.226",
+        "cluster": 12,
+        "color": "#98df8a"
+      },
+      {
+        "id": 21,
+        "label": "Cluster 13 | Privilege Escalation - Exploiting Vulnerability | Src: 244.133.8.178",
+        "cluster": 13,
+        "color": "#ff9896"
+      },
+      {
+        "id": 22,
+        "label": "Cluster 13 | Privilege Escalation - Exploiting Vulnerability | Src: 244.133.8.178",
+        "cluster": 13,
+        "color": "#ff9896"
+      },
+      {
+        "id": 23,
+        "label": "Cluster 14 | Defense Evasion - Signature-based Evasion | Src: 107.161.150.46",
+        "cluster": 14,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 24,
+        "label": "Cluster 14 | Defense Evasion - Signature-based Evasion | Src: 107.161.150.46",
+        "cluster": 14,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 25,
+        "label": "Cluster 15 | Credential Access - Password Guessing | Src: 150.140.87.24",
+        "cluster": 15,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 26,
+        "label": "Cluster 15 | Credential Access - Password Guessing | Src: 150.140.87.24",
+        "cluster": 15,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 27,
+        "label": "Cluster 16 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 150.140.87.24",
+        "cluster": 16,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 28,
+        "label": "Cluster 16 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 150.140.87.24",
+        "cluster": 16,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 29,
+        "label": "Cluster 17 | Collection - Data Exfiltration via Email | Src: 74.96.246.74",
+        "cluster": 17,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 30,
+        "label": "Cluster 17 | Collection - Data Exfiltration via Email | Src: 74.96.246.74",
+        "cluster": 17,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 31,
+        "label": "Cluster 18 | Exfiltration - File Transfer to External Server | Src: 2.163.205.113",
+        "cluster": 18,
+        "color": "#d62728"
+      },
+      {
+        "id": 32,
+        "label": "Cluster 19 | Connection to Malicious URL for malware_download | Src: 139.22.101.109",
+        "cluster": 19,
+        "color": "#9467bd"
+      },
+      {
+        "id": 33,
+        "label": "Cluster 20 | Event Triggered Execution | Src: 235.170.111.124",
+        "cluster": 20,
+        "color": "#8c564b"
+      },
+      {
+        "id": 34,
+        "label": "Cluster 20 | Event Triggered Execution | Src: 235.170.111.124",
+        "cluster": 20,
+        "color": "#8c564b"
+      },
+      {
+        "id": 35,
+        "label": "Cluster 21 | Persistence - Registry Key Manipulation | Src: 245.90.63.81",
+        "cluster": 21,
+        "color": "#e377c2"
+      },
+      {
+        "id": 36,
+        "label": "Cluster 22 | Privilege Escalation - Exploiting Vulnerability | Src: 18.37.137.168",
+        "cluster": 22,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 37,
+        "label": "Cluster 23 | Defense Evasion - Signature-based Evasion | Src: 235.170.111.124",
+        "cluster": 23,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 38,
+        "label": "Cluster 24 | Credential Access - Password Guessing | Src: 235.170.111.124",
+        "cluster": 24,
+        "color": "#17becf"
+      },
+      {
+        "id": 39,
+        "label": "Cluster 25 | Discovery - Network Service Scanning | Src: 148.44.169.157",
+        "cluster": 25,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 40,
+        "label": "Cluster 26 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 235.170.111.124",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 41,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 130.112.151.238",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 42,
+        "label": "Cluster 21 | Persistence - Registry Key Manipulation | Src: 245.90.63.81",
+        "cluster": 21,
+        "color": "#e377c2"
+      },
+      {
+        "id": 43,
+        "label": "Cluster 22 | Privilege Escalation - Exploiting Vulnerability | Src: 18.37.137.168",
+        "cluster": 22,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 44,
+        "label": "Cluster 23 | Defense Evasion - Signature-based Evasion | Src: 235.170.111.124",
+        "cluster": 23,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 45,
+        "label": "Cluster 24 | Credential Access - Password Guessing | Src: 235.170.111.124",
+        "cluster": 24,
+        "color": "#17becf"
+      },
+      {
+        "id": 46,
+        "label": "Cluster 25 | Discovery - Network Service Scanning | Src: 148.44.169.157",
+        "cluster": 25,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 47,
+        "label": "Cluster 26 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 235.170.111.124",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 48,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 130.112.151.238",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 49,
+        "label": "Cluster 22 | Privilege Escalation - Exploiting Vulnerability | Src: 18.37.137.168",
+        "cluster": 22,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 50,
+        "label": "Cluster 23 | Defense Evasion - Signature-based Evasion | Src: 235.170.111.124",
+        "cluster": 23,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 51,
+        "label": "Cluster 24 | Credential Access - Password Guessing | Src: 235.170.111.124",
+        "cluster": 24,
+        "color": "#17becf"
+      },
+      {
+        "id": 52,
+        "label": "Cluster 25 | Discovery - Network Service Scanning | Src: 148.44.169.157",
+        "cluster": 25,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 53,
+        "label": "Cluster 26 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 235.170.111.124",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 54,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 130.112.151.238",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 55,
+        "label": "Cluster 23 | Defense Evasion - Signature-based Evasion | Src: 235.170.111.124",
+        "cluster": 23,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 56,
+        "label": "Cluster 24 | Credential Access - Password Guessing | Src: 235.170.111.124",
+        "cluster": 24,
+        "color": "#17becf"
+      },
+      {
+        "id": 57,
+        "label": "Cluster 25 | Discovery - Network Service Scanning | Src: 148.44.169.157",
+        "cluster": 25,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 58,
+        "label": "Cluster 26 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 235.170.111.124",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 59,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 130.112.151.238",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 60,
+        "label": "Cluster 24 | Credential Access - Password Guessing | Src: 235.170.111.124",
+        "cluster": 24,
+        "color": "#17becf"
+      },
+      {
+        "id": 61,
+        "label": "Cluster 25 | Discovery - Network Service Scanning | Src: 148.44.169.157",
+        "cluster": 25,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 62,
+        "label": "Cluster 26 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 235.170.111.124",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 63,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 130.112.151.238",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 64,
+        "label": "Cluster 25 | Discovery - Network Service Scanning | Src: 148.44.169.157",
+        "cluster": 25,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 65,
+        "label": "Cluster 26 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 235.170.111.124",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 66,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 130.112.151.238",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 67,
+        "label": "Cluster 26 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 235.170.111.124",
+        "cluster": 26,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 68,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 130.112.151.238",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 69,
+        "label": "Cluster 27 | Command and Control - Communication over Tor Network | Src: 130.112.151.238",
+        "cluster": 27,
+        "color": "#98df8a"
+      },
+      {
+        "id": 70,
+        "label": "Cluster 28 | Exfiltration - File Transfer to External Server | Src: 70.245.145.19",
+        "cluster": 28,
+        "color": "#ff9896"
+      },
+      {
+        "id": 71,
+        "label": "Cluster 29 | Impact - Denial-of-Service (DoS) Attack | Src: 86.130.40.214",
+        "cluster": 29,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 72,
+        "label": "Cluster 28 | Exfiltration - File Transfer to External Server | Src: 70.245.145.19",
+        "cluster": 28,
+        "color": "#ff9896"
+      },
+      {
+        "id": 73,
+        "label": "Cluster 29 | Impact - Denial-of-Service (DoS) Attack | Src: 86.130.40.214",
+        "cluster": 29,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 74,
+        "label": "Cluster 30 | Connection to Malicious URL for malware_download | Src: 66.85.251.249",
+        "cluster": 30,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 75,
+        "label": "Cluster 31 | Event Triggered Execution | Src: 66.85.251.249",
+        "cluster": 31,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 76,
+        "label": "Cluster 31 | Event Triggered Execution | Src: 66.85.251.249",
+        "cluster": 31,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 77,
+        "label": "Cluster 32 | Persistence - Registry Key Manipulation | Src: 109.124.96.147",
+        "cluster": 32,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 78,
+        "label": "Cluster 33 | Defense Evasion - Signature-based Evasion | Src: 209.153.127.134",
+        "cluster": 33,
+        "color": "#d62728"
+      },
+      {
+        "id": 79,
+        "label": "Cluster 32 | Persistence - Registry Key Manipulation | Src: 109.124.96.147",
+        "cluster": 32,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 80,
+        "label": "Cluster 33 | Defense Evasion - Signature-based Evasion | Src: 209.153.127.134",
+        "cluster": 33,
+        "color": "#d62728"
+      },
+      {
+        "id": 81,
+        "label": "Cluster 33 | Defense Evasion - Signature-based Evasion | Src: 209.153.127.134",
+        "cluster": 33,
+        "color": "#d62728"
+      },
+      {
+        "id": 82,
+        "label": "Cluster 34 | Discovery - Network Service Scanning | Src: 209.153.127.134",
+        "cluster": 34,
+        "color": "#9467bd"
+      },
+      {
+        "id": 83,
+        "label": "Cluster 34 | Discovery - Network Service Scanning | Src: 209.153.127.134",
+        "cluster": 34,
+        "color": "#9467bd"
+      },
+      {
+        "id": 84,
+        "label": "Cluster 35 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 50.228.60.96",
+        "cluster": 35,
+        "color": "#8c564b"
+      },
+      {
+        "id": 85,
+        "label": "Cluster 36 | Collection - Data Exfiltration via Email | Src: 122.208.168.42",
+        "cluster": 36,
+        "color": "#e377c2"
+      },
+      {
+        "id": 86,
+        "label": "Cluster 37 | Command and Control - Communication over Tor Network | Src: 31.100.6.141",
+        "cluster": 37,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 87,
+        "label": "Cluster 35 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 50.228.60.96",
+        "cluster": 35,
+        "color": "#8c564b"
+      },
+      {
+        "id": 88,
+        "label": "Cluster 36 | Collection - Data Exfiltration via Email | Src: 122.208.168.42",
+        "cluster": 36,
+        "color": "#e377c2"
+      },
+      {
+        "id": 89,
+        "label": "Cluster 37 | Command and Control - Communication over Tor Network | Src: 31.100.6.141",
+        "cluster": 37,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 90,
+        "label": "Cluster 36 | Collection - Data Exfiltration via Email | Src: 122.208.168.42",
+        "cluster": 36,
+        "color": "#e377c2"
+      },
+      {
+        "id": 91,
+        "label": "Cluster 37 | Command and Control - Communication over Tor Network | Src: 31.100.6.141",
+        "cluster": 37,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 92,
+        "label": "Cluster 37 | Command and Control - Communication over Tor Network | Src: 31.100.6.141",
+        "cluster": 37,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 93,
+        "label": "Cluster 38 | Exfiltration - File Transfer to External Server | Src: 60.161.162.91",
+        "cluster": 38,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 94,
+        "label": "Cluster 38 | Exfiltration - File Transfer to External Server | Src: 60.161.162.91",
+        "cluster": 38,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 95,
+        "label": "Cluster 39 | Impact - Denial-of-Service (DoS) Attack | Src: 77.176.230.211",
+        "cluster": 39,
+        "color": "#17becf"
+      },
+      {
+        "id": 96,
+        "label": "Cluster 40 | Connection to Malicious URL for malware_download | Src: 38.39.178.246",
+        "cluster": 40,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 97,
+        "label": "Cluster 41 | Event Triggered Execution | Src: 9.200.125.217",
+        "cluster": 41,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 98,
+        "label": "Cluster 42 | Persistence - Registry Key Manipulation | Src: 9.200.125.217",
+        "cluster": 42,
+        "color": "#98df8a"
+      },
+      {
+        "id": 99,
+        "label": "Cluster 41 | Event Triggered Execution | Src: 9.200.125.217",
+        "cluster": 41,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 100,
+        "label": "Cluster 42 | Persistence - Registry Key Manipulation | Src: 9.200.125.217",
+        "cluster": 42,
+        "color": "#98df8a"
+      },
+      {
+        "id": 101,
+        "label": "Cluster 42 | Persistence - Registry Key Manipulation | Src: 9.200.125.217",
+        "cluster": 42,
+        "color": "#98df8a"
+      },
+      {
+        "id": 102,
+        "label": "Cluster 43 | Defense Evasion - Signature-based Evasion | Src: 177.96.245.233",
+        "cluster": 43,
+        "color": "#ff9896"
+      },
+      {
+        "id": 103,
+        "label": "Cluster 43 | Defense Evasion - Signature-based Evasion | Src: 177.96.245.233",
+        "cluster": 43,
+        "color": "#ff9896"
+      },
+      {
+        "id": 104,
+        "label": "Cluster 44 | Credential Access - Password Guessing | Src: 177.96.245.233",
+        "cluster": 44,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 105,
+        "label": "Cluster 44 | Credential Access - Password Guessing | Src: 177.96.245.233",
+        "cluster": 44,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 106,
+        "label": "Cluster 45 | Discovery - Network Service Scanning | Src: 90.63.211.53",
+        "cluster": 45,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 107,
+        "label": "Cluster 46 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 239.122.38.151",
+        "cluster": 46,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 108,
+        "label": "Cluster 45 | Discovery - Network Service Scanning | Src: 90.63.211.53",
+        "cluster": 45,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 109,
+        "label": "Cluster 46 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 239.122.38.151",
+        "cluster": 46,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 110,
+        "label": "Cluster 46 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 239.122.38.151",
+        "cluster": 46,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 111,
+        "label": "Cluster 47 | Collection - Data Exfiltration via Email | Src: 242.207.150.191",
+        "cluster": 47,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 112,
+        "label": "Cluster 48 | Command and Control - Communication over Tor Network | Src: 239.122.38.151",
+        "cluster": 48,
+        "color": "#d62728"
+      },
+      {
+        "id": 113,
+        "label": "Cluster 49 | Exfiltration - File Transfer to External Server | Src: 243.104.13.82",
+        "cluster": 49,
+        "color": "#9467bd"
+      },
+      {
+        "id": 114,
+        "label": "Cluster 47 | Collection - Data Exfiltration via Email | Src: 242.207.150.191",
+        "cluster": 47,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 115,
+        "label": "Cluster 48 | Command and Control - Communication over Tor Network | Src: 239.122.38.151",
+        "cluster": 48,
+        "color": "#d62728"
+      },
+      {
+        "id": 116,
+        "label": "Cluster 49 | Exfiltration - File Transfer to External Server | Src: 243.104.13.82",
+        "cluster": 49,
+        "color": "#9467bd"
+      },
+      {
+        "id": 117,
+        "label": "Cluster 48 | Command and Control - Communication over Tor Network | Src: 239.122.38.151",
+        "cluster": 48,
+        "color": "#d62728"
+      },
+      {
+        "id": 118,
+        "label": "Cluster 49 | Exfiltration - File Transfer to External Server | Src: 243.104.13.82",
+        "cluster": 49,
+        "color": "#9467bd"
+      },
+      {
+        "id": 119,
+        "label": "Cluster 49 | Exfiltration - File Transfer to External Server | Src: 243.104.13.82",
+        "cluster": 49,
+        "color": "#9467bd"
+      },
+      {
+        "id": 120,
+        "label": "Cluster 50 | Impact - Denial-of-Service (DoS) Attack | Src: 253.32.125.243",
+        "cluster": 50,
+        "color": "#8c564b"
+      },
+      {
+        "id": 121,
+        "label": "Cluster 51 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 134.83.190.244",
+        "cluster": 51,
+        "color": "#e377c2"
+      },
+      {
+        "id": 122,
+        "label": "Cluster 52 | Command and Control - Communication over Tor Network | Src: 33.228.87.56",
+        "cluster": 52,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 123,
+        "label": "Cluster 52 | Command and Control - Communication over Tor Network | Src: 33.228.87.56",
+        "cluster": 52,
+        "color": "#7f7f7f"
+      },
+      {
+        "id": 124,
+        "label": "Cluster 53 | Impact - Denial-of-Service (DoS) Attack | Src: 212.155.61.224",
+        "cluster": 53,
+        "color": "#bcbd22"
+      },
+      {
+        "id": 125,
+        "label": "Cluster 54 | Connection to Malicious URL for malware_download | Src: 96.190.180.70",
+        "cluster": 54,
+        "color": "#17becf"
+      },
+      {
+        "id": 126,
+        "label": "Cluster 55 | Event Triggered Execution | Src: 128.38.13.184",
+        "cluster": 55,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 127,
+        "label": "Cluster 56 | Credential Access - Password Guessing | Src: 53.239.97.98",
+        "cluster": 56,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 128,
+        "label": "Cluster 57 | Discovery - Network Service Scanning | Src: 53.239.97.98",
+        "cluster": 57,
+        "color": "#98df8a"
+      },
+      {
+        "id": 129,
+        "label": "Cluster 55 | Event Triggered Execution | Src: 128.38.13.184",
+        "cluster": 55,
+        "color": "#aec7e8"
+      },
+      {
+        "id": 130,
+        "label": "Cluster 56 | Credential Access - Password Guessing | Src: 53.239.97.98",
+        "cluster": 56,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 131,
+        "label": "Cluster 57 | Discovery - Network Service Scanning | Src: 53.239.97.98",
+        "cluster": 57,
+        "color": "#98df8a"
+      },
+      {
+        "id": 132,
+        "label": "Cluster 56 | Credential Access - Password Guessing | Src: 53.239.97.98",
+        "cluster": 56,
+        "color": "#ffbb78"
+      },
+      {
+        "id": 133,
+        "label": "Cluster 57 | Discovery - Network Service Scanning | Src: 53.239.97.98",
+        "cluster": 57,
+        "color": "#98df8a"
+      },
+      {
+        "id": 134,
+        "label": "Cluster 57 | Discovery - Network Service Scanning | Src: 53.239.97.98",
+        "cluster": 57,
+        "color": "#98df8a"
+      },
+      {
+        "id": 135,
+        "label": "Cluster 58 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 35.118.255.107",
+        "cluster": 58,
+        "color": "#ff9896"
+      },
+      {
+        "id": 136,
+        "label": "Cluster 58 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 35.118.255.107",
+        "cluster": 58,
+        "color": "#ff9896"
+      },
+      {
+        "id": 137,
+        "label": "Cluster 59 | Collection - Data Exfiltration via Email | Src: 70.157.180.52",
+        "cluster": 59,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 138,
+        "label": "Cluster 59 | Collection - Data Exfiltration via Email | Src: 70.157.180.52",
+        "cluster": 59,
+        "color": "#c5b0d5"
+      },
+      {
+        "id": 139,
+        "label": "Cluster 60 | Command and Control - Communication over Tor Network | Src: 146.168.227.174",
+        "cluster": 60,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 140,
+        "label": "Cluster 61 | Impact - Denial-of-Service (DoS) Attack | Src: 251.92.159.100",
+        "cluster": 61,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 141,
+        "label": "Cluster 60 | Command and Control - Communication over Tor Network | Src: 146.168.227.174",
+        "cluster": 60,
+        "color": "#1f77b4"
+      },
+      {
+        "id": 142,
+        "label": "Cluster 61 | Impact - Denial-of-Service (DoS) Attack | Src: 251.92.159.100",
+        "cluster": 61,
+        "color": "#ff7f0e"
+      },
+      {
+        "id": 143,
+        "label": "Cluster 62 | Event Triggered Execution | Src: 136.70.162.73",
+        "cluster": 62,
+        "color": "#2ca02c"
+      },
+      {
+        "id": 144,
+        "label": "Cluster 63 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 211.41.61.118",
+        "cluster": 63,
+        "color": "#d62728"
+      },
+      {
+        "id": 145,
+        "label": "Cluster 64 | Exfiltration - File Transfer to External Server | Src: 118.49.229.69",
+        "cluster": 64,
+        "color": "#9467bd"
+      },
+      {
+        "id": 146,
+        "label": "Cluster 63 | Lateral Movement - Remote Desktop Protocol (RDP) Exploitation | Src: 211.41.61.118",
+        "cluster": 63,
+        "color": "#d62728"
+      },
+      {
+        "id": 147,
+        "label": "Cluster 64 | Exfiltration - File Transfer to External Server | Src: 118.49.229.69",
+        "cluster": 64,
+        "color": "#9467bd"
+      }
+    ],
+    "edges": [
+      {
+        "source": 1,
+        "target": 2
+      },
+      {
+        "source": 3,
+        "target": 4
+      },
+      {
+        "source": 5,
+        "target": 7
+      },
+      {
+        "source": 6,
+        "target": 8
+      },
+      {
+        "source": 10,
+        "target": 12
+      },
+      {
+        "source": 11,
+        "target": 13
+      },
+      {
+        "source": 13,
+        "target": 14
+      },
+      {
+        "source": 17,
+        "target": 18
+      },
+      {
+        "source": 21,
+        "target": 22
+      },
+      {
+        "source": 23,
+        "target": 24
+      },
+      {
+        "source": 25,
+        "target": 26
+      },
+      {
+        "source": 27,
+        "target": 28
+      },
+      {
+        "source": 29,
+        "target": 30
+      },
+      {
+        "source": 33,
+        "target": 34
+      },
+      {
+        "source": 35,
+        "target": 42
+      },
+      {
+        "source": 36,
+        "target": 43
+      },
+      {
+        "source": 43,
+        "target": 49
+      },
+      {
+        "source": 37,
+        "target": 44
+      },
+      {
+        "source": 44,
+        "target": 50
+      },
+      {
+        "source": 50,
+        "target": 55
+      },
+      {
+        "source": 38,
+        "target": 45
+      },
+      {
+        "source": 45,
+        "target": 51
+      },
+      {
+        "source": 51,
+        "target": 56
+      },
+      {
+        "source": 56,
+        "target": 60
+      },
+      {
+        "source": 39,
+        "target": 46
+      },
+      {
+        "source": 46,
+        "target": 52
+      },
+      {
+        "source": 52,
+        "target": 57
+      },
+      {
+        "source": 57,
+        "target": 61
+      },
+      {
+        "source": 61,
+        "target": 64
+      },
+      {
+        "source": 40,
+        "target": 47
+      },
+      {
+        "source": 47,
+        "target": 53
+      },
+      {
+        "source": 53,
+        "target": 58
+      },
+      {
+        "source": 58,
+        "target": 62
+      },
+      {
+        "source": 62,
+        "target": 65
+      },
+      {
+        "source": 65,
+        "target": 67
+      },
+      {
+        "source": 41,
+        "target": 48
+      },
+      {
+        "source": 48,
+        "target": 54
+      },
+      {
+        "source": 54,
+        "target": 59
+      },
+      {
+        "source": 59,
+        "target": 63
+      },
+      {
+        "source": 63,
+        "target": 66
+      },
+      {
+        "source": 66,
+        "target": 68
+      },
+      {
+        "source": 68,
+        "target": 69
+      },
+      {
+        "source": 70,
+        "target": 72
+      },
+      {
+        "source": 71,
+        "target": 73
+      },
+      {
+        "source": 75,
+        "target": 76
+      },
+      {
+        "source": 77,
+        "target": 79
+      },
+      {
+        "source": 78,
+        "target": 80
+      },
+      {
+        "source": 80,
+        "target": 81
+      },
+      {
+        "source": 82,
+        "target": 83
+      },
+      {
+        "source": 84,
+        "target": 87
+      },
+      {
+        "source": 85,
+        "target": 88
+      },
+      {
+        "source": 88,
+        "target": 90
+      },
+      {
+        "source": 86,
+        "target": 89
+      },
+      {
+        "source": 89,
+        "target": 91
+      },
+      {
+        "source": 91,
+        "target": 92
+      },
+      {
+        "source": 93,
+        "target": 94
+      },
+      {
+        "source": 97,
+        "target": 99
+      },
+      {
+        "source": 98,
+        "target": 100
+      },
+      {
+        "source": 100,
+        "target": 101
+      },
+      {
+        "source": 102,
+        "target": 103
+      },
+      {
+        "source": 104,
+        "target": 105
+      },
+      {
+        "source": 106,
+        "target": 108
+      },
+      {
+        "source": 107,
+        "target": 109
+      },
+      {
+        "source": 109,
+        "target": 110
+      },
+      {
+        "source": 111,
+        "target": 114
+      },
+      {
+        "source": 112,
+        "target": 115
+      },
+      {
+        "source": 115,
+        "target": 117
+      },
+      {
+        "source": 113,
+        "target": 116
+      },
+      {
+        "source": 116,
+        "target": 118
+      },
+      {
+        "source": 118,
+        "target": 119
+      },
+      {
+        "source": 122,
+        "target": 123
+      },
+      {
+        "source": 126,
+        "target": 129
+      },
+      {
+        "source": 127,
+        "target": 130
+      },
+      {
+        "source": 130,
+        "target": 132
+      },
+      {
+        "source": 128,
+        "target": 131
+      },
+      {
+        "source": 131,
+        "target": 133
+      },
+      {
+        "source": 133,
+        "target": 134
+      },
+      {
+        "source": 135,
+        "target": 136
+      },
+      {
+        "source": 137,
+        "target": 138
+      },
+      {
+        "source": 139,
+        "target": 141
+      },
+      {
+        "source": 140,
+        "target": 142
+      },
+      {
+        "source": 144,
+        "target": 146
+      },
+      {
+        "source": 145,
+        "target": 147
+      }
+    ]
+  },
+  "timestamp": "2026-03-14T04:42:20.058174",
+  "success": true,
+  "error_message": null
+}

@@ -1,0 +1,76 @@
+# MITRE-CORE Version History
+
+## Semantic Versioning Guide
+- **MAJOR** (X.0.0): Breaking changes, major architectural shifts
+- **MINOR** (x.Y.0): New features, backward compatible
+- **PATCH** (x.y.Z): Bug fixes, optimizations
+
+## Current Version: 2.1.0
+
+### Version 2.1.0 (2026-03-15)
+**Release Type:** Minor - New Features
+
+#### Major Features Added:
+1. **Curated Graph Stories** (`core/cluster_filter.py`)
+   - Top-k cluster selection with importance scoring
+   - Semantic filtering by MITRE tactics/techniques
+   - Reservoir sampling for rare-but-critical chains
+   - Multi-resolution graph views (campaign/entity/alert)
+
+2. **Knowledge Graph Enrichment** (`core/kg_enrichment.py`)
+   - MITRE ATT&CK technique matching
+   - Malware family identification
+   - PageRank/betweenness centrality scoring
+   - Threat intel integration (CVE, campaigns)
+
+3. **Streaming & Batching** (`core/streaming.py`)
+   - Billion-scale dataset support
+   - Parquet-based efficient storage
+   - Lazy graph generation
+   - Reservoir sampling per tactic
+
+4. **Codebase Reorganization**
+   - Clean architecture principles applied
+   - Unified validation framework
+   - Organized directory structure
+   - Consolidated scripts and documentation
+
+#### New API Endpoints:
+- POST /api/clusters/filter
+- POST /api/graph/view/<type>
+- POST /api/enrichment/analyze
+- GET /api/enrichment/threat-intel
+- POST /api/report/generate
+- GET /api/report/download/<filename>
+
+#### Breaking Changes: None
+All features are additive and backward compatible.
+
+---
+
+## Historical Versions
+
+### v2.0.x - Baseline
+- HGNN + Union-Find hybrid pipeline
+- Confidence-gated correlation
+- Transformer-based embeddings
+- Multi-dataset support (UNSW-NB15, TON_IoT, etc.)
+
+### v1.x - Legacy
+- Initial Union-Find correlation
+- Basic alert clustering
+- Simple graph visualization
+
+---
+
+## Version Update Rules
+1. Use semantic versioning (MAJOR.MINOR.PATCH)
+2. Update this file for every release
+3. Update README.md title
+4. Update MEMORY.md changelog
+5. Create git tag for releases
+
+## Next Planned Versions
+- v2.1.1: Performance optimizations, bug fixes
+- v2.2.0: Neo4j integration, persistent knowledge graph
+- v2.3.0: Real-time streaming, SIEM connector improvements

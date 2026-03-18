@@ -1,0 +1,74 @@
+[
+  {
+    "method": "MITRE-CORE (Union-Find)",
+    "time_seconds": 0.0316,
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "V-Measure": 0.0,
+    "Fowlkes-Mallows": 0.3098,
+    "pred_clusters": 13
+  },
+  {
+    "method": "DBSCAN",
+    "time_seconds": 0.0077,
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "V-Measure": 0.0,
+    "Fowlkes-Mallows": 0.3098,
+    "pred_clusters": 2
+  },
+  {
+    "method": "K-Means",
+    "time_seconds": 1.8545,
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "V-Measure": 0.0,
+    "Fowlkes-Mallows": 0.3098,
+    "pred_clusters": 2
+  },
+  {
+    "method": "Hierarchical",
+    "time_seconds": 0.0041,
+    "ARI": 0.5482,
+    "NMI": 0.7858,
+    "V-Measure": 0.7858,
+    "Fowlkes-Mallows": 0.5955,
+    "pred_clusters": 18
+  },
+  {
+    "method": "Rule-Based",
+    "time_seconds": 0.004,
+    "ARI": 0.0,
+    "NMI": 0.6801,
+    "V-Measure": 0.6801,
+    "Fowlkes-Mallows": 0.0,
+    "pred_clusters": 93
+  },
+  {
+    "method": "IP-Subnet",
+    "time_seconds": 0.0036,
+    "ARI": 0.0731,
+    "NMI": 0.7013,
+    "V-Measure": 0.7013,
+    "Fowlkes-Mallows": 0.2045,
+    "pred_clusters": 82
+  },
+  {
+    "method": "Cosine-Similarity",
+    "time_seconds": 0.0045,
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "V-Measure": 0.0,
+    "Fowlkes-Mallows": 0.3098,
+    "pred_clusters": 2
+  },
+  {
+    "method": "Temporal",
+    "time_seconds": 0.0605,
+    "ARI": 0.6174,
+    "NMI": 0.8624,
+    "V-Measure": 0.8624,
+    "Fowlkes-Mallows": 0.7031,
+    "pred_clusters": 19
+  }
+]

@@ -1,0 +1,71 @@
+{
+  "timestamp": "2026-03-15T18:21:51.736844",
+  "version": "2.11",
+  "total_tests": 12,
+  "passed": 8,
+  "failed": 4,
+  "success_rate": 66.66666666666666,
+  "all_passed": false,
+  "results": {
+    "T1_Transformer_Exists": {
+      "passed": true,
+      "details": "",
+      "timestamp": "2026-03-15T18:21:47.178162"
+    },
+    "T2_HGNN_Exists": {
+      "passed": false,
+      "details": "cannot import name 'HGNNEncoder' from 'hgnn.hgnn_correlation' (E:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\hgnn\\hgnn_correlation.py)",
+      "timestamp": "2026-03-15T18:21:50.718633"
+    },
+    "T3_UnionFind_Exists": {
+      "passed": false,
+      "details": "cannot import name 'CorrelationIndexer' from 'core.correlation_indexer' (E:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\core\\correlation_indexer.py)",
+      "timestamp": "2026-03-15T18:21:50.739891"
+    },
+    "T4_3Tier_Integration": {
+      "passed": false,
+      "details": "cannot import name 'HGNNEncoder' from 'hgnn.hgnn_correlation' (E:\\Private\\MITRE-CORE 2\\MITRE-CORE_V2\\hgnn\\hgnn_correlation.py)",
+      "timestamp": "2026-03-15T18:21:50.739891"
+    },
+    "T5_MITRE_14_Tactics": {
+      "passed": true,
+      "details": "All 14 tactics present: 14",
+      "timestamp": "2026-03-15T18:21:50.742403"
+    },
+    "T6_MITRE_Mappings_Work": {
+      "passed": false,
+      "details": "Only 10/14 correct",
+      "timestamp": "2026-03-15T18:21:50.742403"
+    },
+    "T7_Real_Data_Loads": {
+      "passed": true,
+      "details": "Loaded 3 files, 989 total rows",
+      "timestamp": "2026-03-15T18:21:50.751570"
+    },
+    "T8_No_Synthetic_Data": {
+      "passed": true,
+      "details": "No synthetic indicators in real data",
+      "timestamp": "2026-03-15T18:21:50.754123"
+    },
+    "T9_Explainability": {
+      "passed": true,
+      "details": "",
+      "timestamp": "2026-03-15T18:21:50.754626"
+    },
+    "T10_Scalable_Clustering": {
+      "passed": true,
+      "details": "",
+      "timestamp": "2026-03-15T18:21:51.730039"
+    },
+    "T11_Cross_Domain_Fusion": {
+      "passed": true,
+      "details": "",
+      "timestamp": "2026-03-15T18:21:51.732678"
+    },
+    "T12_Full_Pipeline": {
+      "passed": true,
+      "details": "Processed 10 alerts, mapped to 10 unique tactics",
+      "timestamp": "2026-03-15T18:21:51.735845"
+    }
+  }
+}

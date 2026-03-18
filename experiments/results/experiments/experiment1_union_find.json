@@ -1,0 +1,47 @@
+[
+  {
+    "dataset": "Small",
+    "num_events": 25,
+    "num_campaigns": 5,
+    "noise_level": 0.1,
+    "time_seconds": 0.0188,
+    "ARI": 0.3045,
+    "NMI": 0.5744,
+    "Homogeneity": 0.4029,
+    "Completeness": 1.0,
+    "V-Measure": 0.5744,
+    "Fowlkes-Mallows": 0.562,
+    "pred_clusters": 4,
+    "true_clusters": 5
+  },
+  {
+    "dataset": "Medium",
+    "num_events": 93,
+    "num_campaigns": 10,
+    "noise_level": 0.15,
+    "time_seconds": 0.0321,
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "Homogeneity": 0.0,
+    "Completeness": 1.0,
+    "V-Measure": 0.0,
+    "Fowlkes-Mallows": 0.3098,
+    "pred_clusters": 13,
+    "true_clusters": 10
+  },
+  {
+    "dataset": "Large",
+    "num_events": 190,
+    "num_campaigns": 20,
+    "noise_level": 0.15,
+    "time_seconds": 0.055,
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "Homogeneity": 0.0,
+    "Completeness": 1.0,
+    "V-Measure": 0.0,
+    "Fowlkes-Mallows": 0.2287,
+    "pred_clusters": 25,
+    "true_clusters": 20
+  }
+]

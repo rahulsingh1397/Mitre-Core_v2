@@ -1,0 +1,30 @@
+[
+  {
+    "config": "Full System",
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "temporal": true,
+    "adaptive": true
+  },
+  {
+    "config": "No Adaptive Threshold",
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "temporal": true,
+    "adaptive": false
+  },
+  {
+    "config": "No Temporal Features",
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "temporal": false,
+    "adaptive": true
+  },
+  {
+    "config": "No Temporal + No Adaptive",
+    "ARI": 0.0,
+    "NMI": 0.0,
+    "temporal": false,
+    "adaptive": false
+  }
+]

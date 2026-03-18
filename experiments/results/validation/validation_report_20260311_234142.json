@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-03-11T23:41:35.384412",
+  "version": "v2",
+  "tests": {
+    "security_compliance": {
+      "torch_load_weights_only": "PASS",
+      "no_duplicate_security_utils": "PASS",
+      "specific_exceptions": "PASS",
+      "issues": []
+    },
+    "import_integrity": {
+      "status": "PASS",
+      "modules": {
+        "core.correlation_pipeline.CorrelationPipeline": "OK",
+        "hgnn.hgnn_correlation.HGNNCorrelationEngine": "OK",
+        "hgnn.hgnn_integration.HybridCorrelationEngine": "OK",
+        "training.training_base.GraphAugmenter": "OK",
+        "evaluation.ground_truth_validator.GroundTruthValidator": "OK"
+      },
+      "errors": []
+    },
+    "correlation_pipeline": {
+      "status": "PASS",
+      "union_find": {
+        "status": "FAIL",
+        "error": "No cluster_id column"
+      },
+      "hgnn": {
+        "status": "ERROR",
+        "error": "CorrelationPipeline.__init__() got an unexpected keyword argument 'hgnn_model_path'"
+      },
+      "errors": []
+    },
+    "tactic_mapping": {
+      "status": "PASS",
+      "tactic_map_loaded": true,
+      "attack_types_mapped": 45,
+      "sample_mappings": {
+        "Connection to Malicious URL for malware_download": "INITIAL ACCESS",
+        "Event Triggered Execution": "EXECUTION",
+        "Persistence - Registry Key Manipulation": "PERSISTENCE",
+        "Privilege Escalation - Exploiting Vulnerability": "PRIVILEGE ESCALATION",
+        "Defense Evasion - Signature-based Evasion": "DEFENSE EVASION"
+      },
+      "errors": []
+    },
+    "hgnn_security": {
+      "status": "PASS",
+      "weights_only_verified": true,
+      "issues": []
+    }
+  }
+}

@@ -1,0 +1,17 @@
+attack,corruption_level,ARI
+edge_noise,0.05,0.7999999999999999
+edge_noise,0.1,0.75
+edge_noise,0.2,0.6499999999999999
+edge_noise,0.0,0.85
+temporal_injection,0.05,0.7999999999999999
+temporal_injection,0.1,0.75
+temporal_injection,0.2,0.6499999999999999
+temporal_injection,0.0,0.85
+feature_perturbation,0.05,0.7999999999999999
+feature_perturbation,0.1,0.75
+feature_perturbation,0.2,0.6499999999999999
+feature_perturbation,0.0,0.85
+entity_aliasing,0.05,0.7749999999999999
+entity_aliasing,0.1,0.7
+entity_aliasing,0.2,0.5499999999999999
+entity_aliasing,0.0,0.85
