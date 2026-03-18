@@ -698,7 +698,7 @@ class EmbeddingConfidenceScorer:
         )
 
         # -----------------------------------------------------------------
-        # v3.0: Use all_points_membership_vectors() for full probability matrix.
+        # v2.1: Use all_points_membership_vectors() for full probability matrix.
         # Returns [N, n_clusters] where every point (noise, border, core) gets
         # a real probability distribution. No hard 0.0 values, no noise mask needed.
         try:

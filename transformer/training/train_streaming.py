@@ -34,6 +34,11 @@ from transformer.config.gpu_config_8gb import DEFAULT_CONFIG_8GB
 from transformer.training.gpu_trainer import GPUOptimizedTrainer, TrainingMetrics
 from transformer.preprocessing.alert_preprocessor import AlertPreprocessor
 from transformer.preprocessing.sliding_window_batcher import SlidingWindowBatcher
+from scripts.training_manifest import (
+    load_manifest, update_manifest, get_new_files,
+    is_fully_processed, get_manifest_summary
+)
+from scripts.dataset_registry import scan_datasets_dir
 
 logging.basicConfig(
     level=logging.INFO,
@@ -68,13 +73,15 @@ def get_dataset_paths() -> dict:
             "path": base / "CICAPT-IIoT-Dataset",
             "format": "csv",
             "pattern": "*.csv",
-            "streaming": False,
+            "streaming": True,  # Large dataset - capped at 100K rows
+            "chunksize": 5000,
         },
         "TON_IoT": {
             "path": base / "TON_IoT",
             "format": "parquet",
             "pattern": "*.parquet",
-            "streaming": False,
+            "streaming": True,  # Large parquet - capped at 100K rows
+            "chunksize": 5000,
         },
         "YNU": {
             "path": base / "YNU-IoTMal 2026" / "CSVs",
@@ -87,13 +94,15 @@ def get_dataset_paths() -> dict:
             "path": base / "CICIoV2024" / "decimal",
             "format": "csv",
             "pattern": "*.csv",
-            "streaming": False,
+            "streaming": True,  # 60M+ rows - must be capped
+            "chunksize": 5000,
         },
         "Real_Data": {
             "path": base / "real_data",
             "format": "csv",
             "pattern": "*.csv",
-            "streaming": False,
+            "streaming": True,  # Unknown size - precautionary cap
+            "chunksize": 5000,
         },
         "UNSW_NB15": {
             "path": base / "unsw_nb15",
@@ -106,7 +115,7 @@ def get_dataset_paths() -> dict:
 
 def stream_dataset_chunks(
     name: str,
-    config: dict,
+    config,
     max_chunks: Optional[int] = None
 ) -> Iterator[pd.DataFrame]:
     """
@@ -114,28 +123,31 @@ def stream_dataset_chunks(
     
     Args:
         name: Dataset name
-        config: Dataset configuration
+        config: DatasetMetadata configuration
         max_chunks: Maximum chunks to yield
         
     Yields:
         DataFrame chunks
     """
-    path = config["path"]
-    format_type = config.get("format", "csv")
-    chunksize = config.get("chunksize", 5000)
-    pattern = config.get("pattern", "*")
-    
+    path = Path(config.path)
+    format_type = config.format
+    chunksize = getattr(config, 'chunksize', 5000)
+    # file_pattern (DatasetMetadata) takes priority over legacy 'pattern' (dict config)
+    file_pattern = getattr(config, 'file_pattern', None) or getattr(config, 'pattern', None)
+
     if not path.exists():
         logger.warning(f"Path not found: {path}")
         return
-    
+
     # Find files
     if path.is_dir():
-        if pattern == "*/*":  # LANL style - files in subdirectories
-            files = list(path.glob(pattern))
-            files = [f for f in files if f.is_file()]  # Only files, not dirs
+        if file_pattern and file_pattern != "*":
+            if file_pattern == "*/*":  # LANL style - files in subdirectories
+                files = [f for f in path.glob(file_pattern) if f.is_file()]
+            else:
+                files = list(path.glob(file_pattern))
         elif format_type == "csv":
-            files = list(path.glob(pattern)) if pattern != "*" else list(path.rglob("*.csv"))
+            files = list(path.rglob("*.csv"))
         elif format_type == "parquet":
             files = list(path.glob("*.parquet"))
         else:
@@ -162,18 +174,19 @@ def stream_dataset_chunks(
                 for chunk in pd.read_csv(file, chunksize=chunksize, low_memory=False, on_bad_lines='skip'):
                     if max_chunks and chunk_count >= max_chunks:
                         break
+                    chunk = chunk.copy()
                     chunk['_source'] = name
                     chunk['_file'] = file.name
                     yield chunk
                     chunk_count += 1
-                    
+
             elif format_type == "parquet":
                 # Parquet - load and split manually
                 df = pd.read_parquet(file)
                 for i in range(0, len(df), chunksize):
                     if max_chunks and chunk_count >= max_chunks:
                         break
-                    chunk = df.iloc[i:i+chunksize]
+                    chunk = df.iloc[i:i+chunksize].copy()
                     chunk['_source'] = name
                     chunk['_file'] = file.name
                     yield chunk
@@ -200,6 +213,7 @@ def validate_and_fix_timestamps(df: pd.DataFrame, dataset_name: str) -> pd.DataF
     if found_col:
         # Convert to datetime
         try:
+            df = df.copy()
             df['timestamp'] = pd.to_datetime(df[found_col], errors='coerce')
         except:
             logger.warning(f"[{dataset_name}] Failed to parse {found_col}, creating artificial timestamps")
@@ -250,21 +264,25 @@ def create_batches_from_chunk(
 
 @dataclass
 class HyperparameterConfig:
-    """Hyperparameter configuration."""
-    model_name: str = "CyberTransformer_v1"
+    """Hyperparameter configuration - extends GPU config with training-specific settings."""
     epochs: int = 50
-    batch_size: int = 4
-    learning_rate: float = 5e-5
-    weight_decay: float = 0.01
-    max_grad_norm: float = 0.5
-    warmup_steps: int = 2000
-    gradient_accumulation_steps: int = 16
     use_amp: bool = True
-    dropout: float = 0.1
-    d_model: int = 128
-    n_layers: int = 2
-    n_heads: int = 4
-    max_seq_len: int = 256
+    
+    # Model and training settings from GPUConfig5060Ti
+    def __post_init__(self):
+        gpu_config = DEFAULT_CONFIG_8GB
+        self.model_name = "CyberTransformer_v1"
+        self.batch_size = gpu_config.batch_size
+        self.learning_rate = gpu_config.learning_rate
+        self.weight_decay = gpu_config.weight_decay
+        self.max_grad_norm = gpu_config.max_grad_norm
+        self.warmup_steps = gpu_config.warmup_steps
+        self.gradient_accumulation_steps = gpu_config.gradient_accumulation_steps
+        self.dropout = gpu_config.dropout
+        self.d_model = gpu_config.d_model
+        self.n_layers = gpu_config.n_layers
+        self.n_heads = gpu_config.n_heads
+        self.max_seq_len = gpu_config.max_seq_len
 
 
 def create_model(config: HyperparameterConfig, device: torch.device):
@@ -302,11 +320,34 @@ def train_with_streaming(
     val_ratio: float = 0.2,
     max_val_buffer: int = 200,
     patience: int = 15,
-    min_delta: float = 1e-4
+    min_delta: float = 1e-4,
+    incremental: bool = False
 ):
-    """Main streaming training function with validation and early stopping."""
+    """
+    Main streaming training function with validation and early stopping.
+    
+    Args:
+        incremental: If True, only train on new files since last run
+    """
     
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    # Incremental training setup
+    manifest_summary = get_manifest_summary()
+    new_files_total = []
+    rows_processed = 0
+    
+    if incremental:
+        logger.info("="*70)
+        logger.info("INCREMENTAL TRAINING MODE")
+        logger.info("="*70)
+        logger.info(f"Previously processed: {manifest_summary['total_files_processed']} files")
+        
+        # Auto-load best checkpoint if exists and not resuming
+        best_ckpt = checkpoint_dir / "best.pt"
+        if best_ckpt.exists() and resume_path is None:
+            logger.info(f"Auto-loading best checkpoint: {best_ckpt}")
+            resume_path = str(best_ckpt)
+    
     logger.info(f"Using device: {device}")
     
     # Create model
@@ -341,8 +382,13 @@ def train_with_streaming(
         preprocessor=preprocessor
     )
     
-    # Get dataset configs
-    all_dataset_configs = get_dataset_paths()
+    # Get dataset configs (auto-scan if requested)
+    if dataset_names == ["auto"]:
+        all_dataset_configs = scan_datasets_dir()
+        dataset_names = list(all_dataset_configs.keys())
+        logger.info(f"Auto-discovered {len(dataset_names)} datasets: {dataset_names}")
+    else:
+        all_dataset_configs = get_dataset_paths()
     
     # Training state
     all_metrics = []
@@ -391,6 +437,34 @@ def train_with_streaming(
         trainer.model.train()
         return total_loss / num_batches if num_batches > 0 else float('inf')
     
+    # For incremental training, filter to new files only
+    if incremental:
+        # Collect all files from all datasets
+        all_files = []
+        for dataset_name in dataset_names:
+            if dataset_name not in all_dataset_configs:
+                continue
+            ds_config = all_dataset_configs[dataset_name]
+            ds_path = Path(ds_config.path)
+            fmt = ds_config.format
+            
+            if ds_path.exists():
+                if fmt == "csv":
+                    all_files.extend(list(ds_path.glob("*.csv")))
+                elif fmt == "parquet":
+                    all_files.extend(list(ds_path.glob("*.parquet")))
+                elif fmt == "jsonl":
+                    all_files.extend(list(ds_path.glob("*.jsonl")))
+                    all_files.extend(list(ds_path.glob("wls_*")))
+        
+        new_files = get_new_files(all_files)
+        if not new_files:
+            logger.info("No new data since last run. Exiting.")
+            return {"status": "no_new_data", "message": "All files already processed"}
+        
+        new_files_total = new_files
+        logger.info(f"Found {len(new_files)} new/modified files to process")
+    
     logger.info(f"Streaming training with validation ratio={val_ratio}, patience={patience}")
     
     for epoch in tqdm(range(epochs), desc="Epochs", position=0, leave=True):
@@ -406,18 +480,23 @@ def train_with_streaming(
         dataset_pbar = tqdm(dataset_names, desc="Datasets", position=1, leave=False)
         
         # Stream through all datasets
-        for dataset_name in dataset_pbar:
+        for dataset_idx, dataset_name in enumerate(dataset_pbar):
             dataset_pbar.set_postfix({"dataset": dataset_name})
+            dataset_pbar.update(0)  # Force refresh
             if dataset_name not in all_dataset_configs:
                 logger.warning(f"Unknown dataset: {dataset_name}")
                 continue
             
             ds_config = all_dataset_configs[dataset_name]
             
-            # Determine max chunks for this dataset
-            max_chunks = None
-            if ds_config.get("streaming", False):
-                max_chunks = streaming_config.max_chunks_per_dataset
+            # Determine max chunks for this dataset (streaming datasets get chunk limits)
+            # Normalize: ds_config can be a dict (get_dataset_paths) or DatasetMetadata (scan_datasets_dir)
+            is_streaming = (
+                ds_config.get('streaming', False)
+                if isinstance(ds_config, dict)
+                else getattr(ds_config, 'streaming', False)
+            )
+            max_chunks = streaming_config.max_chunks_per_dataset if is_streaming else None
             
             # Stream chunks
             for chunk in stream_dataset_chunks(dataset_name, ds_config, max_chunks):
@@ -486,10 +565,10 @@ def train_with_streaming(
         dataset_pbar.close()
         
         # Compute validation loss
-        val_loss = validate_on_buffered_batches(trainer, val_buffer)
+        val_loss = validate_on_buffered_batches(trainer, val_buffer, device)
         
         epoch_time = time.time() - epoch_start
-        tqdm.write(f"Epoch {epoch+1} complete: {epoch_chunks} chunks, {epoch_batches} batches, val_loss={val_loss:.4f}, time={epoch_time:.1f}s")
+        logger.info(f"Epoch {epoch+1} complete: {epoch_chunks} chunks, {epoch_batches} batches, val_loss={val_loss:.4f}, time={epoch_time:.1f}s")
         
         # Configure scheduler after epoch 1 if not done
         if epoch == 0 and not scheduler_configured:
@@ -540,13 +619,28 @@ def train_with_streaming(
     with open(checkpoint_dir / "training_summary.json", 'w') as f:
         json.dump(summary, f, indent=2)
     
+    # Always update manifest so train-then-delete workflow works without --incremental
+    all_files_trained = []
+    for ds_name in dataset_names:
+        if ds_name not in all_dataset_configs:
+            continue
+        ds_path = Path(all_dataset_configs[ds_name].path if hasattr(all_dataset_configs[ds_name], 'path') else all_dataset_configs[ds_name]['path'])
+        for ext in ('*.csv', '*.parquet', '*.jsonl'):
+            all_files_trained.extend(ds_path.glob(ext))
+    if all_files_trained:
+        rows_processed = sum(len(m) for m in all_metrics) * config.batch_size
+        update_manifest(all_files_trained, rows_processed)
+        logger.info(f"Manifest updated: {len(all_files_trained)} files marked as processed")
+    if incremental and new_files_total:
+        logger.info(f"Incremental training complete: processed {len(new_files_total)} new files")
+    
     return summary
 
 
 def main():
     parser = argparse.ArgumentParser(description="Streaming Training for Large Datasets")
     parser.add_argument("--datasets", nargs="+", required=True,
-                      help="Dataset names to train on (LANL CICAPT-IIoT TON_IoT YNU CICIoV2024 Real_Data)")
+                      help="Dataset names to train on (use 'auto' for auto-discovery)")
     parser.add_argument("--epochs", type=int, default=50)
     parser.add_argument("--chunksize", type=int, default=5000,
                       help="Rows per chunk for streaming (default: 5000)")
@@ -557,6 +651,8 @@ def main():
     parser.add_argument("--checkpoint-dir", type=str, default="models/checkpoints/streaming_v1")
     parser.add_argument("--resume", type=str, default=None)
     parser.add_argument("--no-amp", action="store_true")
+    parser.add_argument("--incremental", action="store_true",
+                      help="Only train on new files since last run (resumes from best.pt)")
     
     args = parser.parse_args()
     
@@ -564,11 +660,9 @@ def main():
     checkpoint_dir = Path(args.checkpoint_dir)
     checkpoint_dir.mkdir(parents=True, exist_ok=True)
     
-    # Configs
+    # Configs - HyperparameterConfig auto-populates from DEFAULT_CONFIG_8GB
     hparams = HyperparameterConfig(
         epochs=args.epochs,
-        batch_size=args.batch_size,
-        learning_rate=args.lr,
         use_amp=not args.no_amp
     )
     
@@ -581,6 +675,8 @@ def main():
     logger.info("Streaming Training - Multi-Dataset")
     logger.info(f"Datasets: {args.datasets}")
     logger.info(f"Epochs: {args.epochs}, Chunksize: {args.chunksize}")
+    if args.incremental:
+        logger.info("Mode: INCREMENTAL (new files only)")
     logger.info("="*70)
     
     # Train
@@ -590,7 +686,8 @@ def main():
         config=hparams,
         streaming_config=streaming_config,
         checkpoint_dir=checkpoint_dir,
-        resume_path=args.resume
+        resume_path=args.resume,
+        incremental=args.incremental
     )
     
     logger.info(f"\nSummary: {summary}")

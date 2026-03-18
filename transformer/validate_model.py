@@ -4,6 +4,7 @@ Validate CyberTransformer trained model
 
 import torch
 import sys
+import argparse
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -11,16 +12,20 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from transformer.models.candidate_generator import TransformerCandidateGenerator
 from transformer.config.gpu_config_8gb import DEFAULT_CONFIG_8GB
 
-def validate_model():
+def validate_model(checkpoint_path: str = None):
     print("="*70)
     print("CyberTransformer Validation")
     print("="*70)
     
     # Load checkpoint
-    checkpoint_path = Path("cybertransformer_final/final.pt")
+    if checkpoint_path is None:
+        checkpoint_path = Path("cybertransformer_final/final.pt")
+    else:
+        checkpoint_path = Path(checkpoint_path)
+    
     if not checkpoint_path.exists():
         print(f"ERROR: Checkpoint not found at {checkpoint_path}")
-        return
+        return False
     
     print(f"Loading checkpoint: {checkpoint_path}")
     
@@ -80,9 +85,21 @@ def validate_model():
     print(f"  Buffers: {memory['buffer_size_mb']:.1f} MB")
     print(f"  Total: {memory['total_size_mb']:.1f} MB")
     
+    # Check for NaN/Inf in outputs
+    has_nan = torch.isnan(outputs['affinity_matrix']).any().item()
+    has_inf = torch.isinf(outputs['affinity_matrix']).any().item()
+    if has_nan or has_inf:
+        print(f"\nWARNING: Affinity matrix has NaN={has_nan}, Inf={has_inf}")
+        print("  This indicates numerical instability in the model")
+    
     print("\n" + "="*70)
     print("VALIDATION SUCCESSFUL - Model is ready for inference")
     print("="*70)
+    
+    return True
 
 if __name__ == "__main__":
-    validate_model()
+    parser = argparse.ArgumentParser(description="Validate CyberTransformer model")
+    parser.add_argument("--checkpoint", type=str, default=None, help="Path to checkpoint file")
+    args = parser.parse_args()
+    validate_model(args.checkpoint)

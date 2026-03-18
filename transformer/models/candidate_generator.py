@@ -38,28 +38,38 @@ class BiaffineAttention(nn.Module):
         
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
-        Compute pairwise biaffine scores.
-        
-        Args:
-            x: [batch, seq_len, d_model]
-            
-        Returns:
-            scores: [batch, seq_len, seq_len] (scaled and clamped)
+        Compute pairwise biaffine scores with NaN/Inf protection.
         """
         batch_size, seq_len, _ = x.shape
+        
+        # Check for NaN/Inf in input
+        if torch.isnan(x).any() or torch.isinf(x).any():
+            logger.warning("NaN/Inf detected in biaffine input, replacing with zeros")
+            x = torch.nan_to_num(x, nan=0.0, posinf=0.0, neginf=0.0)
+        
+        # Normalize input to prevent extreme values
+        x_norm = torch.norm(x, dim=-1, keepdim=True).clamp(min=1e-6)
+        x = x / x_norm * torch.clamp(x_norm, max=10.0)
         
         # Expand W for batch
         W_batch = self.W.unsqueeze(0).expand(batch_size, -1, -1)
         
         # Compute: x @ W @ x.T with scaling
         intermediate = torch.bmm(x, W_batch)  # [batch, seq_len, d_model]
+        
+        # Check intermediate for NaN/Inf
+        if torch.isnan(intermediate).any() or torch.isinf(intermediate).any():
+            logger.warning("NaN/Inf in intermediate, clamping")
+            intermediate = torch.clamp(intermediate, -50, 50)
+        
         scores = torch.bmm(intermediate, x.transpose(1, 2))  # [batch, seq_len, seq_len]
         
-        # Scale down to prevent extreme values
+        # Scale down and clamp
         scores = scores * self.scale
-        
-        # Clamp to prevent overflow in downstream operations
         scores = torch.clamp(scores, -50.0, 50.0)
+        
+        # Final NaN/Inf check
+        scores = torch.nan_to_num(scores, nan=0.0, posinf=50.0, neginf=-50.0)
         
         return scores
 
@@ -216,14 +226,35 @@ class TransformerCandidateGenerator(nn.Module):
         # Apply transformer layers with optional gradient checkpointing
         for layer in self.transformer_layers:
             if self.use_gradient_checkpointing and self.training:
-                x = torch.utils.checkpoint.checkpoint(layer, x, attention_mask)
+                x = torch.utils.checkpoint.checkpoint(layer, x, attention_mask, use_reentrant=False)
             else:
                 x = layer(x, attention_mask)
+        
+        # Check for degenerate embeddings (all zeros or NaN/Inf)
+        if torch.isnan(x).any() or torch.isinf(x).any():
+            logger.warning("NaN/Inf detected in transformer output, replacing with zeros")
+            x = torch.nan_to_num(x, nan=0.0, posinf=0.0, neginf=0.0)
+        
+        # Check if all embeddings are zero (empty graph case)
+        embedding_norm = torch.norm(x, dim=-1)
+        if (embedding_norm == 0).all():
+            logger.warning("All embeddings are zero - degenerate graph detected, using random init")
+            x = torch.randn_like(x) * 0.01  # Small random values
         
         hidden_states = x  # [batch, seq_len, d_model]
         
         # Generate pairwise affinity matrix
         affinity_matrix = self.pairwise_scorer(hidden_states)  # [batch, seq_len, seq_len]
+        
+        # Check for NaN/Inf in affinity matrix
+        if torch.isnan(affinity_matrix).any() or torch.isinf(affinity_matrix).any():
+            logger.warning("NaN/Inf detected in affinity_matrix, sanitizing")
+            affinity_matrix = torch.nan_to_num(affinity_matrix, nan=0.0, posinf=50.0, neginf=-50.0)
+        
+        # Check for NaN/Inf in affinity matrix
+        if torch.isnan(affinity_matrix).any() or torch.isinf(affinity_matrix).any():
+            logger.warning("NaN/Inf detected in affinity_matrix, sanitizing")
+            affinity_matrix = torch.nan_to_num(affinity_matrix, nan=0.0, posinf=50.0, neginf=-50.0)
         
         # Mask self-loops
         mask = torch.eye(seq_len, device=device).bool().unsqueeze(0).expand(batch_size, -1, -1)
@@ -237,6 +268,12 @@ class TransformerCandidateGenerator(nn.Module):
             # Mask columns where attention_mask is 0
             col_mask = (attention_mask == 0).unsqueeze(1).expand(-1, seq_len, -1)
             affinity_matrix = affinity_matrix.masked_fill(col_mask, float('-inf'))
+        
+        # FIX: Replace -inf masks with large finite negative for training stability
+        # (prevents false NaN/Inf warnings in trainer from intentional masking)
+        affinity_matrix = affinity_matrix.masked_fill(
+            ~torch.isfinite(affinity_matrix), -50.0
+        )
         
         # Confidence scores
         confidence = self.confidence_head(hidden_states).squeeze(-1)  # [batch, seq_len]

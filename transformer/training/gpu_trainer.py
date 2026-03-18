@@ -14,9 +14,9 @@ from dataclasses import dataclass
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from torch.cuda.amp import autocast, GradScaler
+from torch.amp import autocast, GradScaler
 from torch.optim import AdamW
-from torch.optim.lr_scheduler import CosineAnnealingWarmRestarts
+from torch.optim.lr_scheduler import OneCycleLR
 
 from transformer.config.gpu_config_8gb import GPUConfig5060Ti
 from transformer.models.candidate_generator import TransformerCandidateGenerator
@@ -92,11 +92,18 @@ class GPUOptimizedTrainer:
                 weight_decay=config.weight_decay
             )
         
-        # Learning rate scheduler
-        self.scheduler = CosineAnnealingWarmRestarts(
+        # Learning rate scheduler: OneCycleLR for proper warmup + cosine decay
+        # Calculate total steps based on typical dataset size
+        # Assuming ~1000 steps per epoch for estimation, will be adjusted by actual training
+        self.scheduler = OneCycleLR(
             self.optimizer,
-            T_0=config.warmup_steps,
-            T_mult=2
+            max_lr=config.learning_rate,
+            total_steps=100000,  # Will be overridden by actual training length
+            pct_start=0.1,  # 10% warmup
+            anneal_strategy='cos',
+            cycle_momentum=False,
+            div_factor=25.0,  # initial_lr = max_lr / 25
+            final_div_factor=10000.0  # final_lr = initial_lr / 10000
         )
         
         # Loss function
@@ -112,6 +119,40 @@ class GPUOptimizedTrainer:
             f"accumulation_steps={self.accumulation_steps}, "
             f"checkpoint_dir={checkpoint_dir}"
         )
+        self._scheduler_configured = False
+    
+    def configure_scheduler(self, total_optimizer_steps: int) -> None:
+        """
+        Reconfigure the scheduler with the correct total step count.
+        Must be called after dataset is built and train/val split is computed.
+        
+        Args:
+            total_optimizer_steps: Total number of optimizer steps (accounting for accumulation)
+        """
+        logger.info(f"Configuring scheduler with total_steps={total_optimizer_steps}")
+        
+        # Recreate scheduler with correct step count
+        self.scheduler = OneCycleLR(
+            self.optimizer,
+            max_lr=self.config.learning_rate,
+            total_steps=total_optimizer_steps,
+            pct_start=0.1,  # 10% warmup
+            anneal_strategy='cos',
+            cycle_momentum=False,
+            div_factor=25.0,
+            final_div_factor=10000.0
+        )
+        self._scheduler_configured = True
+    
+    def _check_scheduler_configured(self) -> None:
+        """Warn if scheduler hasn't been configured with correct step count."""
+        if not hasattr(self, '_scheduler_configured') or not self._scheduler_configured:
+            if self.current_step == 0:
+                logger.warning(
+                    "Scheduler not configured with actual step count! "
+                    "Call configure_scheduler() after train/val split is computed. "
+                    "Training will continue with placeholder step count (100000)."
+                )
     
     def train_step(
         self,
@@ -134,7 +175,7 @@ class GPUOptimizedTrainer:
         labels = labels.to(self.device)
         
         # Forward pass with autocast (FP16)
-        with autocast(enabled=self.use_amp):
+        with autocast('cuda', enabled=self.use_amp):
             outputs = self.model(
                 alert_ids=batch['alert_ids'],
                 entity_ids=batch['entity_ids'],
@@ -143,9 +184,8 @@ class GPUOptimizedTrainer:
                 return_candidates=False
             )
             
-            # Compute loss on affinity matrix
-            # Simplified: use mean affinity as score for each pair
-            affinity_matrix = outputs['affinity_matrix']
+            # FIX: Cast affinity to fp32 before loss computation to prevent AMP overflow
+            affinity_matrix = outputs['affinity_matrix'].float()
             
             # Create positive/negative mask from labels
             # For simplicity, we'll use a contrastive loss
@@ -217,13 +257,12 @@ class GPUOptimizedTrainer:
         """
         batch_size, seq_len, _ = affinity_matrix.shape
         
-        # Check for NaN/Inf in affinity matrix
-        if torch.isnan(affinity_matrix).any() or torch.isinf(affinity_matrix).any():
-            logger.warning("Affinity matrix contains NaN/Inf, clamping...")
-            affinity_matrix = torch.nan_to_num(affinity_matrix, nan=0.0, posinf=10.0, neginf=-10.0)
+        # Only warn on genuine NaN, not intentional -inf masking
+        if torch.isnan(affinity_matrix).any():
+            logger.warning("Affinity matrix contains NaN, clamping...")
+            affinity_matrix = torch.nan_to_num(affinity_matrix, nan=0.0)
         
-        # Clamp affinity values to prevent logsigmoid overflow
-        # logsigmoid is stable for x in [-10, 10] range
+        # Clamp to prevent extreme values
         affinity_matrix = torch.clamp(affinity_matrix, -10.0, 10.0)
         
         # Create positive mask: alerts in same campaign should have high affinity
@@ -318,7 +357,7 @@ class GPUOptimizedTrainer:
         Evaluate model on validation set.
         
         Args:
-            eval_batches: List of evaluation batches
+            eval_batches: List of evaluation batches with 'labels' key
             
         Returns:
             Dictionary with evaluation metrics
@@ -329,9 +368,11 @@ class GPUOptimizedTrainer:
         num_batches = 0
         
         for batch in eval_batches:
-            labels = torch.ones(batch['alert_ids'].shape[0], batch['alert_ids'].shape[1])
+            if 'labels' not in batch:
+                raise ValueError("Eval batch must contain 'labels' key")
+            labels = batch['labels']
             
-            with autocast(enabled=self.use_amp):
+            with autocast('cuda', enabled=self.use_amp):
                 outputs = self.model(
                     alert_ids=batch['alert_ids'],
                     entity_ids=batch['entity_ids'],
@@ -340,7 +381,8 @@ class GPUOptimizedTrainer:
                     return_candidates=False
                 )
                 
-                affinity_matrix = outputs['affinity_matrix']
+                # FIX: Cast affinity to fp32 (same fix as train_step)
+                affinity_matrix = outputs['affinity_matrix'].float()
                 loss = self._compute_contrastive_loss(affinity_matrix, labels.to(self.device))
             
             total_loss += loss.item()
@@ -365,7 +407,7 @@ class GPUOptimizedTrainer:
         Full training loop.
         
         Args:
-            train_batches: List of training batches
+            train_batches: List of training batches with 'labels' key
             eval_batches: Optional list of evaluation batches
             num_epochs: Number of training epochs
             save_every: Save checkpoint every N steps
@@ -380,8 +422,10 @@ class GPUOptimizedTrainer:
             logger.info(f"Epoch {epoch + 1}/{num_epochs}")
             
             for batch_idx, batch in enumerate(train_batches):
-                # Create dummy labels (in real training, these come from data)
-                labels = torch.ones(batch['alert_ids'].shape[0], batch['alert_ids'].shape[1])
+                # Use labels from batch (must be provided by data loader)
+                if 'labels' not in batch:
+                    raise ValueError("Batch must contain 'labels' key for contrastive learning")
+                labels = batch['labels']
                 
                 # Training step
                 metrics = self.train_step(batch, labels)

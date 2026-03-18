@@ -128,7 +128,7 @@ class AlertPreprocessor:
         """
         # Extract timestamp
         timestamp = pd.to_datetime(
-            row.get('timestamp', row.get('EndDate', row.get('StartTime'))),
+            row.get('timestamp') or row.get('EndDate') or row.get('StartTime') or row.get('time'),
             errors='coerce'
         )
         if pd.isna(timestamp):
@@ -143,26 +143,60 @@ class AlertPreprocessor:
         severity_score = self._compute_severity_score(severity)
         
         # Extract entities
-        # Try various column names for flexibility
+        # Try various column names for flexibility across datasets
+        # Handle CAN bus datasets (CICIoV2024) - use CAN ID as network identifier
+        can_id = row.get('ID')
+        can_data = row.get('DATA_0', row.get('data'))
+        
+        # Extract source IP - try column names in priority order, then CAN fallback
         src_ip = (
-            row.get('src_ip') or 
-            row.get('SourceAddress') or 
+            row.get('src_ip') or
+            row.get('SourceAddress') or
             row.get('SourceIP') or
-            self._extract_ip_from_bytes(row.get('sbytes'))
+            row.get('src') or
+            row.get('Src IP') or
+            row.get('Source IP') or
+            row.get('sip') or
+            row.get('src_computer') or           # LANL
+            row.get('source_computer') or          # LANL variant
+            row.get('user@src_computer')           # LANL auth logs
         )
+        # CAN bus fallback (CICIoV2024) - only reached when no IP column found above
+        if src_ip is None and can_id is not None:
+            src_ip = f"CAN:{can_id}"
+        # Byte synthesis fallback - last resort synthetic IP from packet size
+        if src_ip is None:
+            src_ip = self._extract_ip_from_bytes(row.get('sbytes'))
+
+        # Same structure for dst_ip:
         dst_ip = (
-            row.get('dst_ip') or 
-            row.get('DestinationAddress') or 
+            row.get('dst_ip') or
+            row.get('DestinationAddress') or
             row.get('DestinationIP') or
-            self._extract_ip_from_bytes(row.get('dbytes'))
+            row.get('dst') or
+            row.get('Dst IP') or
+            row.get('Destination IP') or
+            row.get('dip') or
+            row.get('dst_computer') or           # LANL
+            row.get('dest_computer') or          # LANL variant
+            row.get('user@dst_computer')           # LANL auth logs
         )
+        if dst_ip is None and can_id is not None:
+            dst_ip = f"CAN:{can_id}"
+        if dst_ip is None:
+            dst_ip = self._extract_ip_from_bytes(row.get('dbytes'))
         hostname = (
-            row.get('hostname') or 
-            row.get('SourceHostName') or 
+            row.get('hostname') or
+            row.get('SourceHostName') or
             row.get('DeviceHostName') or
-            row.get('service') or
-            f"host-{idx % 1000}"
+            row.get('service')
         )
+        # CAN data fallback
+        if hostname is None and can_data is not None:
+            hostname = f"CAN:{can_data}"
+        # Final fallback
+        if hostname is None:
+            hostname = f"host-{idx % 1000}"
         username = (
             row.get('username') or 
             row.get('SourceUserName') or
@@ -225,7 +259,7 @@ class AlertPreprocessor:
             return self._create_empty_batch(device)
         
         # Sort by time for positional encoding - only use columns that exist
-        sort_cols = ['timestamp', 'EndDate', 'StartTime']
+        sort_cols = ['timestamp', 'EndDate', 'StartTime', 'time']
         available_sort_cols = [col for col in sort_cols if col in df.columns]
         
         if available_sort_cols:
@@ -269,6 +303,11 @@ class AlertPreprocessor:
         
         # Create tensors
         tensors = self._create_tensors(alert_tokens, device)
+        
+        # Extract campaign labels from dataframe for contrastive learning
+        # Priority: campaign_id > tactic > label > red_team_tag
+        campaign_labels = self._extract_campaign_labels(df)
+        tensors['campaign_labels'] = campaign_labels
         
         # Create metadata
         metadata = self._create_metadata(alert_tokens, window_start, window_end)
@@ -369,6 +408,81 @@ class AlertPreprocessor:
             missing_techniques_pct=(missing_techniques / total) * 100 if total > 0 else 0
         )
     
+    # LANL EventID to MITRE Tactic mapping (coarse campaign labels)
+    LANL_EVENTID_TACTIC = {
+        4688: "Execution",           # Process Creation
+        4689: "Execution",           # Process Termination
+        4624: "InitialAccess",       # Account Logon
+        4625: "InitialAccess",       # Account Logon Failure
+        4648: "LateralMovement",     # Explicit Credential Logon
+        4672: "PrivilegeEscalation", # Special Privileges
+        4634: "DefenseEvasion",      # Logoff (session closure)
+        4768: "CredentialAccess",    # Kerberos TGT Request
+        4769: "CredentialAccess",    # Kerberos Service Ticket
+        4770: "CredentialAccess",    # Kerberos Service Ticket Renewed
+        4771: "CredentialAccess",   # Kerberos Pre-Auth Failed
+        4776: "CredentialAccess",   # NTLM Auth
+        4800: "DefenseEvasion",     # Workstation Locked
+        4801: "DefenseEvasion",     # Workstation Unlocked
+        4802: "DefenseEvasion",     # Screen Saver Invoked
+        4803: "DefenseEvasion",     # Screen Saver Dismissed
+        5136: "Persistence",        # Directory Service Object Modified
+        5137: "Persistence",        # Directory Service Object Created
+        5140: "LateralMovement",    # Network Share Accessed
+        5145: "LateralMovement",    # Network Share Object Checked
+    }
+
+    def _extract_campaign_labels(self, df: pd.DataFrame) -> torch.Tensor:
+        """
+        Extract campaign labels from dataframe for contrastive learning.
+        Priority: campaign_id > tactic > label > red_team_tag > attack_cat > EventID (LANL)
+        
+        Returns:
+            torch.Tensor of shape [len(df)] with integer campaign IDs
+        """
+        labels = None
+        label_col = None
+        
+        # Priority order for label columns
+        priority_cols = ['campaign_id', 'tactic', 'label', 'red_team_tag', 'attack_cat', 'Label', 'class']
+        
+        for col in priority_cols:
+            if col in df.columns:
+                labels = df[col]
+                label_col = col
+                break
+        
+        # LANL fallback: map EventID to coarse tactic labels
+        if labels is None and 'EventID' in df.columns:
+            event_ids = df['EventID'].fillna(0).astype(int)
+            tactic_labels = event_ids.map(lambda x: self.LANL_EVENTID_TACTIC.get(x, "Unknown"))
+            # Factorize to integers
+            unique_tactics = tactic_labels.unique()
+            tactic_map = {t: i for i, t in enumerate(unique_tactics)}
+            int_labels = tactic_labels.map(lambda x: tactic_map.get(x, 0))
+            return torch.tensor(int_labels.values, dtype=torch.long)
+        
+        if labels is None:
+            # No label column found - return alternating labels as fallback
+            logger.warning("No campaign label column found, using alternating labels")
+            return torch.arange(len(df), dtype=torch.long) % 2
+        
+        # Convert labels to integers
+        if labels.dtype == 'object' or labels.dtype.name == 'category':
+            # String labels - factorize to integers
+            unique_labels = labels.dropna().unique()
+            label_map = {label: idx for idx, label in enumerate(unique_labels)}
+            int_labels = labels.map(lambda x: label_map.get(x, -1) if pd.notna(x) else -1)
+        else:
+            # Numeric labels - use directly
+            int_labels = labels.fillna(-1).astype(int)
+        
+        # Handle NaN/unknown labels (-1) by assigning them unique negative IDs
+        # This ensures they don't form positive pairs with anything
+        result = int_labels.values
+        
+        return torch.tensor(result, dtype=torch.long)
+    
     def _create_empty_batch(self, device: torch.device) -> Dict:
         """Create empty batch for edge cases."""
         return {
@@ -377,6 +491,7 @@ class AlertPreprocessor:
             'time_buckets': torch.zeros(1, 0, dtype=torch.long, device=device),
             'severity': torch.zeros(1, 0, dtype=torch.float, device=device),
             'attention_mask': torch.zeros(1, 0, dtype=torch.long, device=device),
+            'campaign_labels': torch.zeros(0, dtype=torch.long, device=device),
             'alert_batch': AlertBatch(
                 batch_id="empty",
                 window_start=datetime.now(),
