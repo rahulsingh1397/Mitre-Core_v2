@@ -156,6 +156,7 @@ DATASET_REGISTRY: Dict[str, DatasetMetadata] = {
         dest_ip_col="Dst_IP",
         has_mitre_labels=False,
         size_estimate="500K",
+        streaming=True,  # 9.2GB, must be capped at 100K rows/epoch
         year=2022,
         description="CICAPT-IIoT APT attack dataset for industrial IoT"
     ),
@@ -245,6 +246,21 @@ def scan_datasets_dir(base_path: str = "datasets") -> Dict[str, DatasetMetadata]
     # Directories to skip
     skip_dirs = {'processed', 'loaders', 'real_data', '__pycache__', '.git'}
     
+    # Build set of top-level dataset folders already claimed by the static registry.
+    # Handles mismatches between static key and normalized folder name, e.g.:
+    #   "LANL" → path "datasets/LANL 2021–2024/HostEvents" → top-level: datasets/LANL 2021–2024
+    #   "CICAPT_IIoT" → path "datasets/CICAPT-IIoT-Dataset" → top-level: datasets/CICAPT-IIoT-Dataset
+    static_covered = set()
+    for ds_meta in DATASET_REGISTRY.values():
+        ds_path = Path(ds_meta.path)
+        parts = ds_path.parts
+        try:
+            base_idx = list(parts).index(base.name)  # find 'datasets' component
+            if base_idx + 1 < len(parts):
+                static_covered.add(base / parts[base_idx + 1])
+        except (ValueError, IndexError):
+            pass
+    
     for subdir in base.iterdir():
         if not subdir.is_dir() or subdir.name in skip_dirs:
             continue
@@ -252,7 +268,8 @@ def scan_datasets_dir(base_path: str = "datasets") -> Dict[str, DatasetMetadata]
         # Normalize name for registry key
         name = subdir.name.replace(' ', '_').replace('-', '_').replace('.', '_')
         
-        if name in DATASET_REGISTRY:
+        # Skip if already covered by static registry (by name OR by folder path)
+        if name in DATASET_REGISTRY or subdir in static_covered:
             continue  # Already hand-registered, skip
         
         # Auto-detect format — prefer mitre_format.* files when they exist
